@@ -1,0 +1,44 @@
+.PieceCharacterAssociation {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-radius: 10px;
+    align-items: center;
+    padding: 4px;
+}
+
+.CharacterImage {
+    position: relative;
+    z-index: -1;
+    left: 5px;
+    bottom: 8px;
+
+}
+
+.PieceImage {
+    position: relative;
+    z-index: 1;
+    left: 25px;
+    top: 5px;
+
+}
+
+.CharacterSelection{
+    position: relative;
+    right: 12px;
+}
+
+.Combo {
+    position: relative;
+    right: 8px;
+}
+
+.RandomButton {
+    position: relative;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+
+}
