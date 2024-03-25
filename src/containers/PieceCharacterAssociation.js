@@ -12,7 +12,9 @@ export default function PieceCharacterAssociation({chessPiece, addCharacter, dis
   const [character, setCharacter] = useState("Bowser");
 
   useEffect(() => {
-    addCharacter(prev => ({...prev, [chessPiece]: character}))
+    const pieceType = chessPiece.slice(6);
+    console.log(pieceType);
+    addCharacter(prev => ({...prev, [pieceType]: character}))
   }, [character])
     
 function handleRandomClick() {
