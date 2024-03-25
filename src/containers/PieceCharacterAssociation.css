@@ -10,7 +10,9 @@
     padding: 4px;
     width: 350px;
     box-shadow: 2px 2px 2px 0px var(--deeper-color);
+    transition: background-color 0.30s ease;
 }
+
 
 .CharacterImage {
     position: relative;
@@ -32,11 +34,22 @@
     position: relative;
     right: 12px;
     text-align: center;
+    transition: opacity 0.30s ease;
+}
+
+.CharacterSelection:hover {
+    cursor: pointer;
 }
 
 .Combo {
     position: relative;
-    right: 8px;
+    left: -8px;
+    transition: left 0.5s ease;
+}
+
+.ComboCentered {
+    left: 115px;
+    transition: left 0.5s ease;
 }
 
 .RandomButton {
@@ -49,7 +62,8 @@
     border-radius: 20%;
     color: white;
     background-color: var(--deeper-color);
-    transition: transform 0.15s ease;
+    transition: transform 0.15s ease,
+                opacity 0.30s ease;
 }
 
 .RandomButton:hover {
@@ -60,4 +74,12 @@
 .RandomButton:active {
     transform: scale(0.90)
                 rotate(15deg);
+}
+
+.Disabled {
+    opacity: 0;
+}
+
+.Disabled:hover {
+    cursor: default;
 }

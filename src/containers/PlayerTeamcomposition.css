@@ -24,14 +24,29 @@
     border: 1px solid black;
     box-shadow: 2px 2px 0 0 black;
     transition: transform 0.15s ease;
+
+}
+
+.LockCompositionButton::after{
+    content: 'Lock Composition';
 }
 
 .LockCompositionButton:hover {
     cursor: pointer;
+    border: 1px solid white;
 }
 
 .LockCompositionButton:active {
     box-shadow: none;
     left: 2px;
     top: 2px;
+}
+
+.LockedCompositionButton {
+    background-color: green;
+    font-size: 1.8em;
+}
+
+.LockedCompositionButton:after {
+    content: '✓';
 }
