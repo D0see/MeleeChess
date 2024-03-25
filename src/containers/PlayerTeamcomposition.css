@@ -1,4 +1,37 @@
+:root {
+    --deeper-color: rgba(56, 71, 80, 0.89);
+    --lighter-color: rgb(240, 238, 165);
+}
+
+
 .PlayerTeamComposition {
     display: flex;
     flex-direction: column;
+}
+
+.LockCompositionButton {
+    position: relative;
+    width: 70%;
+    height: 50px;
+    align-self: center;
+    margin-top: 15%;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: white;
+    background-color: var(--deeper-color);
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 0 0 black;
+    transition: transform 0.15s ease;
+}
+
+.LockCompositionButton:hover {
+    cursor: pointer;
+}
+
+.LockCompositionButton:active {
+    box-shadow: none;
+    left: 2px;
+    top: 2px;
 }

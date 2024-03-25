@@ -1,4 +1,10 @@
 .CharacterSelectScreen {
-    display: flex;
-    justify-content: space-around;
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 50%;
+    bottom: 55%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5%;
+    text-align: center;
 }

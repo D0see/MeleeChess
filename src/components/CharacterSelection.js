@@ -12,7 +12,7 @@ export default function CharacterSelection({onSelect, charName, className}) {
     <form>
         <select className={className} onChange={handleChange} value={charName}>
             {Object.keys(SSBMCharactersObj).map(character => {
-                return <option value={character}>{character}</option>
+                return <option key={character} value={character}>{character}</option>
             })}
         </select>
     </form>

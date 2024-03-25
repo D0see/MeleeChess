@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./PieceCharacterAssociation.css"
 import PieceImg from '../components/PieceImg'
 import {SSBMCharactersArray} from '../utils/CharacterList'
@@ -8,8 +8,12 @@ import CharacterImg from '../components/CharacterImg'
 import RandomCharacterButton from '../components/RandomCharacterButton'
 
 
-export default function PieceCharacterAssociation({chessPiece}) {
-    const [character, setCharacter] = useState("Bowser");
+export default function PieceCharacterAssociation({chessPiece, addCharacter}) {
+  const [character, setCharacter] = useState("Bowser");
+
+  useEffect(() => {
+    addCharacter(prev => ({...prev, [chessPiece]: character}))
+  }, [character])
     
 function handleRandomClick() {
     const randomIndex = Math.floor(Math.random()*SSBMCharactersArray.length);

@@ -1,17 +1,20 @@
 .PieceCharacterAssociation {
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
+    border: 1px solid var(--deeper-color);
+    background-color: var(--lighter-color);
     justify-content: space-between;
     margin-top: 10px;
     border-radius: 10px;
     align-items: center;
     padding: 4px;
+    width: 350px;
+    box-shadow: 2px 2px 2px 0px var(--deeper-color);
 }
 
 .CharacterImage {
     position: relative;
-    z-index: -1;
+    z-index: 1;
     left: 5px;
     bottom: 8px;
 
@@ -19,7 +22,7 @@
 
 .PieceImage {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     left: 25px;
     top: 5px;
 
@@ -28,6 +31,7 @@
 .CharacterSelection{
     position: relative;
     right: 12px;
+    text-align: center;
 }
 
 .Combo {
@@ -40,5 +44,20 @@
     right: 20px;
     height: 40px;
     width: 40px;
+    font-size: 1.5em;
+    border: 1px solid var(--deeper-color);
+    border-radius: 20%;
+    color: white;
+    background-color: var(--deeper-color);
+    transition: transform 0.15s ease;
+}
 
+.RandomButton:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.RandomButton:active {
+    transform: scale(0.90)
+                rotate(15deg);
 }
