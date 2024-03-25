@@ -1,5 +1,5 @@
 import React from 'react'
-import {SSBMCharactersObj} from '../utils/CharacterList'
+import {SSBMCharactersObj} from '../../utils/CharacterList'
 
 export default function CharacterSelection({onSelect, charName, className, disabled}) {
 

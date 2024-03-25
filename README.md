@@ -1,8 +1,9 @@
 #   Bugs:
 
-- RandomCharacterAssignement can land on selected character.
-
 #   Features to add :
 
 1. Port Selector.
 2. Dynamic color change based on port selected.
+3. Character Veto
+4. Can't pick the same character in multiple fields.
+5. Add specific lists for each roles.

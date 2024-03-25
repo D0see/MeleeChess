@@ -1,27 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import "./PieceCharacterAssociation.css"
-import PieceImg from '../components/PieceImg'
-import {SSBMCharactersArray} from '../utils/CharacterList'
+import PieceImg from '../../components/TeamCompScreen/PieceImg'
+import {SSBMCharactersArray} from '../../utils/CharacterList'
 
-import CharacterSelection from '../components/CharacterSelection'
-import CharacterImg from '../components/CharacterImg'
-import RandomCharacterButton from '../components/RandomCharacterButton'
+import CharacterSelection from '../../components/TeamCompScreen/CharacterSelection'
+import CharacterImg from '../../components/TeamCompScreen/CharacterImg'
+import RandomCharacterButton from '../../components/TeamCompScreen/RandomCharacterButton'
 
 
 export default function PieceCharacterAssociation({chessPiece, addCharacter, disabled}) {
-  const [character, setCharacter] = useState("Bowser");
 
+  const [character, setCharacter] = useState("Bowser");
   useEffect(() => {
     const pieceType = chessPiece.slice(6);
-    console.log(pieceType);
     addCharacter(prev => ({...prev, [pieceType]: character}))
   }, [character])
     
 function handleRandomClick() {
-    const randomIndex = Math.floor(Math.random()*SSBMCharactersArray.length);
-    setCharacter(SSBMCharactersArray[randomIndex]);
+    setCharacter(prev => {
+      let randomIndex = Math.floor(Math.random()*SSBMCharactersArray.length);
+      //Make it so you can't roll the selected character
+      while (SSBMCharactersArray.indexOf(prev) === randomIndex){
+        randomIndex = Math.floor(Math.random()*SSBMCharactersArray.length);
+      }
+      return SSBMCharactersArray[randomIndex];    
+  })
 }
-
   return (
     <div className="PieceCharacterAssociation">
         <div className={`${disabled ? "Combo ComboCentered" : "Combo"}`}>

@@ -3,8 +3,8 @@ import PieceCharacterAssociation from './PieceCharacterAssociation'
 
 import './PlayerTeamComposition.css'
 
-import { CHESSWhitePiecesArray, CHESSBlackPiecesArray } from '../utils/PieceList'
-import LockCompositionButton from '../components/LockCompositionButton'
+import { CHESSWhitePiecesArray, CHESSBlackPiecesArray } from '../../utils/PieceList'
+import LockCompositionButton from '../../components/TeamCompScreen/LockCompositionButton'
 
 export default function PlayerTeamComposition({playerColor, setPlayerTeams, setTeamsState}) {
   const [playerComp, setPlayerComp] = useState({});
