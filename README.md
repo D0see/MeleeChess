@@ -9,7 +9,7 @@
 6. Make the CharacterSelectScreenAppear by sliding up
 
 ###  Bugs:
-1. You can press LockComposition button while its sliding-up
+1. ~You can press LockComposition button while its sliding-up~ (fixed it!)
 
 ### ToChange :
 1. implement useContext instead of prop-drilling SetPlayerTeams

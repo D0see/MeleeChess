@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { lockButtonContext } from '../../Apps/CharacterSelectApp';
 
 export default function LockButton({className, onClick}) {
 
   function handleOnClick(){
     onClick(prev => !prev);
+
   }
 
   return (
-    <button className={className} onClick={handleOnClick}></button>
+    <button disabled={useContext(lockButtonContext)} className={className} onClick={handleOnClick}></button>
   )
 }

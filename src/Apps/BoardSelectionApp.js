@@ -8,9 +8,8 @@ export default function BoardSelectionApp() {
     <>
       <h1>Select your stage</h1>
       <StageSelector setSelectedStage={setSelectedStage}/> 
-      <div class="boardrepresentation">
-        {selectedStage.map(num => <p>{num}</p>)}
-        <div class="squares grid"> 
+      <div className="boardrepresentation">
+        <div className="squares grid"> 
 
           <div>
             Case1

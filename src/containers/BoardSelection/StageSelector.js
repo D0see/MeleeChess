@@ -14,7 +14,7 @@ export default function StageSelector({setSelectedStage}) {
   return (
     <>
       <select onChange={handleChange}>
-        {stages.map(stage => <option value={stages.indexOf(stage)}>{stage.name}</option>)}
+        {stages.map((stage, i) => <option key={i} value={i}>{stage.name}</option>)}
       </select>
     </>
   )
