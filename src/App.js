@@ -2,11 +2,16 @@ import './App.css';
 import CharacterSelectApp from './Apps/CharacterSelectApp.js'
 import React, {useState} from 'react';
 
-// ? Rename App.js CharacterSelectScreenApp.js, create a new App.js container containing this mess, pass it the useState for the teams, prop drill one layer further with it.
-// Separate every other modules in other apps.
 function App() {
+  //CharacterSelectApp State
+  const [characterSelectFinished, setCharacterSelectFinished] = useState(false);
+  //Playerteam composition
+  const [playerTeams, setPlayerTeams] = useState({"White": null, "Black": null});
   return (
-    <CharacterSelectApp/>
+    <>
+      {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
+      {characterSelectFinished && <p>{JSON.stringify(playerTeams)}</p>}
+    </>
   )
   
 }

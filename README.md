@@ -1,5 +1,5 @@
 #   Bugs:
-
+1. You can press LockComposition button while its sliding-up
 #   Features to add :
 
 1. Port Selector.
