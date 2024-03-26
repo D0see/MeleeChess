@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import "./PieceCharacterAssociation.css"
-import PieceImg from '../../components/TeamCompScreen/PieceImg'
+import PieceImg from '../../components/CharacterSelect/PieceImg'
 import {SSBMCharactersArray} from '../../utils/CharacterList'
 
-import CharacterSelection from '../../components/TeamCompScreen/CharacterSelection'
-import CharacterImg from '../../components/TeamCompScreen/CharacterImg'
-import RandomCharacterButton from '../../components/TeamCompScreen/RandomCharacterButton'
+import CharacterSelection from '../../components/CharacterSelect/CharacterSelection'
+import CharacterImg from '../../components/CharacterSelect/CharacterImg'
+import RandomCharacterButton from '../../components/CharacterSelect/RandomCharacterButton'
 
 
 export default function PieceCharacterAssociation({chessPiece, addCharacter, disabled}) {

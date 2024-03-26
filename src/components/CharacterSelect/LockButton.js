@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LockCompositionButton({className, onClick}) {
+export default function LockButton({className, onClick}) {
 
   function handleOnClick(){
     onClick(prev => !prev);

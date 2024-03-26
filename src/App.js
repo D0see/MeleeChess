@@ -1,4 +1,5 @@
 import './App.css';
+import BoardSelectionApp from './Apps/BoardSelectionApp.js';
 import CharacterSelectApp from './Apps/CharacterSelectApp.js'
 import React, {useState} from 'react';
 
@@ -10,7 +11,7 @@ function App() {
   return (
     <>
       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
-      {characterSelectFinished && <p>{JSON.stringify(playerTeams)}</p>}
+      {characterSelectFinished && <BoardSelectionApp />}
     </>
   )
   
