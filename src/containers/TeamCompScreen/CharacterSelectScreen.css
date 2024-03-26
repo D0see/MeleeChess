@@ -7,4 +7,23 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 5%;
     text-align: center;
+    transition: bottom 1s ease;
+}
+
+.Slide-up {
+    animation: slide-up 4s ease forwards;
+}
+
+@keyframes slide-up {
+    0% {
+
+    }
+
+    25% {
+        bottom: 55%;
+    }
+
+    100% {
+        bottom: 200%;
+    }
 }

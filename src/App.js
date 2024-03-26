@@ -1,21 +1,14 @@
 import './App.css';
-import CharacterSelectScreen from './containers/TeamCompScreen/CharacterSelectScreen.js';
-import React, {useState, useEffect} from 'react';
+import CharacterSelectApp from './Apps/CharacterSelectApp.js'
+import React, {useState} from 'react';
 
-
+// ? Rename App.js CharacterSelectScreenApp.js, create a new App.js container containing this mess, pass it the useState for the teams, prop drill one layer further with it.
+// Separate every other modules in other apps.
 function App() {
-  const [teamsState, setTeamsState] = useState({"White": null, "Black": null});
-  const [playerTeams, setPlayerTeams] = useState({"White": null, "Black": null});
-
-  if(teamsState["Black"] && teamsState["White"]) {
-    return (
-      <p>{JSON.stringify(playerTeams)}</p>
-    )
-  } else {
-    return (
-      <CharacterSelectScreen setPlayerTeams={setPlayerTeams} setTeamsState={setTeamsState}/>
-    );
-  }
+  return (
+    <CharacterSelectApp/>
+  )
+  
 }
 
 export default App;
