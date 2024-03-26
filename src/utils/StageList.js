@@ -7,6 +7,15 @@ export const stageEnum = {
     6: "Dreamland"
 }
 
+export const stageColorEnum = {
+    1: "green",
+    2: "red",
+    3: "purple",
+    4: "blue",
+    5: "grey",
+    6: "yellow"
+}
+
 const normalStage = {
     name: 'normal board',
     layout:

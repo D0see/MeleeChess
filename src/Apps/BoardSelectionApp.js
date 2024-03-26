@@ -1,29 +1,17 @@
 import React, {useState} from 'react'
 import StageSelector from '../containers/BoardSelection/StageSelector'
+import BoardDisplay from '../containers/BoardSelection/BoardDisplay'
+
+import { stages } from '../utils/StageList'
 
 export default function BoardSelectionApp() {
-  const[selectedStage, setSelectedStage] = useState(null)
+  const[selectedStage, setSelectedStage] = useState(stages[0].layout)
 
   return (
     <>
       <h1>Select your stage</h1>
       <StageSelector setSelectedStage={setSelectedStage}/> 
-      <div className="boardrepresentation">
-        <div className="squares grid"> 
-
-          <div>
-            Case1
-          </div>
-          <div>
-            Case2
-          </div>
-          <div>
-            Case3
-          </div>
-
-        </div>
-
-       </div> 
+      <BoardDisplay selectedStage={selectedStage}/>
       <button className="LockStageButton"/>
     </>
   )

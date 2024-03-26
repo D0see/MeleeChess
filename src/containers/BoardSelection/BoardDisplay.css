@@ -1,0 +1,11 @@
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width:fit-content;
+}
+
+.Square {
+    width: 20px;
+    height: 20px;
+}
