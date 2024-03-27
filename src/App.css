@@ -1,3 +1,8 @@
+:root {
+    --deeper-color: rgba(56, 71, 80, 0.89);
+    --lighter-color: rgb(240, 238, 165);
+}
+
 h1 {
     text-align: center;
 }

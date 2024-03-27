@@ -1,0 +1,23 @@
+.RandomButton {
+    position: relative;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+    font-size: 1.5em;
+    border: 1px solid var(--deeper-color);
+    border-radius: 20%;
+    color: white;
+    background-color: var(--deeper-color);
+    transition: transform 0.15s ease,
+                opacity 0.30s ease;
+}
+
+.RandomButton:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.RandomButton:active {
+    transform: scale(0.90)
+                rotate(15deg);
+}

@@ -6,6 +6,34 @@
     left: 50%;
     bottom: 55%;
 }
+.SelectorContainer {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--deeper-color);
+    background-color: var(--lighter-color);
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    align-items: center;
+    padding: 4px;
+    width: 98%;
+    height: 62px;
+    box-shadow: 2px 2px 2px 0px var(--deeper-color);
+    transition: background-color 0.30s ease;
+}
+
+.StageSelector {
+    position: relative;
+    right: 10px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.RandomButtonAdjusted {
+    position: relative;
+    right: 30px;
+}
 
 .LockStageSelectionButton {
     position: relative;

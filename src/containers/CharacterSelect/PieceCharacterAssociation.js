@@ -5,7 +5,7 @@ import {SSBMCharactersArray} from '../../utils/CharacterList'
 
 import CharacterSelection from '../../components/CharacterSelect/CharacterSelection'
 import CharacterImg from '../../components/CharacterSelect/CharacterImg'
-import RandomCharacterButton from '../../components/CharacterSelect/RandomCharacterButton'
+import RandomButton from '../../components/Shared/RandomButton'
 
 
 export default function PieceCharacterAssociation({chessPiece, addCharacter, disabled}) {
@@ -33,7 +33,7 @@ function handleRandomClick() {
           <CharacterImg className='CharacterImage' character_name={character}/>
         </div>
         <CharacterSelection className={`${disabled ? "CharacterSelection Disabled" : "CharacterSelection"}`} onSelect={setCharacter} charName={character} disabled={disabled}/>
-        <RandomCharacterButton className={`${disabled ? "RandomButton Disabled" : "RandomButton"}`}  onClick={handleRandomClick} disabled={disabled}/>
+        <RandomButton className={`${disabled ? "RandomButton Disabled" : "RandomButton"}`}  onClick={handleRandomClick} disabled={disabled}/>
     </div>
   )
 }

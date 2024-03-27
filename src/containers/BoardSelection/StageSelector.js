@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {stages} from '../../utils/StageList.js';
 
-export default function StageSelector({setSelectedStage}) {
+export default function StageSelector({className, setSelectedStage}) {
 
   function handleChange(event) {
       const stageIndex= event.target.value;
@@ -10,7 +10,7 @@ export default function StageSelector({setSelectedStage}) {
 
   return (
     <>
-      <select onChange={handleChange}>
+      <select className={className} onChange={handleChange}>
         {stages.map((stage, i) => <option key={i} value={i}>{stage.name}</option>)}
       </select>
     </>
