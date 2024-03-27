@@ -1,6 +1,19 @@
 :root {
     --deeper-color: rgba(56, 71, 80, 0.89);
     --lighter-color: rgb(240, 238, 165);
+    --slide-screen-time: 3s;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 h1 {
@@ -8,8 +21,9 @@ h1 {
 }
 
 .Slide-up {
-    animation: slide-up 4s ease forwards;
+    animation: slide-up var(--slide-screen-time) ease forwards !important;
 }
+
 
 @keyframes slide-up {
     0% {
@@ -21,6 +35,16 @@ h1 {
     }
 
     100% {
-        bottom: 200%;
+        bottom: 175%;
+    }
+}
+
+@keyframes appears {
+    0% {
+        bottom: -175%;
+    }
+
+    100% {
+        bottom: 55%;
     }
 }

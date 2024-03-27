@@ -11,12 +11,12 @@ function App() {
   //Selected board
   const [board, setBoard] = useState(null);
   return (
-    <>
+    <div className="AppContainer">
       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
       {characterSelectFinished && <BoardSelectionApp setBoard={setBoard}/>}
       {board}
       {board && JSON.stringify(playerTeams)}
-    </>
+    </div>
   )
   
 }
