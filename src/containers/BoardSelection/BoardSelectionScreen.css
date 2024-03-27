@@ -1,15 +1,13 @@
-:root {
-    --deeper-color: rgba(56, 71, 80, 0.89);
-    --lighter-color: rgb(240, 238, 165);
-}
-
-
-.PlayerTeamComposition {
+.BoardSelectionScreen {
     display: flex;
     flex-direction: column;
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 50%;
+    bottom: 55%;
 }
 
-.LockCompositionButton {
+.LockStageSelectionButton {
     position: relative;
     width: 250px;
     height: 50px;
@@ -27,26 +25,26 @@
 
 }
 
-.LockCompositionButton::after{
-    content: 'Lock Composition';
+.LockStageSelectionButton::after{
+    content: 'Lock Stage Selection';
 }
 
-.LockCompositionButton:hover {
+.LockStageSelectionButton:hover {
     cursor: pointer;
     border: 1px solid white;
 }
 
-.LockCompositionButton:active {
+.LockStageSelectionButton:active {
     box-shadow: none;
     left: 2px;
     top: 2px;
 }
 
-.LockedCompositionButton {
+.LockedSelectionStageButton {
     background-color: green;
     font-size: 1.8em;
 }
 
-.LockedCompositionButton:after {
-    content: '✓';
+.LockedSelectionStageButton:after {
+    content: '✓'; 
 }

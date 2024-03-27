@@ -18,5 +18,5 @@
 
 ### Features to add :
  
-1.Paint your own board 
-2.Everything else
+1. Paint your own board 
+2. Everything else
