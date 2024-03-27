@@ -14,7 +14,7 @@ export default function CharacterSelectScreenApp({setPlayerTeams, setCharacterSe
         setClassName("Slide-up");
         const timeOut = setTimeout(() => {
           setCharacterSelectFinished(true)
-        }, 2000)
+        }, 1200)
         return () => clearTimeout(timeOut);
       }
     }, [teamsState])

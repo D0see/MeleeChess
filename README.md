@@ -1,3 +1,7 @@
+### TODO :
+1.Clean the css
+2.Re-organize the folder structure
+
 ## CharacterSelectionApp : 
 
 ### Features to add :
@@ -10,7 +14,6 @@
 
 ### Bugs:
 
-
 ### ToChange :
 1. implement useContext instead of prop-drilling SetPlayerTeams
 
@@ -21,7 +24,6 @@
 2. Random Select button logic.
 
 ### Bugs:
-
 
 ### ToChange :
 1. Need to port some of Board SelectionScreen logic to BoardSelectionApp (check characterSelectApp for reference).

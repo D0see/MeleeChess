@@ -17,7 +17,7 @@ export default function BoardSelectionScreen({setBoard}) {
       setNewClass("Slide-up");
       setTimeout(() => {
         setBoard(selectedStage);
-      }, 2000)
+      }, 1200)
     }
   },[isLocked])
 
