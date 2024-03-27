@@ -24,7 +24,6 @@ h1 {
     animation: slide-up var(--slide-screen-time) ease forwards !important;
 }
 
-
 @keyframes slide-up {
     0% {
 

@@ -5,6 +5,7 @@ export default function LockStageSelectionButton({className, setIsLocked}) {
 
   function handleClick() {
     setToggle(true);
+    console.log(setIsLocked);
     setIsLocked(true);
   }
 

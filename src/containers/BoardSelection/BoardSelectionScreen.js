@@ -1,28 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import StageSelector from './StageSelector'
 import BoardDisplay from './BoardDisplay'
 import LockStageSelectionButton from '../../components/BoardSelection/LockStageSelectionButton'
 import RandomButton from '../../components/Shared/RandomButton'
 import './BoardSelectionScreen.css';
 
-import { stages } from '../../utils/StageList'
-
-export default function BoardSelectionScreen({setBoard}) {
-  const[selectedStage, setSelectedStage] = useState(stages[0].layout)
-
-  const[newClass, setNewClass] = useState("");
-  const[isLocked, setIsLocked] = useState(false);
-  useEffect(() => {
-    if (isLocked) {
-      setNewClass("Slide-up");
-      setTimeout(() => {
-        setBoard(selectedStage);
-      }, 1200)
-    }
-  },[isLocked])
-
+export default function BoardSelectionScreen({ className, setIsLocked, setSelectedStage, selectedStage }) {
   return (
-    <div className={`${newClass} BoardSelectionScreen`}>
+    <div className={`${className} BoardSelectionScreen`}>
       <h1>Select a board</h1> 
       <BoardDisplay selectedStage={selectedStage}/>
       <div className='SelectorContainer'>

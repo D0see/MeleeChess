@@ -1,5 +1,5 @@
 import './App.css';
-import BoardSelectionApp from './containers/BoardSelection/BoardSelectionScreen.js';
+import BoardSelectionApp from './Apps/BoardSelectionApp.js';
 import CharacterSelectApp from './Apps/CharacterSelectApp.js'
 import React, {useState} from 'react';
 
