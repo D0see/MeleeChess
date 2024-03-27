@@ -8,10 +8,14 @@ function App() {
   const [characterSelectFinished, setCharacterSelectFinished] = useState(false);
   //Playerteam composition
   const [playerTeams, setPlayerTeams] = useState({"White": null, "Black": null});
+  //Selected board
+  const [board, setBoard] = useState(null);
   return (
     <>
       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
-      {characterSelectFinished && <BoardSelectionApp />}
+      {characterSelectFinished && <BoardSelectionApp setBoard={setBoard}/>}
+      {board}
+      {board && JSON.stringify(playerTeams)}
     </>
   )
   

@@ -6,3 +6,21 @@
 h1 {
     text-align: center;
 }
+
+.Slide-up {
+    animation: slide-up 4s ease forwards;
+}
+
+@keyframes slide-up {
+    0% {
+
+    }
+
+    25% {
+        bottom: 55%;
+    }
+
+    100% {
+        bottom: 200%;
+    }
+}

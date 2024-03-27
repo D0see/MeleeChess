@@ -31,8 +31,7 @@
 }
 
 .RandomButtonAdjusted {
-    position: relative;
-    right: 30px;
+    right: 30px !important;
 }
 
 .LockStageSelectionButton {

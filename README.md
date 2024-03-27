@@ -9,7 +9,7 @@
 6. Make the CharacterSelectScreenAppear by sliding up
 
 ### Bugs:
-1. ~You can press LockComposition button while its sliding-up~ (fixed it!)
+
 
 ### ToChange :
 1. implement useContext instead of prop-drilling SetPlayerTeams
@@ -17,6 +17,10 @@
 ## BoardSelectionApp : 
 
 ### Features to add :
- 
-1. Paint your own board 
-2. Everything else
+1. Paint your own board.
+
+### Bugs:
+
+
+### ToChange :
+1. Need to port some of Board SelectionScreen logic to BoardSelectionApp (check characterSelectApp for reference)
