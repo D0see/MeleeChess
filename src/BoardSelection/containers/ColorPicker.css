@@ -1,0 +1,8 @@
+.Pickers {
+    border: 1px solid var(--deeper-color);
+
+}
+
+.Selected {
+    border: 3px solid var(--deeper-color);
+}

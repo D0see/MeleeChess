@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Square({color}) {
+export default function Square({className, color, id, onClick}) {
   return (
-    <div className='Square' style={{backgroundColor: color}}></div>
+    <div className={className} style={{backgroundColor: color}} id={id} onClick={onClick}></div>
   )
 }
