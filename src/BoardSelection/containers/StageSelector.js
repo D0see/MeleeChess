@@ -19,8 +19,8 @@ export default function StageSelector({className, selectedStage, setSelectedStag
 
   return (
     <div className='SelectorContainer'>
-      <select className={className} onChange={handleSelect} value={selectedStage.name}>
-        {stages.map((stage, i) => <option key={i} value={stage.name}>{stage.name}</option>)}
+      <select className={className} onChange={handleSelect} value={stages.indexOf(selectedStage)}>
+        {stages.map((stage, i) => <option key={i} value={i}>{stage.name}</option>)}
       </select>
 
       <RandomButton className="RandomButton RandomButtonAdjusted" onClick={handleClick}/>
