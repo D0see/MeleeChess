@@ -5,14 +5,14 @@ import { stages } from '../utils/StageList.js';
 
 export default function BoardSelectionApp({setBoard}) {
   const[className, setClassName] = useState("");
-  const[selectedStage, setSelectedStage] = useState(stages[0].layout)
+  const[selectedStage, setSelectedStage] = useState(stages[0])
   const[isLocked, setIsLocked] = useState(false);
   useEffect(() => {
     if (isLocked) {
       setClassName("Slide-up");
       setTimeout(() => {
-        setBoard(selectedStage);
-      }, 1200)
+        setBoard(selectedStage.layout);
+      }, 1500)
     }
   },[isLocked])
   

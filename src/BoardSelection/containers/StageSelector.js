@@ -1,18 +1,29 @@
 import React, {useEffect} from 'react';
 import {stages} from '../../utils/StageList.js';
+import RandomButton from '../../Shared/RandomButton.js';
 
-export default function StageSelector({className, setSelectedStage}) {
+export default function StageSelector({className, selectedStage, setSelectedStage}) {
 
-  function handleChange(event) {
-      const stageIndex= event.target.value;
-      setSelectedStage(stages[stageIndex].layout);
+  function handleSelect(event) {
+      const stageIndex = event.target.value;
+      setSelectedStage(stages[stageIndex]);
+  }
+
+  function handleClick(){
+    let randomStageIndex = Math.floor(Math.random()*stages.length);
+    while (stages[randomStageIndex].layout === selectedStage.layout) {
+      randomStageIndex = Math.floor(Math.random()*stages.length);
+    }
+    setSelectedStage(stages[randomStageIndex]);
   }
 
   return (
-    <>
-      <select className={className} onChange={handleChange}>
-        {stages.map((stage, i) => <option key={i} value={i}>{stage.name}</option>)}
+    <div className='SelectorContainer'>
+      <select className={className} onChange={handleSelect} value={selectedStage.name}>
+        {stages.map((stage, i) => <option key={i} value={stage.name}>{stage.name}</option>)}
       </select>
-    </>
+
+      <RandomButton className="RandomButton RandomButtonAdjusted" onClick={handleClick}/>
+    </div>
   )
 }

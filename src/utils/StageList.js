@@ -42,4 +42,17 @@ const badStage = {
     [3, 6, 6, 6, 1, 6, 6, 3]]
 };
 
-export const stages = [normalStage, badStage];
+const iOnlyLikeYoshisAndPs = {
+    name: 'i only like yoshis and ps',
+    layout:
+    [[2, 2, 2, 2, 2, 2, 2, 2],
+    [2, 1, 1, 1, 1, 1, 1, 2],
+    [2, 1, 2, 2, 2, 2, 1, 2],
+    [2, 1, 2, 1, 1, 2, 1, 2],
+    [2, 1, 2, 1, 1, 2, 1, 2],
+    [2, 1, 2, 2, 2, 2, 1, 2],
+    [2, 1, 1, 1, 1, 1, 1, 2],
+    [2, 2, 2, 2, 2, 2, 2, 2]]
+};
+
+export const stages = [normalStage, badStage, iOnlyLikeYoshisAndPs];

@@ -12,18 +12,16 @@
 5. Add specific lists for each roles.
 
 ### Bugs:
-
+//
 ### ToChange :
-1. implement useContext instead of prop-drilling SetPlayerTeams
-
+Clean the code, and give props better names.
 ## BoardSelectionApp : 
 
 ### Features to add :
 1. Paint your own board.
-2. Random Select button logic.
+2. ~Random Select button logic.~
 
 ### Bugs:
-
+//
 ### ToChange :
-
 1. Need to do a second path and clean the code.
