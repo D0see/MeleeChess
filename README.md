@@ -19,7 +19,7 @@ Clean the code, and give props better names.
 
 ### Features to add :
 1. Paint your own board.
-    - ~Colorpicker~
+    - ~Colorpicker~ 
     - Make the board object me modified when squares are clicked
     - Make it so it created a "custom board object based on current board whe board is clicked"
 2. ~Random Select button logic.~

@@ -7,6 +7,10 @@ import './BoardDisplay.css'
 
 export default function BoardDisplay({selectedStage}) {
   const [pickedColor, setPickedColor] = useState(null)
+  //for test purposes
+  useEffect(() => {
+    console.log(pickedColor);
+  },[pickedColor])
 
   return (
     <>

@@ -9,7 +9,6 @@ export default function ColorPicker({pickedColor, setPickedColor}) {
     function handleClick(event) {
         const clickedKey = event.target.id;
         setPickedColor(clickedKey);
-        console.log(pickedColor);
     }
 
   return (
