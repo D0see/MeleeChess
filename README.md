@@ -1,6 +1,6 @@
 ### TODO :
-1.Clean the css
-2.Re-organize the folder structure
+1. Clean the css
+2. ~Re-organize the folder structure~
 
 ## CharacterSelectionApp : 
 
@@ -10,7 +10,6 @@
 3. Character Veto
 4. Can't pick the same character in multiple fields.
 5. Add specific lists for each roles.
-6. ~Make the CharacterSelectScreenAppear by sliding up~
 
 ### Bugs:
 
@@ -26,5 +25,5 @@
 ### Bugs:
 
 ### ToChange :
-1. ~Need to port some of Board SelectionScreen logic to BoardSelectionApp (check characterSelectApp for reference).~
-2. Need to do a second path and clean the code.
+
+1. Need to do a second path and clean the code.

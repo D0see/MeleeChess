@@ -1,6 +1,6 @@
 import './App.css';
-import BoardSelectionApp from './Apps/BoardSelectionApp.js';
-import CharacterSelectApp from './Apps/CharacterSelectApp.js'
+import BoardSelectionApp from './BoardSelection/BoardSelectionApp.js';
+import CharacterSelectApp from './CharacterSelection/CharacterSelectApp.js';
 import React, {useState} from 'react';
 
 function App() {

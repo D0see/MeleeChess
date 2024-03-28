@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createContext} from 'react'
-import CharacterSelectScreen from '../containers/CharacterSelect/CharacterSelectScreen';
+import CharacterSelectScreen from './containers/CharacterSelectScreen';
 
 export const lockButtonContext = createContext();
 

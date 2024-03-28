@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { lockButtonContext } from '../../Apps/CharacterSelectApp';
+import { lockButtonContext } from '../CharacterSelectApp';
 
 export default function LockButton({className, onClick}) {
 

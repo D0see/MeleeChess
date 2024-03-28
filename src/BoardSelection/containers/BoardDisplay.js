@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from '../../components/BoardSelection/Square';
+import Square from '../components/Square.js'
 import { stageColorEnum } from '../../utils/StageList';
 
 import './BoardDisplay.css'

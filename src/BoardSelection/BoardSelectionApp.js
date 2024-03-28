@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import BoardSelectionScreen from '../containers/BoardSelection/BoardSelectionScreen.js'
+import BoardSelectionScreen from './containers/BoardSelectionScreen.js';
 import { stages } from '../utils/StageList.js';
 
 
