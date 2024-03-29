@@ -29,3 +29,4 @@ Clean the code, and give props better names.
 // had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect change to nested arrays).
 ### ToChange :
 1. Need to do a second path and clean the code.
+2. ~Make the painting less tedious (mousedown)~
