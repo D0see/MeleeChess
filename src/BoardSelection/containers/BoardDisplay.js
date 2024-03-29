@@ -21,7 +21,7 @@ export default function BoardDisplay({selectedStage, setSelectedStage}) {
     }
   }
   //painting logic
-  function handleSquareClick(y, x) {
+  function handleMouseOver(y, x) {
     if ((selectedStage.name === 'custom board') && mouseDown){
       const updatedLayout= [...selectedStage.layout];
       updatedLayout[y][x] = pickedColor;
@@ -31,7 +31,7 @@ export default function BoardDisplay({selectedStage, setSelectedStage}) {
       console.log("activated");
     }
   }
-
+  //Following function enable 
   function handleMouseDown(y, x){
     setMouseDown(true)
     if ((selectedStage.name === 'custom board')){
@@ -47,14 +47,18 @@ export default function BoardDisplay({selectedStage, setSelectedStage}) {
   function handleMouseUp(){
     setMouseDown(false);
   }
-
+  function handleGridMouseLeave(){
+    setMouseDown(false);
+  }
   return (
     <>
-      <div className="Grid" onMouseEnter={handleGridMouseEnter}>
+      <div className="Grid" 
+           onMouseEnter={handleGridMouseEnter}
+           onMouseLeave={handleGridMouseLeave}>
         {(selectedStage.layout).map((arr, y) => arr.map((num, x) => <Square className='Square' 
                                                                             key={y*8 + x} 
                                                                             color={stageColorEnum[num]}
-                                                                            onMouseOver={() => handleSquareClick(y, x)}
+                                                                            onMouseOver={() => handleMouseOver(y, x)}
                                                                             onMouseDown={() => handleMouseDown(y, x)}
                                                                             onMouseUp={handleMouseUp}
                                                                             />))}
