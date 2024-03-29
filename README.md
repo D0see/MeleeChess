@@ -18,13 +18,14 @@ Clean the code, and give props better names.
 ## BoardSelectionApp : 
 
 ### Features to add :
-1. Paint your own board.
+1. ~Paint your own board.~
     - ~Colorpicker~ 
-    - Make the board object me modified when squares are clicked
-    - Make it so it created a "custom board object based on current board whe board is clicked"
+    - ~Make the board object me modified when squares are clicked~
+    - ~Make it so it created a "custom board object based on current board whe board is hovered and picker is selected"~
 2. ~Random Select button logic.~
+3. Caption the stages.
 
 ### Bugs:
-//
+// had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect change to nested arrays).
 ### ToChange :
 1. Need to do a second path and clean the code.

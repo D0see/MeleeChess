@@ -7,13 +7,13 @@ import './ColorPicker.css';
 export default function ColorPicker({pickedColor, setPickedColor}) {
 
     function handleClick(event) {
-        const clickedKey = event.target.id;
+        const clickedKey = + event.target.id;
         setPickedColor(clickedKey);
     }
 
   return (
     <div className='SelectorContainer'>
-        {Object.keys(stageColorEnum).map(key => <Square className={`Square Pickers ${pickedColor === key ? "Selected" : ""}`} 
+        {Object.keys(stageColorEnum).map(key => <Square className={`Square Pickers ${pickedColor === + key ? "Selected" : ""}`} 
                                                         key={key} 
                                                         color={stageColorEnum[key]} 
                                                         id={key} 
