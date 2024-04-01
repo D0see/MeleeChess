@@ -34,6 +34,7 @@ export default function BoardDisplay({selectedStage, setSelectedStage}) {
   //Following function enable 
   function handleMouseDown(y, x){
     setMouseDown(true)
+    //repeats mouseover logic so it triggers on the first mousedowned square.
     if ((selectedStage.name === 'custom board')){
       const updatedLayout= [...selectedStage.layout];
       updatedLayout[y][x] = pickedColor;

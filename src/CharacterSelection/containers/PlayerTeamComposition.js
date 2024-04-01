@@ -20,8 +20,8 @@ export default function PlayerTeamComposition({playerColor, setPlayerTeams, setT
   return (
     <div className='PlayerTeamComposition'>
         <h1>{`${playerColor}, pick your team`}</h1>
-        {playerColor=== "White" ? CHESSWhitePiecesArray.map(piece => <PieceCharacterAssociation key={piece} chessPiece={piece} addCharacter={setPlayerComp} disabled={compIsLocked}/>) : null}
-        {playerColor=== "Black" ? CHESSBlackPiecesArray.map(piece => <PieceCharacterAssociation key={piece} chessPiece={piece} addCharacter={setPlayerComp} disabled={compIsLocked}/>) : null}
+        {playerColor=== "white" ? CHESSWhitePiecesArray.map(piece => <PieceCharacterAssociation key={piece} chessPiece={piece} addCharacter={setPlayerComp} disabled={compIsLocked}/>) : null}
+        {playerColor=== "black" ? CHESSBlackPiecesArray.map(piece => <PieceCharacterAssociation key={piece} chessPiece={piece} addCharacter={setPlayerComp} disabled={compIsLocked}/>) : null}
         <LockButton className={`LockCompositionButton ${compIsLocked ? `LockedCompositionButton` : ""}`} onClick={setCompIsLocked}/>
     </div>
   )

@@ -7,9 +7,9 @@ export default function CharacterSelectScreenApp({setPlayerTeams, setCharacterSe
     const [className, setClassName] = useState("");
     const [buttonDisabled, setbuttonDisabled] = useState(false);
 
-    const [teamsState, setTeamsState] = useState({"White": null, "Black": null});
+    const [teamsState, setTeamsState] = useState({"white": null, "black": null});
     useEffect(() => {
-      if(teamsState["Black"] && teamsState["White"]) {
+      if(teamsState["black"] && teamsState["white"]) {
         setbuttonDisabled(true);
         setClassName("Slide-up");
         const timeOut = setTimeout(() => {

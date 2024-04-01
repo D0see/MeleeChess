@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {stages} from '../../utils/StageList.js';
 import RandomButton from '../../Shared/RandomButton.js';
 

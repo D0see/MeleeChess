@@ -1,6 +1,5 @@
 ### TODO :
 1. Clean the css
-2. ~Re-organize the folder structure~
 
 ## CharacterSelectionApp : 
 
@@ -14,19 +13,34 @@
 ### Bugs:
 //
 ### ToChange :
-Clean the code, and give props better names.
+- Clean the code, and give props better names.
+- Change slide animation from % to vh
+
 ## BoardSelectionApp : 
 
 ### Features to add :
-1. ~Paint your own board.~
-    - ~Colorpicker~ 
-    - ~Make the board object me modified when squares are clicked~
-    - ~Make it so it created a "custom board object based on current board whe board is hovered and picker is selected"~
-2. ~Random Select button logic.~
-3. Caption the stages.
+1. Caption the stages.
 
 ### Bugs:
 // had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect change to nested arrays).
 ### ToChange :
 1. Need to do a second path and clean the code.
-2. ~Make the painting less tedious (mousedown)~
+- Need to useState stages instead of mutating the original array
+2. The code for boarddisplay is really disgusting i'm sorry.
+3. structured clone might not work when i port this to electron.
+- Change slide animation from % to vh
+
+## GameApp : 
+
+### Features to add :
+1. PieceClass
+- ~constructor~
+- possibleMoves method
+- ~startingStocks method~
+2. ~Build & initialize the playground~
+3. Display the playground
+
+
+### Bugs:
+
+### ToChange :

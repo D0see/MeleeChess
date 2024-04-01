@@ -6,8 +6,8 @@ export default function CharacterSelectScreen({setPlayerTeams, setTeamsState, cl
 
   return (
     <div className={`${className} CharacterSelectScreen`}>
-        <PlayerTeamComposition playerColor={"White"} setPlayerTeams={setPlayerTeams} setTeamsState={setTeamsState}/>
-        <PlayerTeamComposition playerColor={"Black"} setPlayerTeams={setPlayerTeams} setTeamsState={setTeamsState}/>
+        <PlayerTeamComposition playerColor={"white"} setPlayerTeams={setPlayerTeams} setTeamsState={setTeamsState}/>
+        <PlayerTeamComposition playerColor={"black"} setPlayerTeams={setPlayerTeams} setTeamsState={setTeamsState}/>
     </div>
   );
 }
