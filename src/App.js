@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="AppContainer">
       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
-      {characterSelectFinished && <BoardSelectionApp setBoard={setBoard}/>}
+      {(characterSelectFinished && !board) && <BoardSelectionApp setBoard={setBoard}/>}
       {board && <TheGameApp board={board} playerTeams={playerTeams} />}
     </div>
   )

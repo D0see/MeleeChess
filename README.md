@@ -38,9 +38,11 @@
 - possibleMoves method
 - ~startingStocks method~
 2. ~Build & initialize the playground~
-3. Display the playground
-
+3. ~Display the playground~
+4. Build a Box component for PlaygroundGrid
+5. On-Off stage display button
 
 ### Bugs:
 
 ### ToChange :
+1. Un-hardcode the css for the playgrounddisplay.

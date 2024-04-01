@@ -11,6 +11,20 @@ export default class Piece {
         this._stocks = this.determineStartingStocks();
     }
 
+    get team() {
+        return this._team;
+    }
+    
+    get type() {
+        return this._type;
+    }
+
+    get char() {
+        return this._char;
+    }
+
+    
+
     determineStartingStocks(){
         switch(this._type){
             case "pawn":
