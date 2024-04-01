@@ -8,14 +8,14 @@
 }
 
 .Box {
-    height: 90px;
-    width: 90px;
+    height: 85px;
+    width: 85px;
     border: 1px solid red;
 }
 
 .CharPiece {
     position: relative;
-    top: 18px;
+    top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,9 @@
 }
 
 .Piece {
+    height: 50px;
+    width: 50px;
     z-index: 2;
     position: relative;
-    left: 12px;
+    left: 18px;
 }

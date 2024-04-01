@@ -1,23 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import CharacterImg from '../../Shared/CharacterImg';
-import PieceImg from '../../Shared/PieceImg';
+
+import Box from '../components/Box.js'
+import { stageColorEnum } from '../../utils/StageList';
 import './PlaygroundGrid.css'
 
 export default function PlaygroundGrid({playground, board}) {
-  
+const [stageColorVisible, setStageColorVisible] = useState(false);
+
+function handleClick() {
+  setStageColorVisible(prev => !prev);
+}
+
   return (
-    <div className='PlaygroundGrid'>
-      {playground.map((arr, i) => arr.map((obj, j) => {return obj !== null ?
-        <div className='Box'>
-          <div className='CharPiece'>
-            <PieceImg className="Piece" pieceName={`${obj.team}_${obj.type}`}/>
-            <CharacterImg className="Char" characterName={obj.char}/>
-          </div>
-        </div>
-        : 
-        <div className='Box'>
-        </div>;
-      }))}
-    </div>
+    <>
+      <div className='PlaygroundGrid'>
+        {playground.map((arr, i) => arr.map((obj, j) => {
+          const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : (i+j) % 2 ? "brown" : "white";
+          return <Box defaultBackground = {backgroundColor} obj={obj}/>
+        }))}
+      </div>
+      <button onClick={handleClick}/>
+    </>
   )
 }
