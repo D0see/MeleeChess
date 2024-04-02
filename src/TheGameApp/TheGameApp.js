@@ -11,7 +11,7 @@ export default function TheGameApp({board, playerTeams}) {
 
   return (
     <>
-      <PlaygroundGrid playground={playground} board={board}/>
+      <PlaygroundGrid playground={playground} setPlayground={setPlayground} board={board}/>
     </>
   )
 }

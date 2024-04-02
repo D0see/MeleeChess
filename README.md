@@ -36,11 +36,9 @@
 1. PieceClass
 - ~constructor~
 - possibleMoves method
+ -> Maybe i can simplify the capture logic with !== this.team instead of ==="opposite team"?
 - ~startingStocks method~
-2. ~Build & initialize the playground~
-3. ~Display the playground~
-4. ~Build a Box component for PlaygroundGrid~
-5. ~On-Off stage display button~
+2. Make it so you can move the pieces based on the possible destination array.
 
 ### Bugs:
 

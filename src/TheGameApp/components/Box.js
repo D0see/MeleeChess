@@ -1,9 +1,9 @@
 import React from "react";
 import CharacterImg from '../../Shared/CharacterImg';
 import PieceImg from '../../Shared/PieceImg';
-export default function Box({defaultBackground, pieceData}) {
+export default function Box({defaultBackground, pieceData, onClick}) {
   return (
-    <div className="Box" style={{ backgroundColor: defaultBackground }}>
+    <div className="Box" onClick = {onClick} style={{ backgroundColor: defaultBackground }}>
      {pieceData &&
       <div className="CharPiece">
         <PieceImg
