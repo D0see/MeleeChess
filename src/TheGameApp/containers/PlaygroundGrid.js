@@ -35,16 +35,17 @@ export default function PlaygroundGrid({ playground, setPlayground, board }) {
 
   function handlePieceClick(i, j){
     console.log("click");
+    //Handle re-clicking on the selected piece
     if (playground[i][j] === selectedPiece){
       setPieceIsSelected(false);
       setSelectedPiece(null);
       setPossibleDestinations(null);
-
+    //Handle clicking a piece when no pieces are clicked
     } else if(!pieceIsSelected) {
       setPieceIsSelected(true);
       setSelectedPiece(playground[i][j])
       setPossibleDestinations(playground[i][j].determinePossibleMoves(playground));
-
+    //Handle clicking possible destination when a piece is clicked
     } else if (pieceIsSelected && hasCoordinatesInArray(possibleDestinations, [i, j])){
       console.log("i can go there");
       if (playground[i][j] === null) {
