@@ -27,8 +27,22 @@ export default class Piece {
     return this._y;
   }
 
+  set y(val) {
+    if (this._y !== val) {
+      this._hasMoved = true;
+    }
+    this._y = val;
+  }
+
   get x() {
     return this._x;
+  }
+
+  set x(val) {
+    if (this._x !== val) {
+      this._hasMoved = true;
+    }
+    this._x = val;
   }
 
   get hasMoved() {

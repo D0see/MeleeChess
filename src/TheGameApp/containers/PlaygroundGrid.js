@@ -46,7 +46,20 @@ export default function PlaygroundGrid({ playground, setPlayground, board }) {
       setPossibleDestinations(playground[i][j].determinePossibleMoves(playground));
 
     } else if (pieceIsSelected && hasCoordinatesInArray(possibleDestinations, [i, j])){
-      
+      console.log("i can go there");
+      if (playground[i][j] === null) {
+        console.log("box is empty");
+        setPlayground((prev) => {
+          let newPlayground = prev;
+          newPlayground[selectedPiece.y][selectedPiece.x] = null;
+          newPlayground[i][j] = selectedPiece;
+          selectedPiece.y = i;
+          selectedPiece.x = j;
+          return newPlayground;
+        })
+      setPieceIsSelected(prev => !prev);
+      setSelectedPiece(null)
+      }
     }
       
     
@@ -63,7 +76,7 @@ export default function PlaygroundGrid({ playground, setPlayground, board }) {
             //Background Logic
             const checkerboardColor = (i + j) % 2 ? "brown" : "white";
             const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
-            return <Box key={`${i},${j}`} defaultBackground={ isSelected ? selectedColor : backgroundColor } pieceData={pieceData} onClick={() => handlePieceClick(i, j)} />;
+            return <Box key={`${i}${j}`} defaultBackground={ isSelected ? selectedColor : backgroundColor } pieceData={pieceData} onClick={() => handlePieceClick(i, j)} />;
           })
         )}
       </div>
