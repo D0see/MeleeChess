@@ -127,15 +127,15 @@ export default class Piece {
         break;
       case "rook":
         //Up move & capture logic
-        for(let i = - 1; i + this.y >= 0; i--) {
-          if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
-            possibleMoves.push([this.y + i, this.x])
+        for(let i = 1; this.y - i >= 0; i++) {
+          if (!twoDArr[this.y - i][this.x] || twoDArr[this.y - i][this.x].team !== this.team){
+            possibleMoves.push([this.y - i, this.x])
           } else {
             break;
           }  
         }
         //Right move & capture logic
-        for(let i = 1; i + this.x < twoDArr[0].length ; i++) {
+        for(let i = 1; this.x + i < twoDArr[0].length ; i++) {
           if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
             possibleMoves.push([this.y, this.x + i])
           } else {
@@ -143,7 +143,7 @@ export default class Piece {
           }  
         }
         //Down move & capture logic
-        for(let i = 1; i + this.y < twoDArr.length; i++) {
+        for(let i = 1; this.y + i < twoDArr.length; i++) {
           if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
             possibleMoves.push([this.y + i, this.x])
           } else {
@@ -151,9 +151,9 @@ export default class Piece {
           }  
         }
         //Left move & capture logic
-        for(let i = - 1; i + this.x >= 0 ; i--) {
-          if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
-            possibleMoves.push([this.y, this.x + i])
+        for(let i = 1; this.x - i >= 0 ; i++) {
+          if (!twoDArr[this.y][this.x - i] || twoDArr[this.y][this.x - i].team !== this.team){
+            possibleMoves.push([this.y, this.x - i])
           } else {
             break;
           }  
@@ -186,19 +186,140 @@ export default class Piece {
         && possibleMoves.push([this.y - 2, this.x - 1]);
         break;
       case "bishop":
-        //Top-Left move & capture logic
-        for(let i = - 1; i + this.y >= 0 && i + this.x >= 0; i--) {
+        //Top-left move & capture logic
+        for(let i = + 1; this.y - i >= 0 && this.x - i >= 0; i++) {
+          if (!twoDArr[this.y - i][this.x - i] || twoDArr[this.y - i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x - i])
+          } else {
+            break;
+          }  
+        }
+        //Top-right move & capture logic
+        for(let i = 1; this.y - i >= 0 && this.x + i < twoDArr[0].length; i++) {
+          if (!twoDArr[this.y - i][this.x + i] || twoDArr[this.y - i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x + i])
+          } else {
+            break;
+          }  
+        }
+        //Bottom-right move & capture logic
+        for(let i = 1; this.y + i < twoDArr.length && this.x + i < twoDArr[0].length; i++) {
           if (!twoDArr[this.y + i][this.x + i] || twoDArr[this.y + i][this.x + i].team !== this.team){
             possibleMoves.push([this.y + i, this.x + i])
           } else {
             break;
           }  
         }
-        
-
+        //Bottom-left move & capture logic
+        for(let i = + 1; this.y + i < twoDArr.length && this.x - i >= 0; i++) {
+          if (!twoDArr[this.y + i][this.x - i] || twoDArr[this.y + i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x - i])
+          } else {
+            break;
+          }  
+        }
         break;
-
-    }
+      case "queen":
+        //Up move & capture logic
+        for(let i = - 1; i + this.y >= 0; i--) {
+          if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
+            possibleMoves.push([this.y + i, this.x])
+          } else {
+            break;
+          }  
+        }
+        //Right move & capture logic
+        for(let i = 1; i + this.x < twoDArr[0].length ; i++) {
+          if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
+            possibleMoves.push([this.y, this.x + i])
+          } else {
+            break;
+          }  
+        }
+        //Down move & capture logic
+        for(let i = 1; i + this.y < twoDArr.length; i++) {
+          if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
+            possibleMoves.push([this.y + i, this.x])
+          } else {
+            break;
+          }  
+        }
+        //Left move & capture logic
+        for(let i = - 1; i + this.x >= 0 ; i--) {
+          if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
+            possibleMoves.push([this.y, this.x + i])
+          } else {
+            break;
+          }  
+        }
+        //Top-left move & capture logic
+        for(let i = + 1; this.y - i >= 0 && this.x - i >= 0; i++) {
+          if (!twoDArr[this.y - i][this.x - i] || twoDArr[this.y - i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x - i])
+          } else {
+            break;
+          }  
+        }
+        //Top-right move & capture logic
+        for(let i = 1; this.y - i >= 0 && this.x + i < twoDArr[0].length; i++) {
+          if (!twoDArr[this.y - i][this.x + i] || twoDArr[this.y - i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x + i])
+          } else {
+            break;
+          }  
+        }
+        //Bottom-right move & capture logic
+        for(let i = 1; this.y + i < twoDArr.length && this.x + i < twoDArr[0].length; i++) {
+          if (!twoDArr[this.y + i][this.x + i] || twoDArr[this.y + i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x + i])
+          } else {
+            break;
+          }  
+        }
+        //Bottom-left move & capture logic
+        for(let i = + 1; this.y + i < twoDArr.length && this.x - i >= 0; i++) {
+          if (!twoDArr[this.y + i][this.x - i] || twoDArr[this.y + i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x - i])
+          } else {
+            break;
+          }  
+        }
+        break;
+      case "king":
+        //Up move & capture logic
+          if (this.y - 1 >=0 && (!twoDArr[this.y - 1][this.x] || twoDArr[this.y - 1][this.x].team !== this.team)){
+            possibleMoves.push([this.y - 1, this.x])
+          } 
+        //Right move & capture logic
+          if (this.x + 1 < twoDArr[0].length && (!twoDArr[this.y][this.x + 1] || twoDArr[this.y][this.x + 1].team !== this.team)){
+            possibleMoves.push([this.y, this.x + 1])
+          }
+        //Down move & capture logic
+          if (this.y + 1 < twoDArr.length && (!twoDArr[this.y + 1][this.x] || twoDArr[this.y + 1][this.x].team !== this.team)){
+            possibleMoves.push([this.y + 1, this.x])
+          }
+        //Left move & capture logic
+          if (this.x - 1 >=0 && (!twoDArr[this.y][this.x - 1] || twoDArr[this.y][this.x - 1].team !== this.team)){
+            possibleMoves.push([this.y, this.x - 1])
+          }
+        //Top-left move & capture logic
+          if ((this.x - 1 >=0 && this.y - 1 >= 0) && (!twoDArr[this.y - 1][this.x - 1] || twoDArr[this.y - 1][this.x - 1].team !== this.team)){
+            possibleMoves.push([this.y - 1, this.x - 1])
+          }
+        //Top-right move & capture logic
+          if ((this.x + 1 < twoDArr[0].length && this.y - 1 >= 0) && (!twoDArr[this.y - 1][this.x + 1] || twoDArr[this.y - 1][this.x + 1].team !== this.team)){
+            possibleMoves.push([this.y - 1, this.x + 1]) 
+          }
+        //Bottom-right move & capture logic
+          if ((this.x + 1 < twoDArr[0].length && this.y + 1 < twoDArr.length) && (!twoDArr[this.y + 1][this.x + 1] || twoDArr[this.y + 1][this.x + 1].team !== this.team)){
+            possibleMoves.push([this.y + 1, this.x + 1])
+         }
+        //Bottom-left move & capture logic
+          if ((this.x - 1 >= 0 && this.y + 1 < twoDArr.length) && (!twoDArr[this.y + 1][this.x - 1] || twoDArr[this.y + 1][this.x - 1].team !== this.team)){
+            possibleMoves.push([this.y + 1, this.x - 1])
+          }
+        break;
+      }
     console.log(possibleMoves);
     return possibleMoves;
   }
