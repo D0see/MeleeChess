@@ -42,7 +42,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
       setPossibleDestinations(null);
 
       //Handle clicking on a piece on your team when you have another selected
-    } else if (!pieceIsSelected && ((playground[i][j].team === "white" && isWhitesTurn) || (playground[i][j].team === "black" && !isWhitesTurn))) {
+    } else if (playground[i][j] !== null && pieceIsSelected && ((playground[i][j].team === "white" && isWhitesTurn) || (playground[i][j].team === "black" && !isWhitesTurn))) {
       setSelectedPiece(playground[i][j]);
       setPossibleDestinations(playground[i][j].determinePossibleMoves(playground));
 

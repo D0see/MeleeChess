@@ -40,7 +40,8 @@
 - ~startingStocks method~
 2. ~Make it so you can move the pieces based on the possible destination array.~
 3. Make it so you can "capture" (and make a useState)
-4. Make the turn logic
+4. ~Make the turn logic~
+5. ~Make it so you can select another one of your piece without having to deselect it first~
 
 
 ### Bugs:
