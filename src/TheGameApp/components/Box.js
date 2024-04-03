@@ -1,11 +1,15 @@
 import React from "react";
 import CharacterImg from '../../Shared/CharacterImg';
 import PieceImg from '../../Shared/PieceImg';
-export default function Box({defaultBackground, pieceData, onClick}) {
+export default function Box({backgroundColor, pieceData, onClick, isSelected, IsPossibleMove}) {
   return (
-    <div className="Box" onClick = {onClick} style={{ backgroundColor: defaultBackground }}>
-     {pieceData &&
-      <div className="CharPiece">
+    <div className={`Box ${isSelected ? "IsSelected" : ""}`} onClick = {onClick} style={{ backgroundColor: backgroundColor }}>
+      {IsPossibleMove &&
+      <div className="OuterCircle">
+        <div className="InnerCircle" style={{ backgroundColor: backgroundColor }}></div>
+      </div>}
+      {pieceData &&
+      <div className={`CharPiece`}>
         <PieceImg
           className="Piece"
           pieceName={`${pieceData.team}_${pieceData.type}`}

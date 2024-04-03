@@ -33,15 +33,10 @@
 ## GameApp : 
 
 ### Features to add :
-1. PieceClass
-- ~constructor~
-- ~possibleMoves method : Pawn, knights, rooks, bishop, king, queen.~
- -> ~Maybe i can simplify the capture logic with !== this.team instead of ==="opposite team"?~
-- ~startingStocks method~
-2. ~Make it so you can move the pieces based on the possible destination array.~
-3. Make it so you can "capture" (and make a useState)
-4. ~Make the turn logic~
-5. ~Make it so you can select another one of your piece without having to deselect it first~
+1. Ask gu to explain gecko codes to me.
+2. build a functionnal gecko code generator.
+3. learn electron.js
+4. make electron.js launch dolphin with the generated gecko code on capture.
 
 
 ### Bugs:

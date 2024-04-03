@@ -5,12 +5,16 @@ import "./PlaygroundGrid.css";
 
 //util function
 function hasCoordinatesInArray(twoDArr, coordinates) {
-  for (const value of twoDArr) {
-    if (value[0] === coordinates[0] && value[1] === coordinates[1]) {
-      return true;
+  if (twoDArr) {
+    for (const value of twoDArr) {
+      if (value[0] === coordinates[0] && value[1] === coordinates[1]) {
+        return true;
+      }
     }
+    return false;
   }
   return false;
+  
 }
 function matchWinner(attackingPiece, defendingPiece) {
   const randomNum = Math.floor(Math.random()*2);
@@ -82,6 +86,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
         setPieceIsSelected((prev) => !prev);
         setSelectedPiece(null);
         setIsWhitesTurn((prev) => !prev);
+        setPossibleDestinations(null);
       //handle logic when destination has an enemy piece
       } else { 
         setPlayground((prev) => {
@@ -103,6 +108,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
         setPieceIsSelected((prev) => !prev);
         setSelectedPiece(null);
         setIsWhitesTurn((prev) => !prev);
+        setPossibleDestinations(null);
       }
     } 
   }
@@ -112,18 +118,21 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
       <div className="PlaygroundGrid">
         {playground.map((arr, i) =>
           arr.map((pieceData, j) => {
-            //SelectionColoring Logic
+            //IsPossibleMove coloring Logic
+            const IsPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]) 
+            //Selection coloring Logic
             const isSelected = pieceData !== null && pieceData === selectedPiece;
-            const selectedColor = "yellow";
             //Background Logic
-            const checkerboardColor = (i + j) % 2 ? "brown" : "white";
+            const checkerboardColor = (i + j) % 2 ? "lightblue" : "white";
             const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
             return (
               <Box
                 key={`${i}${j}`}
-                defaultBackground={isSelected ? selectedColor : backgroundColor}
+                backgroundColor={backgroundColor}
                 pieceData={pieceData}
                 onClick={() => handlePieceClick(i, j)}
+                isSelected = {isSelected}
+                IsPossibleMove = {IsPossibleMove}
               />
             );
           }),

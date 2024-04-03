@@ -50,7 +50,6 @@ const populate = (emptyPlayground, teams, PieceClass) => {
         populatedPlayground[populatedPlayground.length - 1][4] = new PieceClass("white", "king", teams.white.king, populatedPlayground.length - 1, 4);
     }
     placeKings(populatedPlayground, teams, PieceClass);
-    console.log(populatedPlayground);
     return populatedPlayground;
 }
     

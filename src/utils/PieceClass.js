@@ -320,7 +320,6 @@ export default class Piece {
           }
         break;
       }
-    console.log(possibleMoves);
     return possibleMoves;
   }
 }

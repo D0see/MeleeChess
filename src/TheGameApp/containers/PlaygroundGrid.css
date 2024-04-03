@@ -5,12 +5,15 @@
     left: 50%;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
+    border: 1px solid black;
+    box-shadow: 4px 4px 6px 2px lightgray;
 }
 
 .Box {
-    height: 85px;
-    width: 85px;
-    border: 1px solid red;
+    position: relative;
+    height: 86px;
+    width: 86px;
+    transition: background-color 0.25s ease;
 }
 
 .CharPiece {
@@ -21,8 +24,24 @@
     align-items: center;
 }
 
+.IsSelected {
+    background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(223,231,87,0) 50%, rgb(250, 209, 73) 100%);     
+    animation: moving-background 6s linear infinite;
+    background-size: 500% 500%;
+    overflow: hidden;
+}
+
+@keyframes moving-background {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 0% 500%;
+    }
+} 
+
 .Char {
-    z-index: 1;
+    z-index: 2;
     position: relative;
     right: 12px;
 }
@@ -30,7 +49,30 @@
 .Piece {
     height: 50px;
     width: 50px;
-    z-index: 2;
+    z-index: 3;
     position: relative;
     left: 18px;
+}
+
+.OuterCircle {
+    position: absolute;
+    border-radius: 100%;
+    top: 19px;
+    left: 19px;
+    background-color: red;
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(223,231,87,0) 25%, rgb(250, 209, 73) 50%, rgba(223,231,87,0) 75%, rgb(250, 209, 73) 100%);     
+    animation: moving-background 6s linear infinite;
+    background-size: 500% 500%;
+    overflow: hidden;
+}
+
+.InnerCircle {
+    position: absolute;
+    border-radius: 100%;
+    top: 5px;
+    left: 5px;
+    height: 40px;
+    width: 40px;
 }
