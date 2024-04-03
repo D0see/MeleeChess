@@ -25,10 +25,12 @@
 }
 
 .IsSelected {
+    box-sizing: border-box;
     background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(223,231,87,0) 50%, rgb(250, 209, 73) 100%);     
     animation: moving-background 6s linear infinite;
     background-size: 500% 500%;
     overflow: hidden;
+    transition: background-color 0.25s ease;
 }
 
 @keyframes moving-background {
@@ -57,22 +59,44 @@
 .OuterCircle {
     position: absolute;
     border-radius: 100%;
-    top: 19px;
-    left: 19px;
+    top: 14px;
+    left: 13px;
     background-color: red;
-    height: 50px;
-    width: 50px;
-    background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(223,231,87,0) 25%, rgb(250, 209, 73) 50%, rgba(223,231,87,0) 75%, rgb(250, 209, 73) 100%);     
-    animation: moving-background 6s linear infinite;
+    height: 60px;
+    width: 60px;
+    background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(224, 231, 87, 0.6) 25%, rgb(250, 209, 73) 50%, rgba(224, 231, 87, 0.6) 75%, rgb(250, 209, 73) 100%);     
+    animation: moving-background 12s linear infinite,
+                rotate 3s linear infinite,
+                appears 0.35s ease forwards;
     background-size: 500% 500%;
     overflow: hidden;
 }
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 
+
+@keyframes appears {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 
 .InnerCircle {
     position: absolute;
     border-radius: 100%;
     top: 5px;
     left: 5px;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
+    transition: background-color 0.25s ease;
 }

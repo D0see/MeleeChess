@@ -123,7 +123,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
             //Selection coloring Logic
             const isSelected = pieceData !== null && pieceData === selectedPiece;
             //Background Logic
-            const checkerboardColor = (i + j) % 2 ? "lightblue" : "white";
+            const checkerboardColor = (i + j) % 2 ? "#4e9f36" : "#f6f6f6";
             const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
             return (
               <Box

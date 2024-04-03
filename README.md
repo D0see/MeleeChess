@@ -22,7 +22,7 @@
 1. Caption the stages.
 
 ### Bugs:
-// had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect change to nested arrays).
+// had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect changes to nested arrays).
 ### ToChange :
 1. Need to do a second path and clean the code.
 - Need to useState stages instead of mutating the original array
@@ -40,6 +40,7 @@
 
 
 ### Bugs:
+Rooks and probably bishops & queens also can move through pieces if they arent on their team.
 
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.

@@ -128,35 +128,47 @@ export default class Piece {
       case "rook":
         //Up move & capture logic
         for(let i = 1; this.y - i >= 0; i++) {
-          if (!twoDArr[this.y - i][this.x] || twoDArr[this.y - i][this.x].team !== this.team){
-            possibleMoves.push([this.y - i, this.x])
-          } else {
+          if (!twoDArr[this.y - i][this.x]){
+            possibleMoves.push([this.y - i, this.x]);
+            continue;
+          } else if (twoDArr[this.y - i][this.x] && twoDArr[this.y - i][this.x].team !== this.team) {
+            possibleMoves.push([this.y - i, this.x]);
             break;
-          }  
+          } 
+          break;
         }
         //Right move & capture logic
         for(let i = 1; this.x + i < twoDArr[0].length ; i++) {
-          if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
-            possibleMoves.push([this.y, this.x + i])
-          } else {
+          if (!twoDArr[this.y][this.x + i]){
+            possibleMoves.push([this.y, this.x + i]);
+            continue;
+          } else if (twoDArr[this.y][this.x + i] && twoDArr[this.y][this.x + i].team !== this.team) {
+            possibleMoves.push([this.y, this.x + i]);
             break;
-          }  
+          } 
+          break;  
         }
         //Down move & capture logic
         for(let i = 1; this.y + i < twoDArr.length; i++) {
-          if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
-            possibleMoves.push([this.y + i, this.x])
-          } else {
+          if (!twoDArr[this.y + i][this.x]){
+            possibleMoves.push([this.y + i, this.x]);
+            continue;
+          } else if (twoDArr[this.y + i][this.x] && twoDArr[this.y + i][this.x].team !== this.team) {
+            possibleMoves.push([this.y + i, this.x]);
             break;
-          }  
+          } 
+          break;
         }
         //Left move & capture logic
         for(let i = 1; this.x - i >= 0 ; i++) {
-          if (!twoDArr[this.y][this.x - i] || twoDArr[this.y][this.x - i].team !== this.team){
-            possibleMoves.push([this.y, this.x - i])
-          } else {
+          if (!twoDArr[this.y][this.x - i]){
+            possibleMoves.push([this.y, this.x - i]);
+            continue;
+          } else if (twoDArr[this.y][this.x - i] && twoDArr[this.y][this.x - i].team !== this.team) {
+            possibleMoves.push([this.y, this.x - i]);
             break;
-          }  
+          } 
+          break;
         }
         break;
       case "knight":
@@ -188,101 +200,137 @@ export default class Piece {
       case "bishop":
         //Top-left move & capture logic
         for(let i = + 1; this.y - i >= 0 && this.x - i >= 0; i++) {
-          if (!twoDArr[this.y - i][this.x - i] || twoDArr[this.y - i][this.x - i].team !== this.team){
-            possibleMoves.push([this.y - i, this.x - i])
-          } else {
+          if (!twoDArr[this.y - i][this.x - i]){
+            possibleMoves.push([this.y - i, this.x - i]);
+            continue
+          } else if (twoDArr[this.y - i][this.x - i] && twoDArr[this.y - i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x - i]);
             break;
           }  
+          break;
         }
         //Top-right move & capture logic
         for(let i = 1; this.y - i >= 0 && this.x + i < twoDArr[0].length; i++) {
-          if (!twoDArr[this.y - i][this.x + i] || twoDArr[this.y - i][this.x + i].team !== this.team){
-            possibleMoves.push([this.y - i, this.x + i])
-          } else {
+          if (!twoDArr[this.y - i][this.x + i]){
+            possibleMoves.push([this.y - i, this.x + i]);
+            continue
+          } else if (twoDArr[this.y - i][this.x + i] && twoDArr[this.y - i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x + i]);
             break;
           }  
+          break;
         }
         //Bottom-right move & capture logic
         for(let i = 1; this.y + i < twoDArr.length && this.x + i < twoDArr[0].length; i++) {
-          if (!twoDArr[this.y + i][this.x + i] || twoDArr[this.y + i][this.x + i].team !== this.team){
-            possibleMoves.push([this.y + i, this.x + i])
-          } else {
+          if (!twoDArr[this.y + i][this.x + i]){
+            possibleMoves.push([this.y + i, this.x + i]);
+            continue
+          } else if (twoDArr[this.y + i][this.x + i] && twoDArr[this.y + i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x + i]);
             break;
-          }  
+          } 
+          break;
         }
         //Bottom-left move & capture logic
         for(let i = + 1; this.y + i < twoDArr.length && this.x - i >= 0; i++) {
-          if (!twoDArr[this.y + i][this.x - i] || twoDArr[this.y + i][this.x - i].team !== this.team){
-            possibleMoves.push([this.y + i, this.x - i])
-          } else {
+          if (!twoDArr[this.y + i][this.x - i]){
+            possibleMoves.push([this.y + i, this.x - i]);
+            continue
+          } else if (twoDArr[this.y + i][this.x - i] && twoDArr[this.y + i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x - i]);
             break;
           }  
+          break;
         }
         break;
       case "queen":
         //Up move & capture logic
-        for(let i = - 1; i + this.y >= 0; i--) {
-          if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
-            possibleMoves.push([this.y + i, this.x])
-          } else {
+        for(let i = 1; this.y - i >= 0; i++) {
+          if (!twoDArr[this.y - i][this.x]){
+            possibleMoves.push([this.y - i, this.x]);
+            continue;
+          } else if (twoDArr[this.y - i][this.x] && twoDArr[this.y - i][this.x].team !== this.team) {
+            possibleMoves.push([this.y - i, this.x]);
             break;
-          }  
+          } 
+          break;
         }
         //Right move & capture logic
-        for(let i = 1; i + this.x < twoDArr[0].length ; i++) {
-          if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
-            possibleMoves.push([this.y, this.x + i])
-          } else {
+        for(let i = 1; this.x + i < twoDArr[0].length ; i++) {
+          if (!twoDArr[this.y][this.x + i]){
+            possibleMoves.push([this.y, this.x + i]);
+            continue;
+          } else if (twoDArr[this.y][this.x + i] && twoDArr[this.y][this.x + i].team !== this.team) {
+            possibleMoves.push([this.y, this.x + i]);
             break;
-          }  
+          } 
+          break;  
         }
         //Down move & capture logic
-        for(let i = 1; i + this.y < twoDArr.length; i++) {
-          if (!twoDArr[this.y + i][this.x] || twoDArr[this.y + i][this.x].team !== this.team){
-            possibleMoves.push([this.y + i, this.x])
-          } else {
+        for(let i = 1; this.y + i < twoDArr.length; i++) {
+          if (!twoDArr[this.y + i][this.x]){
+            possibleMoves.push([this.y + i, this.x]);
+            continue;
+          } else if (twoDArr[this.y + i][this.x] && twoDArr[this.y + i][this.x].team !== this.team) {
+            possibleMoves.push([this.y + i, this.x]);
             break;
-          }  
+          } 
+          break;
         }
         //Left move & capture logic
-        for(let i = - 1; i + this.x >= 0 ; i--) {
-          if (!twoDArr[this.y][this.x + i] || twoDArr[this.y][this.x + i].team !== this.team){
-            possibleMoves.push([this.y, this.x + i])
-          } else {
+        for(let i = 1; this.x - i >= 0 ; i++) {
+          if (!twoDArr[this.y][this.x - i]){
+            possibleMoves.push([this.y, this.x - i]);
+            continue;
+          } else if (twoDArr[this.y][this.x - i] && twoDArr[this.y][this.x - i].team !== this.team) {
+            possibleMoves.push([this.y, this.x - i]);
             break;
-          }  
+          } 
+          break;
         }
         //Top-left move & capture logic
         for(let i = + 1; this.y - i >= 0 && this.x - i >= 0; i++) {
-          if (!twoDArr[this.y - i][this.x - i] || twoDArr[this.y - i][this.x - i].team !== this.team){
-            possibleMoves.push([this.y - i, this.x - i])
-          } else {
+          if (!twoDArr[this.y - i][this.x - i]){
+            possibleMoves.push([this.y - i, this.x - i]);
+            continue;
+          } else if (twoDArr[this.y - i][this.x - i] && twoDArr[this.y - i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x - i]);
             break;
           }  
+          break;
         }
         //Top-right move & capture logic
         for(let i = 1; this.y - i >= 0 && this.x + i < twoDArr[0].length; i++) {
-          if (!twoDArr[this.y - i][this.x + i] || twoDArr[this.y - i][this.x + i].team !== this.team){
-            possibleMoves.push([this.y - i, this.x + i])
-          } else {
+          if (!twoDArr[this.y - i][this.x + i]){
+            possibleMoves.push([this.y - i, this.x + i]);
+            continue;
+          } else if (twoDArr[this.y - i][this.x + i] && twoDArr[this.y - i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y - i, this.x + i]);
             break;
           }  
+          break;
         }
         //Bottom-right move & capture logic
         for(let i = 1; this.y + i < twoDArr.length && this.x + i < twoDArr[0].length; i++) {
-          if (!twoDArr[this.y + i][this.x + i] || twoDArr[this.y + i][this.x + i].team !== this.team){
-            possibleMoves.push([this.y + i, this.x + i])
-          } else {
+          if (!twoDArr[this.y + i][this.x + i]){
+            possibleMoves.push([this.y + i, this.x + i]);
+            continue;
+          } else if (twoDArr[this.y + i][this.x + i] && twoDArr[this.y + i][this.x + i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x + i]);
             break;
-          }  
+          } 
+          break;
         }
         //Bottom-left move & capture logic
         for(let i = + 1; this.y + i < twoDArr.length && this.x - i >= 0; i++) {
-          if (!twoDArr[this.y + i][this.x - i] || twoDArr[this.y + i][this.x - i].team !== this.team){
-            possibleMoves.push([this.y + i, this.x - i])
-          } else {
+          if (!twoDArr[this.y + i][this.x - i]){
+            possibleMoves.push([this.y + i, this.x - i]);
+            continue
+          } else if (twoDArr[this.y + i][this.x - i] && twoDArr[this.y + i][this.x - i].team !== this.team){
+            possibleMoves.push([this.y + i, this.x - i]);
             break;
           }  
+          break;
         }
         break;
       case "king":
