@@ -13,7 +13,7 @@ function hasCoordinatesInArray(twoDArr, coordinates) {
   return false;
 }
 function matchWinner(attackingPiece, defendingPiece) {
-  const randomNum = Math.floor(Math.random*2);
+  const randomNum = Math.floor(Math.random()*2);
   const winner = randomNum < 1 ? attackingPiece : defendingPiece;
   return winner;
 }

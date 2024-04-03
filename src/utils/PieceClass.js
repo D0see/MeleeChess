@@ -114,10 +114,10 @@ export default class Piece {
             twoDArr[this.y + 1][this.x - 1] &&
             twoDArr[this.y + 1][this.x - 1].team === "white"
           ) {
-            possibleMoves.push([this.y - 1, this.x - 1]);
+            possibleMoves.push([this.y + 1, this.x - 1]);
           }
           if (
-            this.y - 1 >= 0 && this.x + 1 < twoDArr[0].length &&
+            this.y + 1 >= 0 && this.x + 1 < twoDArr[0].length &&
             twoDArr[this.y + 1][this.x + 1] &&
             twoDArr[this.y + 1][this.x + 1].team === "white"
           ) {
