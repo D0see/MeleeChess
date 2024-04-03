@@ -22,6 +22,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: pop-up 0.4s ease;
+}
+
+@keyframes pop-up {
+    0% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .IsSelected {
@@ -54,7 +67,17 @@
     z-index: 3;
     position: relative;
     left: 18px;
+    transition: transform 0.20s ease;
 }
+
+.CharPiece:hover .Char {
+    transform: rotate(15deg);
+}
+.CharPiece:hover .Piece {
+    transform: rotate(-15deg)
+               translate(-10px);
+}
+
 
 .OuterCircle {
     position: absolute;

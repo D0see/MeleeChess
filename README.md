@@ -1,5 +1,8 @@
 ### TODO :
 1. Clean the css
+2. Ask gu to explain gecko codes to me.
+3. build a functionnal gecko code generator.
+4. learn electron.js
 
 ## CharacterSelectionApp : 
 
@@ -33,14 +36,11 @@
 ## GameApp : 
 
 ### Features to add :
-1. Ask gu to explain gecko codes to me.
-2. build a functionnal gecko code generator.
-3. learn electron.js
-4. make electron.js launch dolphin with the generated gecko code on capture.
-
+1. make electron.js launch dolphin with the generated gecko code on capture.
+2. Build the piecedatadisplayer
 
 ### Bugs:
-Rooks and probably bishops & queens also can move through pieces if they arent on their team.
+
 
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.
