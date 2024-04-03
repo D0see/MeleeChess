@@ -35,8 +35,8 @@
 ### Features to add :
 1. PieceClass
 - ~constructor~
-- possibleMoves method : Pawn, knights, rooks, bishop, king, queen.
- -> Maybe i can simplify the capture logic with !== this.team instead of ==="opposite team"?
+- ~possibleMoves method : Pawn, knights, rooks, bishop, king, queen.~
+ -> ~Maybe i can simplify the capture logic with !== this.team instead of ==="opposite team"?~
 - ~startingStocks method~
 2. ~Make it so you can move the pieces based on the possible destination array.~
 3. Make it so you can "capture" (and make a useState)
