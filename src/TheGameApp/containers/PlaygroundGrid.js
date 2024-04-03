@@ -12,6 +12,11 @@ function hasCoordinatesInArray(twoDArr, coordinates) {
   }
   return false;
 }
+function matchWinner(attackingPiece, defendingPiece) {
+  const randomNum = Math.floor(Math.random*2);
+  const winner = randomNum < 1 ? attackingPiece : defendingPiece;
+  return winner;
+}
 
 export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board }) {
   const [stageColorVisible, setStageColorVisible] = useState(false);
@@ -55,6 +60,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
       //Handle clicking possible destination when a piece is clicked
     } else if (pieceIsSelected && hasCoordinatesInArray(possibleDestinations, [i, j])) {
       console.log("i can go there");
+      //handle logic when destination is empty
       if (playground[i][j] === null) {
         console.log("box is empty");
         setPlayground((prev) => {
@@ -76,8 +82,29 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
         setPieceIsSelected((prev) => !prev);
         setSelectedPiece(null);
         setIsWhitesTurn((prev) => !prev);
+      //handle logic when destination has an enemy piece
+      } else { 
+        setPlayground((prev) => {
+          const newPlayground = prev.map((arr, rowIndex) =>
+            arr.map((box, columnIndex) => {
+              if (box === selectedPiece) {
+                return null;
+              }
+              if (rowIndex === i && columnIndex === j) {
+                return matchWinner(selectedPiece, playground[i][j]);
+              }
+              return box;
+            }),
+          );
+          selectedPiece.y = i;
+          selectedPiece.x = j;
+          return newPlayground;
+        });
+        setPieceIsSelected((prev) => !prev);
+        setSelectedPiece(null);
+        setIsWhitesTurn((prev) => !prev);
       }
-    }
+    } 
   }
 
   return (
