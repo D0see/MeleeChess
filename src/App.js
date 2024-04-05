@@ -7,7 +7,7 @@ import TheGameApp from './TheGameApp/TheGameApp.js';
 const mockTeam = {"white":{"king":"Pichu","queen":"Bowser","rook":"Bowser","bishop":"Bowser","knight":"Bowser","pawn":"Bowser"},"black":{"king":"Bowser","queen":"Bowser","rook":"Bowser","bishop":"Bowser","knight":"Bowser","pawn":"Bowser"}}
 const mockArray = [[3,6,6,6,6,6,6,3],[3,2,2,2,2,2,2,3],[3,2,5,5,5,5,2,3],[3,4,2,1,1,2,4,3],[3,4,2,1,1,2,4,3],[3,2,5,5,5,5,2,3],[3,2,2,2,2,2,2,3],[3,6,6,6,6,6,6,3]];
 
-function App() {
+export default function App() {
   //CharacterSelectApp State
   const [characterSelectFinished, setCharacterSelectFinished] = useState(false);
   //Playerteam composition
@@ -29,4 +29,4 @@ return (
    <TheGameApp board={mockArray} playerTeams={mockTeam} />
 )
 }
-export default App;
+

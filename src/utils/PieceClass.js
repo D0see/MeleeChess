@@ -9,6 +9,8 @@ export default class Piece {
     this._x = x;
     this._hasMoved = false;
     this._stocks = this.determineStartingStocks();
+    //Id based on starting coordinates 
+    this._id = `${this._y}-${this._x}`;
   }
 
   get team() {
@@ -47,6 +49,14 @@ export default class Piece {
 
   get hasMoved() {
     return this._hasMoved;
+  }
+
+  get stocks() {
+    return this._stocks;
+  }
+  
+  get id() {
+    return this._id;
   }
 
   determineStartingStocks() {

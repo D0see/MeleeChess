@@ -37,7 +37,8 @@
 
 ### Features to add :
 1. make electron.js launch dolphin with the generated gecko code on capture.
-2. Build the piecedatadisplayer
+2. ~Build the piecedatadisplayer~ 
+3. Add castling & pawnpromotion
 
 ### Bugs:
 
@@ -47,3 +48,7 @@
 
 ### Priority
 1. Paye une pinte à Gu
+2. Ne pas balancer les références des objets dans les setUsestate
+3. refactorer le code pour remplacer les comparaisons d'objets par des comparaisons de coordonnées -> Replace selectedPiece with selectedPieceId
+                                                                                                   -> Add a unique identifier to PieceClass this.Id = Idgenerator
+                                                                                                   -> Integrate this.Id in the logic.

@@ -1,28 +1,58 @@
-import React from "react";
+import React, {useState} from "react";
 import CharacterImg from '../../Shared/CharacterImg';
 import PieceImg from '../../Shared/PieceImg';
-export default function Box({backgroundColor, pieceData, onClick, isSelected, IsPossibleMove}) {
+export default function Box({backgroundColor, pieceData, onClick, isSelected, isPossibleMove}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const numOfStocks = pieceData? pieceData.stocks : 0;
+  const arrOfStocks = [];
+  for(let i = 0; i < numOfStocks; i++) {
+     arrOfStocks.push(i);
+  }
+
+  function handleMouseOver() {
+    setIsHovered(true);
+  }
+
+  function handleMouseLeave() {
+    setIsHovered(false);
+  }
+
   return (
-    <div className={`Box ${isSelected ? "IsSelected" : ""}`} onClick = {onClick} style={{ backgroundColor: backgroundColor }}>
-      {IsPossibleMove &&
+    <div className={`Box ${isSelected ? "IsSelected" : ""}`} onClick={onClick} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} style={{ backgroundColor: backgroundColor }}>
+      {isPossibleMove &&
       <div className="OuterCircle">
         <div className="InnerCircle" style={{ backgroundColor: backgroundColor }}></div>
       </div>}
       {pieceData &&
-      <div className={`CharPiece`}>
-        <PieceImg
-          className="Piece"
-          pieceName={`${pieceData.team}_${pieceData.type}`}
-          height="65"
-          width="65"
-        />
-        <CharacterImg
-          className="Char"
+      <>
+        <div className={`CharPiece`}>
+          <PieceImg
+            className="Piece"
+            pieceName={`${pieceData.team}_${pieceData.type}`}
+            height="65"
+            width="65"
+          />
+          <CharacterImg
+            className="Char"
+            characterName={pieceData.char}
+            height="35"
+            width="35"
+          />
+        </div>
+        <div className={`${isHovered ? "Visible" : ""} DisplayStocks`}>
+        {arrOfStocks.map((num, i) => {
+          return(
+          <CharacterImg 
+          key={i}
+          className="Stocks"
           characterName={pieceData.char}
-          height="35"
-          width="35"
-        />
-      </div>}
+          height="20"
+          width="20"
+          />
+          )
+        })}
+      </div>
+    </>}
     </div>
   );
 }

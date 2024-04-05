@@ -1,4 +1,5 @@
 .PlaygroundGrid {
+    z-index: 2;
     display: grid;
     position: absolute;
     transform: translate(-50%, 15%);
@@ -14,6 +15,7 @@
     height: 86px;
     width: 86px;
     transition: background-color 0.25s ease;
+    overflow: hidden;
 }
 
 .CharPiece {
@@ -42,7 +44,6 @@
     background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(223,231,87,0) 50%, rgb(250, 209, 73) 100%);     
     animation: moving-background 6s linear infinite;
     background-size: 500% 500%;
-    overflow: hidden;
     transition: background-color 0.25s ease;
 }
 
@@ -70,12 +71,35 @@
     transition: transform 0.20s ease;
 }
 
-.CharPiece:hover .Char {
+.Box:hover .Char {
     transform: rotate(15deg);
 }
-.CharPiece:hover .Piece {
-    transform: rotate(-15deg)
-               translate(-10px);
+.Box:hover .Piece {
+    transform: rotate(-10deg)
+               translate(-10px , -10px);
+}
+
+.DisplayStocks {
+    position: relative;
+    z-index: 4;
+    top: 22px;
+    margin: 0 auto;
+    opacity: 0;
+    width: fit-content;
+}
+
+.Visible {
+    animation: slide-up 0.25s ease forwards;
+}
+
+@keyframes slide-up {
+    0% {
+        top: 22px;
+    }
+    100% {
+        top: -2px;
+        opacity: 1;
+    }
 }
 
 
