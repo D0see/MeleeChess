@@ -2,13 +2,16 @@
     z-index: 2;
     display: grid;
     position: absolute;
-    transform: translate(-50%, 15%);
+    transform: translate(-50%, 50%);
     left: 50%;
+    bottom: 55%;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
     border: 1px solid black;
     box-shadow: 4px 4px 6px 2px lightgray;
+    animation: appears 1.5s ease;
 }
+
 
 .Box {
     position: relative;
@@ -89,10 +92,10 @@
 }
 
 .Visible {
-    animation: slide-up 0.25s ease forwards;
+    animation: slide 0.25s ease forwards;
 }
 
-@keyframes slide-up {
+@keyframes slide {
     0% {
         top: 22px;
     }
@@ -114,7 +117,7 @@
     background: linear-gradient(0deg, rgb(250, 209, 73) 0%, rgba(224, 231, 87, 0.6) 25%, rgb(250, 209, 73) 50%, rgba(224, 231, 87, 0.6) 75%, rgb(250, 209, 73) 100%);     
     animation: moving-background 12s linear infinite,
                 rotate 3s linear infinite,
-                appears 0.35s ease forwards;
+                goesVisible 0.35s ease forwards;
     background-size: 500% 500%;
     overflow: hidden;
 }
@@ -128,7 +131,7 @@
     }
 } 
 
-@keyframes appears {
+@keyframes goesVisible {
     0% {
         opacity: 0;
     }

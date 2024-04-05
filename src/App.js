@@ -14,7 +14,7 @@ export default function App() {
   const [playerTeams, setPlayerTeams] = useState({"white": null, "black": null});
   //Selected board
   const [board, setBoard] = useState(null);
-/*
+
   return (
     <div className="AppContainer">
       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
@@ -23,10 +23,12 @@ export default function App() {
       {board && <TheGameApp board={board} playerTeams={playerTeams} />}
     </div>
   )
-*/
+}
 
+/*
 return (
    <TheGameApp board={mockArray} playerTeams={mockTeam} />
 )
 }
 
+*/
