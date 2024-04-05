@@ -9,7 +9,7 @@
     grid-template-rows: repeat(8, 1fr);
     border: 1px solid black;
     box-shadow: 4px 4px 6px 2px lightgray;
-    animation: appears 1.5s ease;
+    animation: appears var(--slide-screen-time) ease;
 }
 
 
