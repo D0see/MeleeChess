@@ -50,18 +50,17 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
 
     //Handle clicking possible destination when a piece is clicked
     } else if (anyPieceIsSelected() && hasCoordinatesInArray(possibleDestinations, [i, j])) {
+      //intializes newPlayground
       let newPlayground;
       //determine selected Piece
       let selectedPiece;
-      for (let i = 0; i < playground.length; i++) {
-        for (let j = 0; j < playground[0].length; j++) {
-          if (playground[i][j] && playground[i][j].id === selectedPieceId) {
-            selectedPiece = playground[i][j];
-            break;
-          }
+      for (const pieceData of playground.flat()) {
+        if(pieceData && pieceData.id === selectedPieceId){
+          selectedPiece = pieceData;
+          break;
         }
       }
-      //handle logic when destination is empty
+      // handle logic when destination is empty
       if (!playground[i][j]) {
         newPlayground = playground.map((arr, rowIndex) =>
           arr.map((pieceData, columnIndex) => {
