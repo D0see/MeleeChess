@@ -14,15 +14,18 @@ function matchWinner(attackingPiece, defendingPiece) {
 
 export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board }) {
   const [stageColorVisible, setStageColorVisible] = useState(false);
-  function handleChangeColorClick() {
+
+  function handleChangeColorClick() { // pass this to the parent component
     setStageColorVisible((prev) => !prev);
   }
+
   const [selectedPiece, setSelectedPiece] = useState(null);
   function anyPieceIsSelected() {
     return selectedPiece !== null;
   }
   const [possibleDestinations, setPossibleDestinations] = useState(null);
 
+  //Logic for clicking & moving pieces 
   function handlePieceClick(i, j) {
     //Handle re-clicking on the selected piece
     if (selectedPiece && playground[i][j] && playground[i][j].id === selectedPiece.id) {
@@ -47,8 +50,8 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
 
     //Handle clicking possible destination when a piece is clicked
     } else if (anyPieceIsSelected() && hasCoordinatesInArray(possibleDestinations, [i, j])) {
-      //handle logic when destination is empty
       let newPlayground;
+      //handle logic when destination is empty
       if (!playground[i][j]) {
         newPlayground = playground.map((arr, rowIndex) =>
           arr.map((pieceData, columnIndex) => {
@@ -61,18 +64,18 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
             return pieceData;
           }),
         );
-      //handle logic when destination has enemy piece
       } else {
+      //handle logic when destination has enemy piece
         newPlayground = playground.map((arr, rowIndex) =>
           arr.map((pieceData, columnIndex) => {
-            if (JSON.stringify(pieceData) === JSON.stringify(selectedPiece)) {
+            if (pieceData && pieceData.id === selectedPiece.id) {
               return null;
             }
             if (rowIndex === i && columnIndex === j) {
               return matchWinner(selectedPiece, playground[i][j]);
             }
             return pieceData;
-          }),
+          })
         );
       }
       //Updates states
@@ -80,8 +83,8 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
       selectedPiece.y = i;
       selectedPiece.x = j;
       setSelectedPiece(null);
-      setIsWhitesTurn((prev) => !prev);
       setPossibleDestinations(null);
+      setIsWhitesTurn((prev) => !prev);
     }
   }
 
@@ -93,7 +96,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
             //isPossibleMove coloring Logic
             const isPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]);
             //Selection coloring Logic
-            const isSelected = pieceData && JSON.stringify(pieceData) === JSON.stringify(selectedPiece);
+            const isSelected = (pieceData && selectedPiece) && pieceData.id === selectedPiece.id;
             //Background Logic
             const checkerboardColor = (i + j) % 2 ? "#4e9f36" : "#f6f6f6";
             const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
