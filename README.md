@@ -16,7 +16,7 @@
 ### Bugs:
 //
 ### ToChange :
-- Clean the code, and give props better names.
+- Clean the code, and find better prop names.
 - Change slide animation from % to vh
 
 ## BoardSelectionApp : 
@@ -48,7 +48,7 @@
 
 ### Priority
 1. Paye une pinte à Gu
-2. Ne pas balancer les références des objets dans les setUsestate (Refactor SelectedPiece)
-3. refactorer le code pour remplacer les comparaisons d'objets par des comparaisons de coordonnées -> Replace selectedPiece with selectedPieceId
+2. ~Ne pas balancer les références des objets dans les setUsestate (Refactor SelectedPiece)~
+3. ~refactorer le code pour remplacer les comparaisons d'objets par des comparaisons de coordonnées~ -> ~Replace selectedPiece with selectedPieceId~
                                                                                                    -> ~Add a unique identifier to PieceClass this.Id = Idgenerator~ 
                                                                                                    -> ~Integrate this.Id in the logic.~ 
