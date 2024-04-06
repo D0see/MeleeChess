@@ -48,7 +48,7 @@
 
 ### Priority
 1. Paye une pinte à Gu
-2. Ne pas balancer les références des objets dans les setUsestate
+2. Ne pas balancer les références des objets dans les setUsestate (Refactor SelectedPiece)
 3. refactorer le code pour remplacer les comparaisons d'objets par des comparaisons de coordonnées -> Replace selectedPiece with selectedPieceId
-                                                                                                   -> Add a unique identifier to PieceClass this.Id = Idgenerator
-                                                                                                   -> Integrate this.Id in the logic.
+                                                                                                   -> ~Add a unique identifier to PieceClass this.Id = Idgenerator~ 
+                                                                                                   -> ~Integrate this.Id in the logic.~ 
