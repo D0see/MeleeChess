@@ -30,6 +30,10 @@
     animation: pop-up 0.4s ease;
 }
 
+.IsSelectable {
+    cursor: pointer;
+}
+
 @keyframes pop-up {
     0% {
         transform: scale(0);

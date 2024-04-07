@@ -7,8 +7,14 @@ import PieceClass from '../utils/PieceClass';
 const emptyPlayground = populatePlayground.twoDArrayBuilder(8);
 
 export default function TheGameApp({board, playerTeams}) {
-  const [isWhitesTurn, setIsWhitesTurn] = useState(true)
+  const [stageColorVisible, setStageColorVisible] = useState(false);
+  const handleChangeColorClick = () => {
+    setStageColorVisible((prev) => !prev);
+  }
+
+  const [isWhitesTurn, setIsWhitesTurn] = useState(true);
   const [playground, setPlayground] = useState(populatePlayground.populate(emptyPlayground, playerTeams, PieceClass));
+
   return (
     <>
       <PlaygroundGrid playground={playground} 
@@ -16,7 +22,9 @@ export default function TheGameApp({board, playerTeams}) {
                       isWhitesTurn={isWhitesTurn}
                       setIsWhitesTurn={setIsWhitesTurn}
                       board={board}
+                      stageColorVisible={stageColorVisible}
                       />
+      <button onClick={handleChangeColorClick} />
     </>
   )
 }

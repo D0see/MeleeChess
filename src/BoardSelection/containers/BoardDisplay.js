@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Square from '../components/Square.js'
 import { stageColorEnum, stages } from '../../utils/StageList';
 import ColorPicker from './ColorPicker.js';
@@ -28,7 +28,6 @@ export default function BoardDisplay({selectedStage, setSelectedStage}) {
       const updatedStage = {...selectedStage, layout: updatedLayout};
       stages[stages.indexOf(selectedStage)] = updatedStage;
       setSelectedStage(updatedStage);
-      console.log("activated");
     }
   }
   //Following function enable 
@@ -41,16 +40,17 @@ export default function BoardDisplay({selectedStage, setSelectedStage}) {
       const updatedStage = {...selectedStage, layout: updatedLayout};
       stages[stages.indexOf(selectedStage)] = updatedStage;
       setSelectedStage(updatedStage);
-      console.log("activated");
     } 
   }
 
-  function handleMouseUp(){
+  const handleMouseUp = () => {
     setMouseDown(false);
   }
-  function handleGridMouseLeave(){
+
+  const handleGridMouseLeave = () => {
     setMouseDown(false);
   }
+
   return (
     <>
       <div className="Grid" 

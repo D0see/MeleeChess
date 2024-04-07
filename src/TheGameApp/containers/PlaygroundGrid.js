@@ -12,50 +12,37 @@ function matchWinner(attackingPiece, defendingPiece) {
   return winner;
 }
 
-export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board }) {
-  const [stageColorVisible, setStageColorVisible] = useState(false);
-
-  function handleChangeColorClick() { // pass this to the parent component
-    setStageColorVisible((prev) => !prev);
-  }
-
+export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board, stageColorVisible }) {
   const [selectedPieceId, setSelectedPieceId] = useState(null);
-  function anyPieceIsSelected() {
-    return selectedPieceId !== null;
-  }
   const [possibleDestinations, setPossibleDestinations] = useState(null);
 
   //Logic for clicking & moving pieces 
   function handlePieceClick(i, j) {
     //Handle re-clicking on the selected piece
-    if (selectedPieceId && playground[i][j] && playground[i][j].id === selectedPieceId) {
+    if (selectedPieceId && playground[i][j]?.id === selectedPieceId) {
       setSelectedPieceId(null);
       setPossibleDestinations(null);
 
     //Handle clicking on a piece on your team when you have another selected
     } else if (
-      playground[i][j] && anyPieceIsSelected() &&
-      ((playground[i][j].team === "white" && isWhitesTurn) || (playground[i][j].team === "black" && !isWhitesTurn))
-    ) {
+      selectedPieceId && ((playground[i][j]?.team === "white" && isWhitesTurn) || (playground[i][j]?.team === "black" && !isWhitesTurn))) {
       setSelectedPieceId(playground[i][j].id);
       setPossibleDestinations(playground[i][j].determinePossibleMoves(playground));
 
     //Handle clicking a piece when no pieces are clicked
     } else if (
-      playground[i][j] && !anyPieceIsSelected() && 
-      ((playground[i][j].team === "white" && isWhitesTurn) || (playground[i][j].team === "black" && !isWhitesTurn))
-    ) {
+      !selectedPieceId && ((playground[i][j]?.team === "white" && isWhitesTurn) || (playground[i][j]?.team === "black" && !isWhitesTurn))) {
       setSelectedPieceId(playground[i][j].id);
       setPossibleDestinations(playground[i][j].determinePossibleMoves(playground));
 
     //Handle clicking possible destination when a piece is clicked
-    } else if (anyPieceIsSelected() && hasCoordinatesInArray(possibleDestinations, [i, j])) {
+    } else if (selectedPieceId && hasCoordinatesInArray(possibleDestinations, [i, j])) {
       //intializes newPlayground
       let newPlayground;
-      //determine selected Piece
+      //determine selectedPiece
       let selectedPiece;
       for (const pieceData of playground.flat()) {
-        if(pieceData && pieceData.id === selectedPieceId){
+        if(pieceData?.id === selectedPieceId){
           selectedPiece = pieceData;
           break;
         }
@@ -64,7 +51,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
       if (!playground[i][j]) {
         newPlayground = playground.map((arr, rowIndex) =>
           arr.map((pieceData, columnIndex) => {
-            if (pieceData && pieceData.id === selectedPieceId) {
+            if (pieceData?.id === selectedPieceId) {
               return null;
             }
             if (rowIndex === i && columnIndex === j) {
@@ -77,7 +64,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
       //handle logic when destination has enemy piece
         newPlayground = playground.map((arr, rowIndex) =>
           arr.map((pieceData, columnIndex) => {
-            if (pieceData && pieceData.id === selectedPieceId) {
+            if (pieceData?.id === selectedPieceId) {
               return null;
             }
             if (rowIndex === i && columnIndex === j) {
@@ -105,7 +92,7 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
             //isPossibleMove coloring Logic
             const isPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]);
             //Selection coloring Logic
-            const isSelected = (pieceData && selectedPieceId) && pieceData.id === selectedPieceId;
+            const isSelected = selectedPieceId && pieceData?.id === selectedPieceId;
             //Background Logic
             const checkerboardColor = (i + j) % 2 ? "#4e9f36" : "#f6f6f6";
             const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
@@ -116,12 +103,12 @@ export default function PlaygroundGrid({ playground, setPlayground, isWhitesTurn
                    onClick={() => handlePieceClick(i, j)}
                    isSelected={isSelected}
                    isPossibleMove={isPossibleMove}
+                   isSelectable={(isWhitesTurn && playground[i][j]?.team === "white") || (!isWhitesTurn && playground[i][j]?.team === "black") || isPossibleMove}
               />
             );
           })
         )}
       </div>
-      <button onClick={handleChangeColorClick} />
     </>
   );
 }

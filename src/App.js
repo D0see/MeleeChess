@@ -16,7 +16,7 @@ export default function App() {
   const [board, setBoard] = useState(null);
 
   return (
-    <div className="AppContainer">
+    <div className="AppContainer SelectDisabled">
       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
       {(characterSelectFinished && !board) && <BoardSelectionApp setBoard={setBoard}/>}
 
