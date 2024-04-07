@@ -19,26 +19,26 @@ export default function BoardDisplay({ selectedStage, setSelectedStage }) {
       setIsCustomBoard(true);
     }
   }
-  //painting logic
-  function handleMouseOver(y, x) {
-    if (selectedStage.name === "custom board" && mouseDown) {
-      const updatedLayout = [...selectedStage.layout];
-      updatedLayout[y][x] = pickedColor;
-      const updatedStage = { ...selectedStage, layout: updatedLayout };
-      stages[stages.indexOf(selectedStage)] = updatedStage;
-      setSelectedStage(updatedStage);
-    }
-  }
-  //Following function enable
-  function handleMouseDown(y, x) {
-    setMouseDown(true);
-    //repeats mouseover logic so it triggers on the first mousedowned square.
+
+  //Painting Logic
+  const paintSquare = (y, x) => {
     if (selectedStage.name === "custom board") {
       const updatedLayout = [...selectedStage.layout];
       updatedLayout[y][x] = pickedColor;
       const updatedStage = { ...selectedStage, layout: updatedLayout };
       stages[stages.indexOf(selectedStage)] = updatedStage;
       setSelectedStage(updatedStage);
+    }
+  };
+
+  function handleMouseDown(y, x) {
+    setMouseDown(true);
+    paintSquare(y, x);
+  }
+
+  function handleMouseOver(y, x) {
+    if (mouseDown) {
+      paintSquare(y, x);
     }
   }
 
