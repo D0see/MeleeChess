@@ -63,6 +63,7 @@ export default class Piece {
   get damage() {
     return this._damage;
   }
+  
   determineStartingStocks() {
     switch (this._type) {
       case "pawn":

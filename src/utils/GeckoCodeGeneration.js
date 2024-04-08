@@ -49,30 +49,27 @@ export default function createGeckocode (attackingPiece, defendingPiece, board) 
   }
   
   const int8Str = (x) => {
-    return ('0' + x.toString(16)).slice(-2);
+    return ('00' + x.toString(16)).slice(-2);
   }
   
   const int16Str = (x) => {
-    return ('0' + x.toString(16)).slice(-4);
+    return ('0000' + x.toString(16)).slice(-4);
   }
 
     const port1 = attackingPiece.team === 'white' ? attackingPiece : defendingPiece;
     const port2 = port1 === attackingPiece ? defendingPiece : attackingPiece;
 
     const port1CharId = charIds[port1.char]
-    console.log(port1.char);
     const port1CharHex = int8Str(port1CharId);
     const port2CharId = charIds[port2.char] 
     const port2CharHex = int8Str(port2CharId);
 
     const port1StocksHex = int8Str(port1.stocks);
-    console.log(port1.stocks);
     const port2StocksHex = int8Str(port2.stocks);
 
-    console.log(port1.damage);
-    const port1DamageHex = int16Str(port1.damage || 0); // || for testing purposes
+    const port1DamageHex = int16Str(port1.damage); // || for testing purposes
     
-    const port2DamageHex = int16Str(port2.damage || 0);
+    const port2DamageHex = int16Str(port2.damage);
 
     const port1Costume = 0;
     const port1CostumeHex = int8Str(port1Costume);
