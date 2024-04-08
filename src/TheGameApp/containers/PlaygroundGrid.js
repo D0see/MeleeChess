@@ -3,13 +3,17 @@ import Box from "../components/Box.js";
 
 import { stageColorEnum } from "../../utils/StageList";
 import { hasCoordinatesInArray } from "../../utils/Utils.js";
+import geckoCodeGenerator from '../../utils/GeckoCodeGeneration.js';
 
 import "./PlaygroundGrid.css";
 
 //Placeholder capture resolution
-function matchWinner(attackingPiece, defendingPiece) {
+function matchWinner(attackingPiece, defendingPiece, board) {
   const randomNum = Math.floor(Math.random() * 2);
   const winner = randomNum < 1 ? attackingPiece : defendingPiece;
+  //Testing the gecko code gen
+  const myGecko = geckoCodeGenerator(attackingPiece, defendingPiece, board);
+  console.log(myGecko);
   return winner;
 }
 
@@ -49,7 +53,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           }
           //handle logic when destination has enemy piece
           if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
-            return matchWinner(selectedPiece, playground[i][j]);
+            return matchWinner(selectedPiece, playground[i][j], board);
           //handle logic when destination is empty
           } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
             return selectedPiece;

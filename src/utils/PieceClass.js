@@ -9,6 +9,7 @@ export default class Piece {
     this._x = x;
     this._hasMoved = false;
     this._stocks = this.determineStartingStocks();
+    this._damage = 0;
     //Id based on starting coordinates 
     this._id = `${this._y}-${this._x}`;
   }
@@ -59,6 +60,9 @@ export default class Piece {
     return this._id;
   }
 
+  get damage() {
+    return this._damage;
+  }
   determineStartingStocks() {
     switch (this._type) {
       case "pawn":

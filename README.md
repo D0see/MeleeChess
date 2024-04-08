@@ -2,6 +2,7 @@
 1. Clean the css
 2. build a functionnal gecko code generator (started)
 3. learn electron.js
+4. Add costume selection
 
 ## CharacterSelectionApp : 
 
