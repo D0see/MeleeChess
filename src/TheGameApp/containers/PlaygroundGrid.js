@@ -6,6 +6,7 @@ import { hasCoordinatesInArray } from "../../utils/Utils.js";
 
 import "./PlaygroundGrid.css";
 
+//Placeholder capture resolution
 function matchWinner(attackingPiece, defendingPiece) {
   const randomNum = Math.floor(Math.random() * 2);
   const winner = randomNum < 1 ? attackingPiece : defendingPiece;
@@ -67,35 +68,33 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
   }
 
   return (
-    <>
-      <div className="PlaygroundGrid">
-        {playground.map((arr, i) =>
-          arr.map((pieceData, j) => {
-            //isPossibleMove coloring Logic
-            const isPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]);
-            //Selection coloring Logic
-            const isSelected = selectedPieceId && pieceData?.id === selectedPieceId;
-            //BackgroundColor Logic
-            const checkerboardColor = (i + j) % 2 ? "#4e9f36" : "#f6f6f6";
-            const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
-            return (
-              <Box
-                key={`${i}-${j}`}
-                backgroundColor={backgroundColor}
-                pieceData={pieceData}
-                onClick={() => handlePieceClick(i, j)}
-                isSelected={isSelected}
-                isPossibleMove={isPossibleMove}
-                isSelectable={
-                  (isWhitesTurn && playground[i][j]?.team === "white") ||
-                  (!isWhitesTurn && playground[i][j]?.team === "black") ||
-                  isPossibleMove
-                }
-              />
-            );
-          }),
-        )}
-      </div>
-    </>
+    <div className="PlaygroundGrid">
+      {playground.map((arr, i) =>
+        arr.map((pieceData, j) => {
+          //isPossibleMove coloring Logic
+          const isPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]);
+          //Selection coloring Logic
+          const isSelected = selectedPieceId && pieceData?.id === selectedPieceId;
+          //BackgroundColor Logic
+          const checkerboardColor = (i + j) % 2 ? "#4e9f36" : "#f6f6f6";
+          const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
+          return (
+            <Box
+              key={`${i}-${j}`}
+              backgroundColor={backgroundColor}
+              pieceData={pieceData}
+              onClick={() => handlePieceClick(i, j)}
+              isSelected={isSelected}
+              isPossibleMove={isPossibleMove}
+              isSelectable={
+                (isWhitesTurn && playground[i][j]?.team === "white") ||
+                (!isWhitesTurn && playground[i][j]?.team === "black") ||
+                isPossibleMove
+              }
+            />
+          );
+        }),
+      )}
+    </div>
   );
 }

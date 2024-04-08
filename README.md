@@ -38,13 +38,12 @@
 ### Features to add :
 1. make electron.js launch dolphin with the generated gecko code on capture.
 2. Add castling & pawnpromotion
+3. Pat check
 
 ### Bugs:
 
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.
-
-
 
 ### Priority
 1. Paye une pinte à Gu
