@@ -63,7 +63,7 @@ export default class Piece {
   get damage() {
     return this._damage;
   }
-  
+
   determineStartingStocks() {
     switch (this._type) {
       case "pawn":
@@ -94,7 +94,7 @@ export default class Piece {
           if (this.y - 1 >= 0 && !twoDArr[this.y - 1][this.x]) {
             possibleMoves.push([this.y - 1, this.x]);
             //double-forward-move
-            if (!twoDArr[this.y - 2][this.x] && !this.hasMoved) {
+            if (!this.hasMoved && !twoDArr[this.y - 2][this.x]) {
               possibleMoves.push([this.y - 2, this.x]);
             }
           }
@@ -119,7 +119,7 @@ export default class Piece {
           if (!twoDArr[this.y + 1][this.x]) {
             possibleMoves.push([this.y + 1, this.x]);
             //double-forward-move
-            if (!twoDArr[this.y + 2][this.x] && !this.hasMoved) {
+            if (!this.hasMoved && !twoDArr[this.y + 2][this.x]) {
               possibleMoves.push([this.y + 2, this.x]);
             }
           }

@@ -67,8 +67,7 @@ export default function createGeckocode (attackingPiece, defendingPiece, board) 
     const port1StocksHex = int8Str(port1.stocks);
     const port2StocksHex = int8Str(port2.stocks);
 
-    const port1DamageHex = int16Str(port1.damage); // || for testing purposes
-    
+    const port1DamageHex = int16Str(port1.damage);
     const port2DamageHex = int16Str(port2.damage);
 
     const port1Costume = 0;
@@ -81,7 +80,7 @@ export default function createGeckocode (attackingPiece, defendingPiece, board) 
     const stageHex = int16Str(stageId);
 
     const geckoCode = 
-      `$Match Setup [Gurvan]
+     `$Match Setup [Gurvan]
       C21B148C 00000025
       3C608048 60630530
       48000021 7C8802A6
