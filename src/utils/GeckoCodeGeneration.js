@@ -80,7 +80,7 @@ export default function createGeckocode (attackingPiece, defendingPiece, board) 
     const stageHex = int16Str(stageId);
 
     const geckoCode = 
-     `$Match Setup [Gurvan]
+     `$Match Setup [?]
       C21B148C 00000025
       3C608048 60630530
       48000021 7C8802A6

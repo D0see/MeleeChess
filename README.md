@@ -1,8 +1,4 @@
 ### TODO :
-
-FIX ISSUE WITH PORT.DAMAGE IN GECKOCODEGENERATION !!!
-
-
 1. Clean the css
 2. build a functionnal gecko code generator (started)
 3. learn electron.js
