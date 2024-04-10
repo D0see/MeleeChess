@@ -3,6 +3,7 @@
 2. build a functionnal gecko code generator (started)
 3. learn electron.js
 4. Add costume selection
+5. Parse .slp replays
 
 ## CharacterSelectionApp : 
 

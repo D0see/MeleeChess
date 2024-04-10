@@ -2,10 +2,11 @@
 const { app, BrowserWindow } = require("electron");
 const { execFile } = require('node:child_process');
 const { ipcMain } = require('electron');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require("node:path");
 const express = require("express");
 const cors = require("cors");
+const { error } = require("node:console");
 const localServerApp = express();
 const PORT = 3001;
 const startLocalServer = (done) => {
@@ -37,14 +38,30 @@ function createWindow() {
   // mainWindow.webContents.openDevTools()
 }
 
+//Copy a folder to a destination
+async function copyFolder(source, destination) {
+  try {
+    await fs.copy(source, destination);
+    console.log('Folder copied successfully');
+  } catch (err) {
+    console.error('Error copying folder:', err);
+  }
+}
+const slippiUserFolder = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay");
+const destinationFolderPath = path.join("C:/Users/Léo/AppData/Roaming/meleechess/netplay");
+copyFolder(slippiUserFolder, destinationFolderPath);
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+// arg to pass ["--user", "C:/Users/Léo/AppData/Roaming/meleechess/User"]
 app.whenReady().then(() => {
   ipcMain.handle('start-dolphin', () => {
       console.log("starting dolphin");
-      const dolphinPath = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay/Slippi Dolphin.exe");
-      execFile(dolphinPath, function(err, stdout) {
+      const dolphinPath = path.join(app.getPath("userData"), "/netplay/Slippi Dolphin.exe")
+      const userPath = path.join(app.getPath("userData"), "User/")
+      console.log(path.normalize(userPath));
+      execFile(dolphinPath, ["--user", "User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
           if (err) {
               console.error(err);
               return;
@@ -52,23 +69,25 @@ app.whenReady().then(() => {
           console.log(stdout);
       });   
   });
-  ipcMain.handle('write-config', (event, configString) => {
+  ipcMain.handle('write-gecko', (event, configString) => {
     // Write to file asynchronously
-    const configPath = "C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay/User/Config/Meleechess.ini";
-    fs.writeFile(configPath, '', (err) => {
-      if (err) {
-          console.error('Error erasing file content:', err);
-          return;
-      }
-      console.log('File content has been erased:', configPath);
-    });
-    fs.writeFile(configPath, configString, { flag: 'a+' }, (err) => {
+    const sysGeckoPath = path.join(app.getPath("userData"), "netplay/Sys/GameSettings/GALE01r2.ini");
+    const userGeckoPath = path.join(app.getPath("userData"), "netplay/User/GameSettings/GALE01.ini")
+
+    fs.writeFile(sysGeckoPath, configString, (err) => {
         if (err) {
             console.error('Error writing to config file', err);
             return;
         }
-        console.log('Config has been written to', configPath);
+        console.log('Config has been written to', sysGeckoPath);
     });
+    fs.writeFile(userGeckoPath, configString, (err) => {
+      if (err) {
+          console.error('Error writing to config file', err);
+          return;
+      }
+      console.log('Config has been written to', userGeckoPath);
+  });
   });
   startLocalServer(createWindow);
 
@@ -77,7 +96,7 @@ app.whenReady().then(() => {
       // dock icon is clicked and there are no other windows open.
       if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
-});
+}).catch(error => console.log(error));
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
