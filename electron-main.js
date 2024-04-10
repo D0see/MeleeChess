@@ -1,6 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require("electron");
-const path = require("path");
+const { execFile } = require('node:child_process');
+const { ipcMain } = require('electron');
+const fs = require('fs');
+const path = require("node:path");
 const express = require("express");
 const cors = require("cors");
 const localServerApp = express();
@@ -22,6 +25,7 @@ function createWindow() {
     height: 900,
     webPreferences: {
       preload: path.join(__dirname, "./public/index.html"),
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
@@ -37,12 +41,41 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  ipcMain.handle('start-dolphin', () => {
+      console.log("starting dolphin");
+      const dolphinPath = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay/Slippi Dolphin.exe");
+      execFile(dolphinPath, function(err, stdout) {
+          if (err) {
+              console.error(err);
+              return;
+          }
+          console.log(stdout);
+      });   
+  });
+  ipcMain.handle('write-config', (event, configString) => {
+    // Write to file asynchronously
+    const configPath = "C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay/User/Config/Meleechess.ini";
+    fs.writeFile(configPath, '', (err) => {
+      if (err) {
+          console.error('Error erasing file content:', err);
+          return;
+      }
+      console.log('File content has been erased:', configPath);
+    });
+    fs.writeFile(configPath, configString, { flag: 'a+' }, (err) => {
+        if (err) {
+            console.error('Error writing to config file', err);
+            return;
+        }
+        console.log('Config has been written to', configPath);
+    });
+  });
   startLocalServer(createWindow);
 
-  app.on("activate", function () {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  app.on("activate", function() {
+      // On macOS it's common to re-create a window in the app when the
+      // dock icon is clicked and there are no other windows open.
+      if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 

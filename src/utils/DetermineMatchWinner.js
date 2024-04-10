@@ -1,11 +1,4 @@
-import geckoCodeGenerator from './GeckoCodeGeneration.js';
-
-const { shell } = require('electron');
-const path = require('path');
-const app = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay/Slippi Dolphin.exe");
-
-
-
+import meleeChessConfigGenerator from './meleeChessConfigGenerator.js';
 
 //Placeholder capture resolution
 export default function DetermineMatchWinner(attackingPiece, defendingPiece, board) {
@@ -13,13 +6,12 @@ export default function DetermineMatchWinner(attackingPiece, defendingPiece, boa
     const winner = randomNum < 1 ? attackingPiece : defendingPiece;
 
     //Testing the gecko code gen
-    const myGecko = geckoCodeGenerator(attackingPiece, defendingPiece, board);
-    console.log(myGecko);
-    
-    function openDolphin(){
-        shell.openExternal(app);
-    }
-    openDolphin();
+    const meleeChessConfig = meleeChessConfigGenerator(attackingPiece, defendingPiece, board);
+    console.log(meleeChessConfig);
+    window.dolphinApi.writeConfig(meleeChessConfig);
+    window.dolphinApi.startDolphin()
+        .then(() => console.log("Need to parse .slp file here"))
+        .catch(err => console.error(err));
 
     return winner;
 }
