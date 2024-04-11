@@ -56,30 +56,32 @@ copyFolder(slippiUserFolder, destinationFolderPath);
 // Some APIs can only be used after this event occurs.
 // arg to pass ["--user", "C:/Users/Léo/AppData/Roaming/meleechess/User"]
 app.whenReady().then(() => {
+  
   ipcMain.handle('start-dolphin', () => {
       console.log("starting dolphin");
       const dolphinPath = path.join(app.getPath("userData"), "/netplay/Slippi Dolphin.exe")
-      const userPath = path.join(app.getPath("userData"), "User/")
+      const userPath = path.join(app.getPath("userData"), "netplay/User/")
       console.log(path.normalize(userPath));
-      execFile(dolphinPath, ["--user", "User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
+      execFile(dolphinPath, ["--user", "netplay/User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
           if (err) {
               console.error(err);
               return;
           }
           console.log(stdout);
+
       });   
   });
   ipcMain.handle('write-gecko', (event, configString) => {
     // Write to file asynchronously
     const sysGeckoPath = path.join(app.getPath("userData"), "netplay/Sys/GameSettings/GALE01r2.ini");
-    const userGeckoPath = path.join(app.getPath("userData"), "netplay/User/GameSettings/GALE01.ini")
+    const userGeckoPath = path.join(app.getPath("userData"), "netplay/User/GameSettings/GALE01.ini");
 
     fs.writeFile(sysGeckoPath, configString, (err) => {
-        if (err) {
-            console.error('Error writing to config file', err);
-            return;
-        }
-        console.log('Config has been written to', sysGeckoPath);
+      if (err) {
+          console.error('Error writing to config file', err);
+          return;
+      }
+      console.log('Config has been written to', sysGeckoPath);
     });
     fs.writeFile(userGeckoPath, configString, (err) => {
       if (err) {
@@ -87,7 +89,7 @@ app.whenReady().then(() => {
           return;
       }
       console.log('Config has been written to', userGeckoPath);
-  });
+    });
   });
   startLocalServer(createWindow);
 
