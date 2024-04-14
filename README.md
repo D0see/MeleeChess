@@ -1,5 +1,8 @@
 ### TODO :
 1. Clean the css
+-〜CharacterSelectApp〜
+-BoardSelectionApp
+-TheGameApp
 2. build a functionnal gecko code generator (started)
 3. learn electron.js
 4. Add costume selection

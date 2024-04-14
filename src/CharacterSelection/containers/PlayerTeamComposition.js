@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import PieceCharacterAssociation from './PieceCharacterAssociation'
 
-import './PlayerTeamComposition.css'
+import styles from './PlayerTeamComposition.module.css'
 
 import { CHESSWhitePiecesArray, CHESSBlackPiecesArray } from '../../utils/PieceList'
 import LockButton from '../components/LockButton'
@@ -18,11 +18,11 @@ export default function PlayerTeamComposition({playerColor, setPlayerTeams, setT
   },[compIsLocked]);
 
   return (
-    <div className='PlayerTeamComposition'>
+    <div className={styles.PlayerTeamComposition}>
         <h1>{`${playerColor}, pick your team`}</h1>
         {playerColor=== "white" ? CHESSWhitePiecesArray.map(piece => <PieceCharacterAssociation key={piece} chessPiece={piece} addCharacter={setPlayerComp} disabled={compIsLocked}/>) : null}
         {playerColor=== "black" ? CHESSBlackPiecesArray.map(piece => <PieceCharacterAssociation key={piece} chessPiece={piece} addCharacter={setPlayerComp} disabled={compIsLocked}/>) : null}
-        <LockButton className={`LockCompositionButton ${compIsLocked ? `LockedCompositionButton` : ""}`} onClick={setCompIsLocked}/>
+        <LockButton className={`${styles.LockCompositionButton} ${compIsLocked ? styles.LockedCompositionButton : ""}`} onClick={setCompIsLocked}/>
     </div>
   )
 }

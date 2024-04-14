@@ -4,7 +4,7 @@ import CharacterSelectApp from './CharacterSelection/CharacterSelectApp.js';
 import React, {useState} from 'react';
 import TheGameApp from './TheGameApp/TheGameApp.js';
 
-const mockTeam = {"white":{"king":"Pichu","queen":"Bowser","rook":"Bowser","bishop":"Bowser","knight":"Bowser","pawn":"Bowser"},"black":{"king":"Bowser","queen":"Bowser","rook":"Bowser","bishop":"Bowser","knight":"Bowser","pawn":"Bowser"}}
+const mockTeam = {"white":{"king":"Pichu","queen":"Bowser","rook":"Bowser","bishop":"Bowser","knight":"Bowser","pawn":"Fox"},"black":{"king":"Bowser","queen":"Bowser","rook":"Bowser","bishop":"Bowser","knight":"Bowser","pawn":"Bowser"}}
 const mockArray = [[3,6,6,6,6,6,6,3],[3,2,2,2,2,2,2,3],[3,2,5,5,5,5,2,3],[3,4,2,1,1,2,4,3],[3,4,2,1,1,2,4,3],[3,2,5,5,5,5,2,3],[3,2,2,2,2,2,2,3],[3,6,6,6,6,6,6,3]];
 
 export default function App() {
@@ -15,18 +15,18 @@ export default function App() {
   //Selected board
   const [board, setBoard] = useState(null);
 
-//   return (
-//     <div className="AppContainer SelectDisabled">
-//       {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
-//       {(characterSelectFinished && !board) && <BoardSelectionApp setBoard={setBoard}/>}
-//       {board && <TheGameApp board={board} playerTeams={playerTeams} />}
-//     </div>
-//   )
-// }
-
-
-return (
-   <TheGameApp board={mockArray} playerTeams={mockTeam} />
-)
+  return (
+    <div className="AppContainer SelectDisabled">
+      {!characterSelectFinished && <CharacterSelectApp setPlayerTeams={setPlayerTeams} setCharacterSelectFinished={setCharacterSelectFinished}/>}
+      {(characterSelectFinished && !board) && <BoardSelectionApp setBoard={setBoard}/>}
+      {board && <TheGameApp board={board} playerTeams={playerTeams} />}
+    </div>
+  )
 }
+
+
+// return (
+//    <TheGameApp board={mockArray} playerTeams={mockTeam} />
+// )
+// }
 

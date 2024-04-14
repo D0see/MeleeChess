@@ -44,12 +44,13 @@
 
 .Combo {
     position: relative;
-    left: -8px;
+    left: -4px;
     transition: left 0.5s ease;
 }
 
 .ComboCentered {
-    left: 115px;
+    position: relative;
+    left: 107px;
     transition: left 0.5s ease;
 }
 

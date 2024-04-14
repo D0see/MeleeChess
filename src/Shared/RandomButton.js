@@ -1,8 +1,8 @@
 import React from 'react'
-import './RandomButton.css'
+import styles from './RandomButton.module.css'
 
 export default function RandomButton({onClick, className, disabled}) {
   return (
-    <button className={className} onClick={onClick} disabled={disabled}>?</button>
+    <button className={`${className} ${styles.RandomButton}`} onClick={onClick} disabled={disabled}>?</button>
   )
 }

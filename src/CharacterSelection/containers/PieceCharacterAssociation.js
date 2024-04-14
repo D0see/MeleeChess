@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import "./PieceCharacterAssociation.css"
+import styles from "./PieceCharacterAssociation.module.css"
 import PieceImg from '../../Shared/PieceImg'
 import {SSBMCharactersArray} from '../../utils/CharacterList'
 
@@ -27,13 +27,13 @@ function handleRandomClick() {
   })
 }
   return (
-    <div className="PieceCharacterAssociation">
-        <div className={`${disabled ? "Combo ComboCentered" : "Combo"}`}>
-          <PieceImg className='PieceImage' pieceName={chessPiece}/>
-          <CharacterImg className='CharacterImage' characterName={character}/>
+    <div className={styles.PieceCharacterAssociation}>
+        <div className={disabled ? styles.ComboCentered : styles.Combo}>
+          <PieceImg className={styles.PieceImage} pieceName={chessPiece}/>
+          <CharacterImg className={styles.CharacterImage} characterName={character}/>
         </div>
-        <CharacterSelection className={`${disabled ? "CharacterSelection Disabled" : "CharacterSelection"}`} onSelect={setCharacter} charName={character} disabled={disabled}/>
-        <RandomButton className={`${disabled ? "RandomButton Disabled" : "RandomButton"}`}  onClick={handleRandomClick} disabled={disabled}/>
+        <CharacterSelection className={disabled ? `${styles.Disabled} ${styles.CharacterSelection}` : styles.CharacterSelection} onSelect={setCharacter} charName={character} disabled={disabled}/>
+        <RandomButton className={disabled ? styles.Disabled : ""}  onClick={handleRandomClick} disabled={disabled}/>
     </div>
   )
 }
