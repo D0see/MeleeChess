@@ -1,7 +1,7 @@
 ### TODO :
-1. Clean the css
+1. Clean the css (clear the css namespace by adding modules instead of global css files)
 -〜CharacterSelectApp〜
--BoardSelectionApp
+-〜BoardSelectionApp〜
 -TheGameApp
 2. build a functionnal gecko code generator (started)
 3. learn electron.js

@@ -3,7 +3,7 @@ import Square from "../components/Square.js";
 import ColorPicker from "./ColorPicker.js";
 import { stageColorEnum, stages } from "../../utils/StageList";
 
-import "./BoardDisplay.css";
+import styles from "./BoardDisplay.module.css";
 
 export default function BoardDisplay({ selectedStage, setSelectedStage }) {
   const [mouseDown, setMouseDown] = useState(false);
@@ -22,7 +22,7 @@ export default function BoardDisplay({ selectedStage, setSelectedStage }) {
 
   //Painting Logic
   const paintSquare = (y, x) => {
-    if (selectedStage.name === "custom board") {
+    if (pickedColor && selectedStage.name === "custom board") {
       const updatedLayout = [...selectedStage.layout];
       updatedLayout[y][x] = pickedColor;
       const updatedStage = { ...selectedStage, layout: updatedLayout };
@@ -52,11 +52,11 @@ export default function BoardDisplay({ selectedStage, setSelectedStage }) {
 
   return (
     <>
-      <div className="Grid" onMouseEnter={handleGridMouseEnter} onMouseLeave={handleGridMouseLeave}>
+      <div className={styles.Grid} onMouseEnter={handleGridMouseEnter} onMouseLeave={handleGridMouseLeave}>
         {selectedStage.layout.map((arr, y) =>
           arr.map((num, x) => (
             <Square
-              className="Square"
+              className={styles.Square}
               key={`${y}-${x}`}
               color={stageColorEnum[num]}
               onMouseOver={() => handleMouseOver(y, x)}

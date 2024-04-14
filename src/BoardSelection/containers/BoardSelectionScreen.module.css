@@ -7,6 +7,17 @@
     bottom: 55%;
     animation: appears var(--slide-screen-time) ease;
 }
+
+@keyframes appears {
+    0% {
+        bottom: -175%;
+    }
+
+    100% {
+        bottom: 55%;
+    }
+}
+
 .SelectorContainer {
     display: flex;
     flex-direction: row;
@@ -35,44 +46,3 @@
     right: 30px !important;
 }
 
-.LockStageSelectionButton {
-    position: relative;
-    width: 250px;
-    height: 50px;
-    align-self: center;
-    margin-top: 15%;
-    font-size: 1.3em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: white;
-    background-color: var(--deeper-color);
-    border-radius: 5px;
-    border: 1px solid black;
-    box-shadow: 2px 2px 0 0 black;
-    transition: transform 0.15s ease;
-
-}
-
-.LockStageSelectionButton::after{
-    content: 'Lock Stage Selection';
-}
-
-.LockStageSelectionButton:hover {
-    cursor: pointer;
-    border: 1px solid white;
-}
-
-.LockStageSelectionButton:active {
-    box-shadow: none;
-    left: 2px;
-    top: 2px;
-}
-
-.LockedSelectionStageButton {
-    background-color: green;
-    font-size: 1.8em;
-}
-
-.LockedSelectionStageButton:after {
-    content: '✓'; 
-}

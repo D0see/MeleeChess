@@ -1,6 +1,8 @@
 import React from 'react';
 import {stages} from '../../utils/StageList.js';
 import RandomButton from '../../Shared/RandomButton.js';
+import styles from './BoardSelectionScreen.module.css'
+import buttonStyle from '../../Shared/RandomButton.module.css'
 
 export default function StageSelector({className, selectedStage, setSelectedStage}) {
 
@@ -18,12 +20,12 @@ export default function StageSelector({className, selectedStage, setSelectedStag
   }
 
   return (
-    <div className='SelectorContainer'>
+    <div className={styles.SelectorContainer}>
       <select className={className} onChange={handleSelect} value={stages.indexOf(selectedStage)}>
         {stages.map((stage, i) => <option key={i} value={i}>{stage.name}</option>)}
       </select>
 
-      <RandomButton className="RandomButton RandomButtonAdjusted" onClick={handleClick}/>
+      <RandomButton className={`${buttonStyle.RandomButton} ${styles.RandomButtonAdjusted}`} onClick={handleClick}/>
     </div>
   )
 }

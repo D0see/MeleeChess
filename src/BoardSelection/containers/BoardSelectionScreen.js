@@ -3,15 +3,15 @@ import StageSelector from './StageSelector'
 import BoardDisplay from './BoardDisplay'
 import LockStageSelectionButton from '../components/LockStageSelectionButton.js'
 
-import './BoardSelectionScreen.css';
+import styles from  './BoardSelectionScreen.module.css';
 
 export default function BoardSelectionScreen({ className, setIsLocked, setSelectedStage, selectedStage }) {
   return (
-    <div className={`${className} BoardSelectionScreen`}>
+    <div className={`${styles.BoardSelectionScreen} ${className}`}>
       <h1>Select a board</h1> 
       <BoardDisplay selectedStage={selectedStage} setSelectedStage={setSelectedStage}/>
-      <StageSelector className="StageSelector" selectedStage={selectedStage} setSelectedStage={setSelectedStage}/>
-      <LockStageSelectionButton setIsLocked={setIsLocked} className="LockStageSelectionButton"/>
+      <StageSelector className={styles.StageSelector} selectedStage={selectedStage} setSelectedStage={setSelectedStage}/>
+      <LockStageSelectionButton setIsLocked={setIsLocked}/>
     </div>
   )
 }

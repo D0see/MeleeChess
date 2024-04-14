@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
+import styles from "./LockStageSelectionButton.module.css";
 
-export default function LockStageSelectionButton({className, setIsLocked}) {
+export default function LockStageSelectionButton({ className, setIsLocked }) {
   const [Toggle, setToggle] = useState(false);
 
   function handleClick() {
@@ -9,6 +10,13 @@ export default function LockStageSelectionButton({className, setIsLocked}) {
   }
 
   return (
-    <button className={Toggle ? `${className} LockedSelectionStageButton` : className} onClick={handleClick}/>
-  )
+    <button
+      className={
+        Toggle
+          ? `${styles.LockStageSelectionButton} ${styles.LockedSelectionStageButton}`
+          : styles.LockStageSelectionButton
+      }
+      onClick={handleClick}
+    />
+  );
 }

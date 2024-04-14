@@ -4,6 +4,7 @@ import PieceImg from "../../Shared/PieceImg";
 
 export default function Box({ backgroundColor, pieceData, onClick, isSelected, isPossibleMove, isSelectable }) {
   const [isHovered, setIsHovered] = useState(false);
+  
   const numOfStocks = pieceData ? pieceData.stocks : 0;
   const arrOfStocks = [];
   for (let i = 0; i < numOfStocks; i++) {

@@ -1,0 +1,36 @@
+.SelectorContainer {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--deeper-color);
+    background-color: var(--lighter-color);
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    align-items: center;
+    padding: 4px;
+    width: 98%;
+    height: 62px;
+    box-shadow: 2px 2px 2px 0px var(--deeper-color);
+    transition: background-color 0.30s ease;
+}
+
+.Square {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    transition: background-color 0.2s ease,
+                transform 0.15s ease;
+}
+
+.Pickers {
+    border: 1px solid var(--deeper-color);
+    border-radius: 100%;
+    margin: 0 5px; 
+
+}
+
+.Selected {
+    border: 3px solid var(--deeper-color);
+    transform: scale(0.90);
+}
