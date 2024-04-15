@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import Box from "../components/Box.js";
 
 import { stageColorEnum } from "../../utils/StageList";
@@ -7,10 +7,13 @@ import determineMatchWinner from "../../utils/DetermineMatchWinner.js";
 
 import styles from "./PlaygroundGrid.module.css";
 
+export const promotionChoiceSetter = createContext();
+
 export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board, stageColorVisible}) {
   const [selectedPieceId, setSelectedPieceId] = useState(null);
   const [possibleDestinations, setPossibleDestinations] = useState(null);
   const [promotionLocation, setPromotionLocation] = useState(null);
+  const [promotionChoice, setPromotionChoice] = useState(null);
 
   //Logic for clicking & moving pieces
   function handlePieceClick(i, j) {
@@ -62,6 +65,11 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
       if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
         console.log(selectedPiece.char, "available for promotion");
         setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
+        // Need to find a way to wait for the player selection
+        // console.log(promotionChoice);
+        // setPromotionChoice(null);
+        // setSelectedPieceId(null);
+        // setIsWhitesTurn((prev) => !prev);
       } else {
         setSelectedPieceId(null);
         setIsWhitesTurn((prev) => !prev);
@@ -72,6 +80,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
   }
 
   return (
+    <promotionChoiceSetter.Provider value={setPromotionChoice}>
     <div className= {styles.PlaygroundGrid}>
       {playground.map((arr, i) =>
         arr.map((pieceData, j) => {
@@ -84,24 +93,25 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           //BackgroundColor Logic
           const checkerboardColor = (i + j) % 2 ? "#4e9f36" : "#f6f6f6";
           const backgroundColor = stageColorVisible ? stageColorEnum[`${board[i][j]}`] : checkerboardColor;
-          return (
-            <Box
-              key={`${i}-${j}`}
-              backgroundColor={backgroundColor}
-              pieceData={pieceData}
-              onClick={() => handlePieceClick(i, j)}
-              isSelected={isSelected}
-              isPossibleMove={isPossibleMove}
-              isSelectable={
-                (isWhitesTurn && playground[i][j]?.team === "white") ||
-                (!isWhitesTurn && playground[i][j]?.team === "black") ||
-                isPossibleMove
-              }
-              hasPromotionWindow={hasPromotionWindow}
-            />
+          return (           
+              <Box
+                key={`${i}-${j}`}
+                backgroundColor={backgroundColor}
+                pieceData={pieceData}
+                onClick={() => handlePieceClick(i, j)}
+                isSelected={isSelected}
+                isPossibleMove={isPossibleMove}
+                isSelectable={
+                  (isWhitesTurn && playground[i][j]?.team === "white") ||
+                  (!isWhitesTurn && playground[i][j]?.team === "black") ||
+                  isPossibleMove
+                }
+                hasPromotionWindow={hasPromotionWindow}
+              />
           );
         }),
       )}
     </div>
+    </promotionChoiceSetter.Provider>
   );
 }

@@ -1,21 +1,21 @@
 .PromotionWindow {
     position: absolute;
+    z-index: 0;
+    padding: 5px;
     
 }
 
 .PromotionCoreBlack {
     display: flex;
     position: relative;
-    right: 25px;
-    border: 1px solid red;
+    right: 150px;
 }
 
 .PromotionCoreWhite {
     display: flex;
     position: relative;
-    right: 25px;
-    bottom: 153px;
-    border: 1px solid red;
+    right: 150px;
+    bottom: 165px;
 }
 
 .CharPiece {
@@ -26,6 +26,19 @@
     align-items: center;
     animation: pop-up 0.4s ease;
 }
+
+.CharPiece:hover {
+    cursor: pointer;
+}
+
+.CharPiece:hover .Char {
+    transform: rotate(15deg);
+}
+.CharPiece:hover .Piece {
+    transform: rotate(-10deg)
+               translate(-10px , -10px);
+}
+
 
 .Char {
     z-index: 2;
