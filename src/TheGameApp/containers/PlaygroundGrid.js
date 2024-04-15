@@ -10,8 +10,7 @@ import styles from "./PlaygroundGrid.module.css";
 export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board, stageColorVisible}) {
   const [selectedPieceId, setSelectedPieceId] = useState(null);
   const [possibleDestinations, setPossibleDestinations] = useState(null);
-
-  const [promotionLocation, setPromotionLocation] = useState(null)
+  const [promotionLocation, setPromotionLocation] = useState(null);
 
   //Logic for clicking & moving pieces
   function handlePieceClick(i, j) {
@@ -64,13 +63,11 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
         console.log(selectedPiece.char, "available for promotion");
         setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
       } else {
-
+        setSelectedPieceId(null);
+        setIsWhitesTurn((prev) => !prev);
       }
-
-
-      setSelectedPieceId(null);
-      setIsWhitesTurn((prev) => !prev);
-
+      // setSelectedPieceId(null);
+      // setIsWhitesTurn((prev) => !prev);
     }
   }
 

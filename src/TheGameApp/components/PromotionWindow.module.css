@@ -3,8 +3,41 @@
     
 }
 
-.PromotionCore {
+.PromotionCoreBlack {
+    display: flex;
     position: relative;
     right: 25px;
     border: 1px solid red;
+}
+
+.PromotionCoreWhite {
+    display: flex;
+    position: relative;
+    right: 25px;
+    bottom: 153px;
+    border: 1px solid red;
+}
+
+.CharPiece {
+    position: relative;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pop-up 0.4s ease;
+}
+
+.Char {
+    z-index: 2;
+    position: relative;
+    right: 12px;
+}
+
+.Piece {
+    height: 50px;
+    width: 50px;
+    z-index: 3;
+    position: relative;
+    left: 18px;
+    transition: transform 0.20s ease;
 }

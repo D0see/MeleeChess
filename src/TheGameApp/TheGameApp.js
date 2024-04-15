@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, createContext} from 'react'
 import PlaygroundGrid from './containers/PlaygroundGrid.js'
 import populatePlayground from '../utils/PopulatePlayground.js'
 import PieceClass from '../utils/PieceClass';
 
 
 const emptyPlayground = populatePlayground.twoDArrayBuilder(8);
+export const gameState = createContext();
 
 export default function TheGameApp({board, playerTeams}) {
   const [stageColorVisible, setStageColorVisible] = useState(false);
@@ -17,13 +18,15 @@ export default function TheGameApp({board, playerTeams}) {
 
   return (
     <>
-      <PlaygroundGrid playground={playground} 
-                      setPlayground={setPlayground} 
-                      isWhitesTurn={isWhitesTurn}
-                      setIsWhitesTurn={setIsWhitesTurn}
-                      board={board}
-                      stageColorVisible={stageColorVisible}
-                      />
+      <gameState.Provider value={{playerTeams, isWhitesTurn}}>
+        <PlaygroundGrid playground={playground} 
+                        setPlayground={setPlayground} 
+                        isWhitesTurn={isWhitesTurn}
+                        setIsWhitesTurn={setIsWhitesTurn}
+                        board={board}
+                        stageColorVisible={stageColorVisible}
+                        />
+      </gameState.Provider >
       <button onClick={handleChangeColorClick} />
     </>
   )
