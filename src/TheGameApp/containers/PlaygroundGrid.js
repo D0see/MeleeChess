@@ -5,7 +5,7 @@ import { stageColorEnum } from "../../utils/StageList";
 import { hasCoordinatesInArray } from "../../utils/Utils.js";
 import determineMatchWinner from "../../utils/DetermineMatchWinner.js";
 
-import "./PlaygroundGrid.css";
+import styles from "./PlaygroundGrid.module.css";
 
 export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board, stageColorVisible}) {
   const [selectedPieceId, setSelectedPieceId] = useState(null);
@@ -62,7 +62,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
   }
 
   return (
-    <div className="PlaygroundGrid">
+    <div className= {styles.PlaygroundGrid}>
       {playground.map((arr, i) =>
         arr.map((pieceData, j) => {
           //isPossibleMove coloring Logic
