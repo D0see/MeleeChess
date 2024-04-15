@@ -47,12 +47,3 @@ h1 {
     }
 }
 
-@keyframes appears {
-    0% {
-        bottom: -175%;
-    }
-
-    100% {
-        bottom: 55%;
-    }
-}

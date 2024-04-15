@@ -1,0 +1,10 @@
+.PromotionWindow {
+    position: absolute;
+    
+}
+
+.PromotionCore {
+    position: relative;
+    right: 25px;
+    border: 1px solid red;
+}

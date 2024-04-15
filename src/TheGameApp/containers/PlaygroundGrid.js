@@ -11,6 +11,8 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
   const [selectedPieceId, setSelectedPieceId] = useState(null);
   const [possibleDestinations, setPossibleDestinations] = useState(null);
 
+  const [promotionLocation, setPromotionLocation] = useState(null)
+
   //Logic for clicking & moving pieces
   function handlePieceClick(i, j) {
     //Handle re-clicking on the selected piece
@@ -55,9 +57,20 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
       setPlayground(newPlayground);
       selectedPiece.y = i;
       selectedPiece.x = j;
-      setSelectedPieceId(null);
       setPossibleDestinations(null);
+
+      //Checks if selected Piece is eligible for promotion;
+      if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
+        console.log(selectedPiece.char, "available for promotion");
+        setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
+      } else {
+
+      }
+
+
+      setSelectedPieceId(null);
       setIsWhitesTurn((prev) => !prev);
+
     }
   }
 
@@ -65,6 +78,8 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
     <div className= {styles.PlaygroundGrid}>
       {playground.map((arr, i) =>
         arr.map((pieceData, j) => {
+          //Promotion window Logic 
+          const hasPromotionWindow = promotionLocation?.y === i && promotionLocation?.x === j;
           //isPossibleMove coloring Logic
           const isPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]);
           //Selection coloring Logic
@@ -85,6 +100,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
                 (!isWhitesTurn && playground[i][j]?.team === "black") ||
                 isPossibleMove
               }
+              hasPromotionWindow={hasPromotionWindow}
             />
           );
         }),

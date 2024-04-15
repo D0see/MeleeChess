@@ -6,12 +6,12 @@ export default function DetermineMatchWinner(attackingPiece, defendingPiece, boa
     const winner = randomNum < 1 ? attackingPiece : defendingPiece;
 
     //Testing the gecko code gen
-    const meleeChessConfig = GeckoCodeGenerator(attackingPiece, defendingPiece, board);
-    console.log(meleeChessConfig);
-    window.dolphinApi.writeGecko(meleeChessConfig);
-    window.dolphinApi.startDolphin()
-        .then(() => console.log("Need to parse .slp file here"))
-        .catch(err => console.error(err));
+    // const meleeChessConfig = GeckoCodeGenerator(attackingPiece, defendingPiece, board);
+    // console.log(meleeChessConfig);
+    // window.dolphinApi.writeGecko(meleeChessConfig);
+    // window.dolphinApi.startDolphin()
+    //     .then(() => console.log("Need to parse .slp file here"))
+    //     .catch(err => console.error(err));
 
     return winner;
 }
