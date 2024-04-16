@@ -5,7 +5,7 @@ import PromotionWindow from "./PromotionWindow";
 
 import styles from './Box.module.css';
 
-export default function Box({ backgroundColor, pieceData, onClick, isSelected, isPossibleMove, isSelectable, hasPromotionWindow }) {
+export default function Box({ backgroundColor, pieceData, onClick, isSelected, isPossibleMove, isSelectable, hasPromotionWindow, promotionMode }) {
   const [isHovered, setIsHovered] = useState(false);
   
   const numOfStocks = pieceData ? pieceData.stocks : 0;
@@ -26,7 +26,7 @@ export default function Box({ backgroundColor, pieceData, onClick, isSelected, i
     <div>
       <div
         className={`${styles.Box} ${isSelected ? styles.IsSelected : ""} ${isSelectable ? styles.IsSelectable : ""}`}
-        onClick={onClick}
+        onClick={promotionMode ? null : onClick}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
         style={{ backgroundColor: backgroundColor }}

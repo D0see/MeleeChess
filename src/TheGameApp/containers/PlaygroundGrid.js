@@ -7,13 +7,12 @@ import determineMatchWinner from "../../utils/DetermineMatchWinner.js";
 
 import styles from "./PlaygroundGrid.module.css";
 
-export const promotionChoiceSetter = createContext();
+export const promotionLogic = createContext();
 
 export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn, setIsWhitesTurn, board, stageColorVisible}) {
   const [selectedPieceId, setSelectedPieceId] = useState(null);
   const [possibleDestinations, setPossibleDestinations] = useState(null);
   const [promotionLocation, setPromotionLocation] = useState(null);
-  const [promotionChoice, setPromotionChoice] = useState(null);
 
   //Logic for clicking & moving pieces
   function handlePieceClick(i, j) {
@@ -65,26 +64,21 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
       if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
         console.log(selectedPiece.char, "available for promotion");
         setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
-        // Need to find a way to wait for the player selection
-        // console.log(promotionChoice);
-        // setPromotionChoice(null);
-        // setSelectedPieceId(null);
-        // setIsWhitesTurn((prev) => !prev);
+        //Here the board should be disabled until player clicks his promotion choice
       } else {
         setSelectedPieceId(null);
         setIsWhitesTurn((prev) => !prev);
       }
-      // setSelectedPieceId(null);
-      // setIsWhitesTurn((prev) => !prev);
     }
   }
 
   return (
-    <promotionChoiceSetter.Provider value={setPromotionChoice}>
+    <promotionLogic.Provider value={{setSelectedPieceId, setIsWhitesTurn, setPlayground, playground, setPromotionLocation, promotionLocation}}>
     <div className= {styles.PlaygroundGrid}>
       {playground.map((arr, i) =>
         arr.map((pieceData, j) => {
           //Promotion window Logic 
+          const promotionMode = promotionLocation ? true : false;
           const hasPromotionWindow = promotionLocation?.y === i && promotionLocation?.x === j;
           //isPossibleMove coloring Logic
           const isPossibleMove = hasCoordinatesInArray(possibleDestinations, [i, j]);
@@ -107,11 +101,12 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
                   isPossibleMove
                 }
                 hasPromotionWindow={hasPromotionWindow}
+                promotionMode={promotionMode}
               />
           );
         }),
       )}
     </div>
-    </promotionChoiceSetter.Provider>
+    </promotionLogic.Provider>
   );
 }

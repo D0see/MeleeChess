@@ -4,17 +4,29 @@ import PieceImg from '../../Shared/PieceImg';
 import CharacterImg from '../../Shared/CharacterImg';
 
 import { gameState } from '../TheGameApp'
-import { promotionChoiceSetter } from '../containers/PlaygroundGrid'; 
+import { promotionLogic } from '../containers/PlaygroundGrid'; 
+
+import Piece from '../../utils/PieceClass';
 
 export default function PromotionWindow() {
     const gameInfos = useContext(gameState);
-    const setPromotionChoice = useContext(promotionChoiceSetter);
+    const {setSelectedPieceId, setIsWhitesTurn, setPlayground, playground, setPromotionLocation, promotionLocation} = useContext(promotionLogic);
     const turnColor = gameInfos.isWhitesTurn ? "white" : "black";
     const listOfPossiblePromotions = ["rook", "knight", "bishop", "queen"];
-    console.log(gameInfos, turnColor);
-    console.log(promotionChoiceSetter);
+    
     function handleClick(piece) {
-        setPromotionChoice(piece);
+        const newPlayground = playground.map((arr, rowIndex) =>
+            arr.map((pieceData, columnIndex) => {
+                if(promotionLocation.y === rowIndex && promotionLocation.x === columnIndex){
+                    return new Piece(turnColor, piece, gameInfos.playerTeams[turnColor][piece], rowIndex, columnIndex);
+                }
+                return pieceData;
+            })
+        );
+        setPlayground(newPlayground);
+        setPromotionLocation(null);
+        setSelectedPieceId(null);
+        setIsWhitesTurn((prev) => !prev);
     }
 
   return (

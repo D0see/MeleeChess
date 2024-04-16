@@ -11,7 +11,7 @@ export default class Piece {
     this._stocks = this.determineStartingStocks();
     this._damage = 0;
     //Id based on starting coordinates 
-    this._id = `${this._y}-${this._x}`;
+    this._id = `${this._y}-${this._x}-${char}-${type}`;
   }
 
   get team() {
@@ -116,7 +116,7 @@ export default class Piece {
         //Case for black
         } else {
           //single-forward-move
-          if (!twoDArr[this.y + 1][this.x]) {
+          if (this.y + 1 < twoDArr.length && !twoDArr[this.y + 1][this.x]) {
             possibleMoves.push([this.y + 1, this.x]);
             //double-forward-move
             if (!this.hasMoved && !twoDArr[this.y + 2][this.x]) {
@@ -132,7 +132,7 @@ export default class Piece {
             possibleMoves.push([this.y + 1, this.x - 1]);
           }
           if (
-            this.y + 1 >= 0 && this.x + 1 < twoDArr[0].length &&
+            this.y + 1 < twoDArr.length && this.x + 1 < twoDArr[0].length &&
             twoDArr[this.y + 1][this.x + 1] &&
             twoDArr[this.y + 1][this.x + 1].team === "white"
           ) {
