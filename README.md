@@ -1,7 +1,7 @@
 ### TODO :
 1. Clean the css (clear the css namespace by adding modules instead of global css files)
 -App.css
-2. build a functionnal gecko code generator (started)
+2. ~build a functionnal gecko code generator~
 3. learn electron.js
 4. Add costume selection
 5. Parse .slp replays

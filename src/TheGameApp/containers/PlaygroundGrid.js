@@ -41,25 +41,23 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
       //if selected move castles 
       const castling = returnThirdValueOrFalse(possibleDestinations, [i, j]);
       if (castling){
-        console.log(castling)
         switch(castling) {
           case "shortCastle" : 
-            console.log("doing the short castle thingy")
             const shortRook = playground[i][j + 1];
             const shortCastlePlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
+                //places rook
                 if (rowIndex === i && columnIndex === j - 1){
-                  console.log("shortrook emplacement" , rowIndex, columnIndex)
                   return shortRook;
+                //places king
+                } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
+                  return selectedPiece;
                 //removes king
                 } else if (rowIndex === i && columnIndex === j - 2) {
                   return null;
                 //removes rook
                 } else if (rowIndex === i && columnIndex === j + 1) {
                   return null;
-                }
-                else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
-                  return selectedPiece;
                 }
                 return pieceData;
                 }),
@@ -73,25 +71,24 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
             setIsWhitesTurn((prev) => !prev);
             break;
           case "longCastle" :
-            console.log("doing the short castle thingy")
             const longRook = playground[i][j - 2];
             const longCastlePlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
+                //places rook
                 if (rowIndex === i && columnIndex === j + 1){
-                  console.log("longrook emplacement" , rowIndex, columnIndex)
                   return longRook;
-                //removes king
+                // places king
+                } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
+                  return selectedPiece;
+                // removes king
                 } else if (rowIndex === i && columnIndex === j + 2) {
                   return null;
                 //removes rook
                 } else if (rowIndex === i && columnIndex === j - 2) {
                   return null;
-                }
-                else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
-                  return selectedPiece;
-                }
+                } 
                 return pieceData;
-                }),
+                })
             );
             //Updates states
             setPlayground(longCastlePlayground);
