@@ -38,13 +38,15 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           break;
         }
       }
-      //if selected move castles 
+      //intializes newPlayGround
+      let newPlayground;
+      //handles if selected move castles 
       const castling = returnThirdValueOrFalse(possibleDestinations, [i, j]);
       if (castling){
         switch(castling) {
           case "shortCastle" : 
             const shortRook = playground[i][j + 1];
-            const shortCastlePlayground = playground.map((arr, rowIndex) =>
+            newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
                 //places rook
                 if (rowIndex === i && columnIndex === j - 1){
@@ -62,17 +64,10 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
                 return pieceData;
                 }),
             );
-            //Updates states
-            setPlayground(shortCastlePlayground);
-            selectedPiece.y = i;
-            selectedPiece.x = j;
-            setPossibleDestinations(null);
-            setSelectedPieceId(null);
-            setIsWhitesTurn((prev) => !prev);
             break;
           case "longCastle" :
             const longRook = playground[i][j - 2];
-            const longCastlePlayground = playground.map((arr, rowIndex) =>
+            newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
                 //places rook
                 if (rowIndex === i && columnIndex === j + 1){
@@ -90,44 +85,37 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
                 return pieceData;
                 })
             );
-            //Updates states
-            setPlayground(longCastlePlayground);
-            selectedPiece.y = i;
-            selectedPiece.x = j;
-            setPossibleDestinations(null);
-            setSelectedPieceId(null);
-            setIsWhitesTurn((prev) => !prev);
             break;
         }
       } else {
-        //intializes newPlayground
-        const newPlayground = playground.map((arr, rowIndex) =>
+      // handles if its a normal move
+        newPlayground = playground.map((arr, rowIndex) =>
           arr.map((pieceData, columnIndex) => {
+            //handles when its the starting square
             if (pieceData?.id === selectedPieceId) {
               return null;
-            }
-            //handle logic when destination has enemy piece
-            if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
+            //handles when destination has enemy piece
+            } else if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
               return determineMatchWinner(selectedPiece, playground[i][j], board);
-            //handle logic when destination is empty
+            //handles when destination is empty
             } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
               return selectedPiece;
             }
             return pieceData;
           }),
         );
-        //Updates states
-        setPlayground(newPlayground);
-        selectedPiece.y = i;
-        selectedPiece.x = j;
-        setPossibleDestinations(null);
-        //Checks if selected Piece is eligible for promotion;
-        if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
-          setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
-        } else {
-          setSelectedPieceId(null);
-          setIsWhitesTurn((prev) => !prev);
-        }
+      }
+      //Updates states
+      setPlayground(newPlayground);
+      selectedPiece.y = i;
+      selectedPiece.x = j;
+      setPossibleDestinations(null);
+      //Checks if selected Piece is eligible for promotion;
+      if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
+        setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
+      } else {
+        setSelectedPieceId(null);
+        setIsWhitesTurn((prev) => !prev);
       }
     }
   }
