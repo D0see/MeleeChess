@@ -38,8 +38,10 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           break;
         }
       }
+
       //intializes newPlayGround
       let newPlayground;
+
       //handles if selected move castles 
       const castling = returnThirdValueOrFalse(possibleDestinations, [i, j]);
       if (castling){
@@ -54,13 +56,10 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
                 //places king
                 } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
                   return selectedPiece;
-                //removes king
-                } else if (rowIndex === i && columnIndex === j - 2) {
+                //removes king & rook
+                } else if ((rowIndex === i && columnIndex === j - 2) || (rowIndex === i && columnIndex === j + 1)) {
                   return null;
-                //removes rook
-                } else if (rowIndex === i && columnIndex === j + 1) {
-                  return null;
-                }
+                } 
                 return pieceData;
                 }),
             );
@@ -75,11 +74,8 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
                 // places king
                 } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
                   return selectedPiece;
-                // removes king
-                } else if (rowIndex === i && columnIndex === j + 2) {
-                  return null;
-                //removes rook
-                } else if (rowIndex === i && columnIndex === j - 2) {
+                // removes king & rook
+                } else if ((rowIndex === i && columnIndex === j + 2) || (rowIndex === i && columnIndex === j - 2)) {
                   return null;
                 } 
                 return pieceData;
@@ -87,6 +83,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
             );
             break;
         }
+
       } else {
       // handles if its a normal move
         newPlayground = playground.map((arr, rowIndex) =>
@@ -105,6 +102,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           }),
         );
       }
+      
       //Updates states
       setPlayground(newPlayground);
       selectedPiece.y = i;
