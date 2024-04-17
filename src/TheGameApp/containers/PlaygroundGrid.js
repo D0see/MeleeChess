@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 import Box from "../components/Box.js";
 
 import { stageColorEnum } from "../../utils/StageList";
-import { hasCoordinatesInArray } from "../../utils/Utils.js";
+import { hasCoordinatesInArray, returnThirdValueOrFalse } from "../../utils/Utils.js";
 import determineMatchWinner from "../../utils/DetermineMatchWinner.js";
 
 import styles from "./PlaygroundGrid.module.css";
@@ -38,36 +38,99 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           break;
         }
       }
-      //intializes newPlayground
-      const newPlayground = playground.map((arr, rowIndex) =>
-        arr.map((pieceData, columnIndex) => {
-          if (pieceData?.id === selectedPieceId) {
-            return null;
-          }
-          //handle logic when destination has enemy piece
-          if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
-            return determineMatchWinner(selectedPiece, playground[i][j], board);
-          //handle logic when destination is empty
-          } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
-            return selectedPiece;
-          }
-          return pieceData;
-        }),
-      );
-      //Updates states
-      setPlayground(newPlayground);
-      selectedPiece.y = i;
-      selectedPiece.x = j;
-      setPossibleDestinations(null);
-
-      //Checks if selected Piece is eligible for promotion;
-      if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
-        console.log(selectedPiece.char, "available for promotion");
-        setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
-        //Here the board should be disabled until player clicks his promotion choice
+      //if selected move castles 
+      const castling = returnThirdValueOrFalse(possibleDestinations, [i, j]);
+      if (castling){
+        console.log(castling)
+        switch(castling) {
+          case "shortCastle" : 
+            console.log("doing the short castle thingy")
+            const shortRook = playground[i][j + 1];
+            const shortCastlePlayground = playground.map((arr, rowIndex) =>
+              arr.map((pieceData, columnIndex) => {
+                if (rowIndex === i && columnIndex === j - 1){
+                  console.log("shortrook emplacement" , rowIndex, columnIndex)
+                  return shortRook;
+                //removes king
+                } else if (rowIndex === i && columnIndex === j - 2) {
+                  return null;
+                //removes rook
+                } else if (rowIndex === i && columnIndex === j + 1) {
+                  return null;
+                }
+                else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
+                  return selectedPiece;
+                }
+                return pieceData;
+                }),
+            );
+            //Updates states
+            setPlayground(shortCastlePlayground);
+            selectedPiece.y = i;
+            selectedPiece.x = j;
+            setPossibleDestinations(null);
+            setSelectedPieceId(null);
+            setIsWhitesTurn((prev) => !prev);
+            break;
+          case "longCastle" :
+            console.log("doing the short castle thingy")
+            const longRook = playground[i][j - 2];
+            const longCastlePlayground = playground.map((arr, rowIndex) =>
+              arr.map((pieceData, columnIndex) => {
+                if (rowIndex === i && columnIndex === j + 1){
+                  console.log("longrook emplacement" , rowIndex, columnIndex)
+                  return longRook;
+                //removes king
+                } else if (rowIndex === i && columnIndex === j + 2) {
+                  return null;
+                //removes rook
+                } else if (rowIndex === i && columnIndex === j - 2) {
+                  return null;
+                }
+                else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
+                  return selectedPiece;
+                }
+                return pieceData;
+                }),
+            );
+            //Updates states
+            setPlayground(longCastlePlayground);
+            selectedPiece.y = i;
+            selectedPiece.x = j;
+            setPossibleDestinations(null);
+            setSelectedPieceId(null);
+            setIsWhitesTurn((prev) => !prev);
+            break;
+        }
       } else {
-        setSelectedPieceId(null);
-        setIsWhitesTurn((prev) => !prev);
+        //intializes newPlayground
+        const newPlayground = playground.map((arr, rowIndex) =>
+          arr.map((pieceData, columnIndex) => {
+            if (pieceData?.id === selectedPieceId) {
+              return null;
+            }
+            //handle logic when destination has enemy piece
+            if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
+              return determineMatchWinner(selectedPiece, playground[i][j], board);
+            //handle logic when destination is empty
+            } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
+              return selectedPiece;
+            }
+            return pieceData;
+          }),
+        );
+        //Updates states
+        setPlayground(newPlayground);
+        selectedPiece.y = i;
+        selectedPiece.x = j;
+        setPossibleDestinations(null);
+        //Checks if selected Piece is eligible for promotion;
+        if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
+          setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
+        } else {
+          setSelectedPieceId(null);
+          setIsWhitesTurn((prev) => !prev);
+        }
       }
     }
   }

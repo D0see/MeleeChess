@@ -381,6 +381,21 @@ export default class Piece {
           if ((this.x - 1 >= 0 && this.y + 1 < twoDArr.length) && (!twoDArr[this.y + 1][this.x - 1] || twoDArr[this.y + 1][this.x - 1].team !== this.team)){
             possibleMoves.push([this.y + 1, this.x - 1])
           }
+        //insert castling logic (WORK IN PROGRESS)
+          if (this.hasMoved === false) {
+            console.log(possibleMoves);
+            //Long-castle (left)
+            const validEmptySpacesForLongCastle = (twoDArr[this.y][this.x -1] === null) && (twoDArr[this.y][this.x -2] === null) && ((twoDArr[this.y][this.x -3] === null))
+            const longCastleRookHasntmoved = (twoDArr[this.y][this.x - 4])?.hasMoved === false;
+            if (validEmptySpacesForLongCastle && longCastleRookHasntmoved) {
+              possibleMoves.push([this.y, this.x - 2, "longCastle"])
+            }
+            const validEmptySpacesForShortCastle = (twoDArr[this.y][this.x + 1] === null) && (twoDArr[this.y][this.x + 2] === null);
+            const shortCastleRookHasntmoved = (twoDArr[this.y][this.x + 3])?.hasMoved === false;
+            if (validEmptySpacesForShortCastle && shortCastleRookHasntmoved) {
+              possibleMoves.push([this.y, this.x + 2, "shortCastle"])
+            }
+          }
         break;
       }
     return possibleMoves;

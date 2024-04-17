@@ -1,8 +1,5 @@
 ### TODO :
 1. Clean the css (clear the css namespace by adding modules instead of global css files)
--〜CharacterSelectApp〜
--〜BoardSelectionApp〜
--〜TheGameApp〜
 -App.css
 2. build a functionnal gecko code generator (started)
 3. learn electron.js
@@ -41,7 +38,8 @@
 
 ### Features to add :
 1. make electron.js launch dolphin with the generated gecko code on capture.
-2. Add castling (hard) & pawnpromotion
+2. ~Add castling (hard) & pawnpromotion~
+- Implentation is working but is digusting REFACTOR URGENTLY !!!!
 - for balancing issues i might delete the ability to promote to a queen
 3. Pat check
 

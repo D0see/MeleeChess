@@ -9,6 +9,7 @@
     display: flex;
     position: relative;
     right: 115px;
+    bottom: 15px;
     animation: reveals-itself 1s ease;
     transition: opacity 0.5s ease;
 }
