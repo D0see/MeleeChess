@@ -20,14 +20,12 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
     if (selectedPieceId && playground[i][j]?.id === selectedPieceId) {
       setSelectedPieceId(null);
       setPossibleDestinations(null);
-
     //Handle clicking on a piece on your team 
     } else if (
       ((playground[i][j]?.team === "white" && isWhitesTurn) || (playground[i][j]?.team === "black" && !isWhitesTurn))
     ) {
       setSelectedPieceId(playground[i][j].id);
       setPossibleDestinations(playground[i][j].determinePossibleMoves(playground));
-
     //Handle clicking possible destination when a piece is clicked
     } else if (selectedPieceId && hasCoordinatesInArray(possibleDestinations, [i, j])) {
       //determine selectedPiece
@@ -38,10 +36,8 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
           break;
         }
       }
-
       //intializes newPlayGround
       let newPlayground;
-
       //handles if selected move castles 
       const castling = returnThirdValueOrFalse(possibleDestinations, [i, j]);
       if (castling){
@@ -83,7 +79,6 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
             );
             break;
         }
-
       } else {
       // handles if its a normal move
         newPlayground = playground.map((arr, rowIndex) =>
@@ -101,8 +96,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
             return pieceData;
           }),
         );
-      }
-      
+      }    
       //Updates states
       setPlayground(newPlayground);
       selectedPiece.y = i;

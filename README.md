@@ -6,7 +6,7 @@
 4. Add costume selection
 5. Parse .slp replays
 
-## CharacterSelectionApp : 
+## CharacterSelectionApp : drdf
 
 ### Features to add :
 1. Port Selector.

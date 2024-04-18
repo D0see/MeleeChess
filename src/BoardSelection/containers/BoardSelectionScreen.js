@@ -9,8 +9,8 @@ export default function BoardSelectionScreen({ className, setIsLocked, setSelect
   return (
     <div className={`${styles.BoardSelectionScreen} ${className}`}>
       <h1>Select a board</h1> 
-      <BoardDisplay selectedStage={selectedStage} setSelectedStage={setSelectedStage}/>
       <StageSelector className={styles.StageSelector} selectedStage={selectedStage} setSelectedStage={setSelectedStage}/>
+      <BoardDisplay selectedStage={selectedStage} setSelectedStage={setSelectedStage}/>
       <LockStageSelectionButton setIsLocked={setIsLocked}/>
     </div>
   )

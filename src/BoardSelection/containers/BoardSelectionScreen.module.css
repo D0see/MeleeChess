@@ -4,7 +4,7 @@
     position: absolute;
     transform: translate(-50%, 50%);
     left: 50%;
-    bottom: 55%;
+    bottom: 50%;
     animation: appears var(--slide-screen-time) ease;
 }
 
@@ -14,7 +14,7 @@
     }
 
     100% {
-        bottom: 55%;
+        bottom: 50%;
     }
 }
 
@@ -26,6 +26,7 @@
     justify-content: space-between;
     margin: 0 auto;
     margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     align-items: center;
     padding: 4px;

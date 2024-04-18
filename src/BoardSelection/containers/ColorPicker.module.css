@@ -1,6 +1,6 @@
 .SelectorContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     border: 1px solid var(--deeper-color);
     background-color: var(--lighter-color);
     justify-content: space-between;
@@ -10,9 +10,14 @@
     align-items: center;
     padding: 4px;
     width: 98%;
-    height: 62px;
+    height: fit-content;
     box-shadow: 2px 2px 2px 0px var(--deeper-color);
     transition: background-color 0.30s ease;
+}
+
+.PickerContainer {
+    display: flex;
+    flex-direction: row;
 }
 
 .Square {

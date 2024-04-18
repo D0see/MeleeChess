@@ -383,16 +383,16 @@ export default class Piece {
           }
         //insert castling logic (WORK IN PROGRESS)
           if (this.hasMoved === false) {
-            console.log(possibleMoves);
             //Long-castle (left)
             const validEmptySpacesForLongCastle = (twoDArr[this.y][this.x -1] === null) && (twoDArr[this.y][this.x -2] === null) && ((twoDArr[this.y][this.x -3] === null))
-            const longCastleRookHasntmoved = (twoDArr[this.y][this.x - 4])?.hasMoved === false;
-            if (validEmptySpacesForLongCastle && longCastleRookHasntmoved) {
+            const longCastleRookHasntmMoved = (twoDArr[this.y][this.x - 4])?.hasMoved === false;
+            if (validEmptySpacesForLongCastle && longCastleRookHasntmMoved) {
               possibleMoves.push([this.y, this.x - 2, "longCastle"])
             }
+            //Short-castle (right)
             const validEmptySpacesForShortCastle = (twoDArr[this.y][this.x + 1] === null) && (twoDArr[this.y][this.x + 2] === null);
-            const shortCastleRookHasntmoved = (twoDArr[this.y][this.x + 3])?.hasMoved === false;
-            if (validEmptySpacesForShortCastle && shortCastleRookHasntmoved) {
+            const shortCastleRookHasntMoved = (twoDArr[this.y][this.x + 3])?.hasMoved === false;
+            if (validEmptySpacesForShortCastle && shortCastleRookHasntMoved) {
               possibleMoves.push([this.y, this.x + 2, "shortCastle"])
             }
           }
