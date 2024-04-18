@@ -1,10 +1,9 @@
 ### TODO :
 1. Clean the css (clear the css namespace by adding modules instead of global css files)
 -App.css
-2. ~build a functionnal gecko code generator~
-3. learn electron.js
-4. Add costume selection
-5. Parse .slp replays
+2. learn electron.js
+3. Add costume selection
+4. Parse .slp replays
 
 ## CharacterSelectionApp : drdf
 
@@ -24,7 +23,7 @@
 ## BoardSelectionApp : 
 
 ### Features to add :
-1. Caption the stages.
+1. ~Caption the stages.~
 
 ### Bugs:
 // had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect changes to nested arrays).
@@ -42,6 +41,7 @@
 2. Pat check
 
 ### Bugs:
+The castled rook doesn't update its position
 
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.

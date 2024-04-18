@@ -44,6 +44,8 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
         switch(castling) {
           case "shortCastle" : 
             const shortRook = playground[i][j + 1];
+            shortRook.y = i;
+            shortRook.x = j - 1;
             newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
                 //places rook
@@ -62,6 +64,8 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
             break;
           case "longCastle" :
             const longRook = playground[i][j - 2];
+            longRook.y = i;
+            longRook.x = j + 1;
             newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
                 //places rook
