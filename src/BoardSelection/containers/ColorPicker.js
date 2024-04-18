@@ -20,7 +20,7 @@ export default function ColorPicker({ pickedColor, setPickedColor }) {
   return (
     <div className={styles.SelectorContainer}>
       {Object.keys(stageColorEnum).map((key) => (
-        <div className={styles.PickerContainer}>
+        <div className={styles.PickerContainer} key={`${key}div`}>
           <Square
             className={`${styles.Square} ${styles.Pickers} ${pickedColor === +key ? styles.Selected : ""}`}
             key={key}

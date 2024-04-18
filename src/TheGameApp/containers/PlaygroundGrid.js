@@ -44,7 +44,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
         switch(castling) {
           case "shortCastle" : 
             const shortRook = playground[i][j + 1];
-            shortRook.y = i;
+            //updates shortRook internal position
             shortRook.x = j - 1;
             newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
@@ -64,7 +64,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
             break;
           case "longCastle" :
             const longRook = playground[i][j - 2];
-            longRook.y = i;
+            //updates longRook internal position
             longRook.x = j + 1;
             newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
@@ -108,11 +108,38 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
       setPossibleDestinations(null);
       //Checks if selected Piece is eligible for promotion;
       if ((selectedPiece.type === "pawn") && ((selectedPiece.team === "white" && selectedPiece.y === 0) || (selectedPiece.team === "black" && selectedPiece.y === 7))){
-        setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x})
+        setPromotionLocation({y: selectedPiece.y, x: selectedPiece.x});
       } else {
         setSelectedPieceId(null);
         setIsWhitesTurn((prev) => !prev);
       }
+      //Checks for pat (next player has at least one possible move)
+      const isInPat = (playground, isWhitesTurn) => {
+        const whosTurnNext = isWhitesTurn ? "black" : "white";
+        for(const arr of playground) {
+          for (const emplacement of arr) {
+            if (emplacement === null) {
+              console.log(JSON.stringify(emplacement), "null")
+              continue;
+            }
+            if (emplacement?.team !== whosTurnNext) {
+              console.log(JSON.stringify(emplacement), "not the correct team")
+              continue;
+            } else {
+              const possibleMoves = emplacement.determinePossibleMoves(playground);
+              if (possibleMoves.length > 0) {
+                console.log(JSON.stringify(emplacement), "has moves so i quit")
+                return true;
+              } else {
+                console.log("has no moves")
+                continue
+              }
+            }
+          }
+        }
+        return false;
+      }
+      isInPat(playground, isWhitesTurn);
     }
   }
 

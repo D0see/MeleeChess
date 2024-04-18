@@ -5,7 +5,7 @@
 3. Add costume selection
 4. Parse .slp replays
 
-## CharacterSelectionApp : drdf
+## CharacterSelectionApp : 
 
 ### Features to add :
 1. Port Selector.
@@ -19,11 +19,11 @@
 ### ToChange :
 - Clean the code, and find better prop names.
 - Change slide animation from % to vh
+- Make the stage selector prettier
 
 ## BoardSelectionApp : 
 
 ### Features to add :
-1. ~Caption the stages.~
 
 ### Bugs:
 // had a bug where i had 2 custom stages but couldnt replicate it (remember that react doesnt detect changes to nested arrays).
@@ -38,10 +38,9 @@
 ### Features to add :
 1. make electron.js launch dolphin with the generated gecko code on capture.
 - for balancing issues i might delete the ability to promote to a queen
-2. Pat check
+2. ~Pat check~
 
 ### Bugs:
-The castled rook doesn't update its position
 
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.
