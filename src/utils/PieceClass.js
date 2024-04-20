@@ -55,6 +55,9 @@ export default class Piece {
   get stocks() {
     return this._stocks;
   }
+  set stocks(val) {
+    this._stocks = val;
+  }
   
   get id() {
     return this._id;
@@ -62,6 +65,10 @@ export default class Piece {
 
   get damage() {
     return this._damage;
+  }
+
+  set damage(val) {
+    this._damage = val;
   }
 
   determineStartingStocks() {

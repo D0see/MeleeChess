@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Box from "../components/Box.js";
 
 import { stageColorEnum } from "../../utils/StageList";
@@ -13,6 +13,30 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
   const [selectedPieceId, setSelectedPieceId] = useState(null);
   const [possibleDestinations, setPossibleDestinations] = useState(null);
   const [promotionLocation, setPromotionLocation] = useState(null);
+  const [checkWinner, setCheckWinner] = useState(null);
+
+  useEffect(() => {
+      if (!checkWinner) {
+          return
+      }
+      let i = checkWinner.i;
+      let j = checkWinner.j;
+      checkWinner.callback.then((res) => {
+          let winner = res;
+
+          let newPlayground = playground.map((arr, rowIndex) =>
+              arr.map((pieceData, columnIndex) => {
+                  //handles when its the starting square
+                  if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
+                      return winner;
+                  }
+                  return pieceData;
+              }),
+          );
+          setPlayground(newPlayground);
+
+      })
+  }, [checkWinner]);  
 
   //Logic for clicking & moving pieces
   function handlePieceClick(i, j) {
@@ -92,7 +116,7 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
               return null;
             //handles when destination has enemy piece
             } else if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
-              return determineMatchWinner(selectedPiece, playground[i][j], board);
+              setCheckWinner({callback: determineMatchWinner(selectedPiece, playground[i][j], board), i:i, j:j});
             //handles when destination is empty
             } else if ((rowIndex === i && columnIndex === j) && !playground[i][j]) {
               return selectedPiece;
@@ -119,19 +143,15 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
         for(const arr of playground) {
           for (const emplacement of arr) {
             if (emplacement === null) {
-              console.log(JSON.stringify(emplacement), "null")
               continue;
             }
             if (emplacement?.team !== whosTurnNext) {
-              console.log(JSON.stringify(emplacement), "not the correct team")
               continue;
             } else {
               const possibleMoves = emplacement.determinePossibleMoves(playground);
               if (possibleMoves.length > 0) {
-                console.log(JSON.stringify(emplacement), "has moves so i quit")
                 return true;
               } else {
-                console.log("has no moves")
                 continue
               }
             }

@@ -2,6 +2,8 @@
 const { app, BrowserWindow } = require("electron");
 const { execFile } = require('node:child_process');
 const { ipcMain } = require('electron');
+const { SlippiGame } = require("@slippi/slippi-js");
+const chokidar = require("chokidar");
 const fs = require('fs-extra');
 const path = require("node:path");
 const express = require("express");
@@ -92,6 +94,64 @@ app.whenReady().then(() => {
       console.log('Config has been written to', userGeckoPath);
     });
   });
+  ipcMain.handle('watch-game-result', () => {
+    let winner;
+      return new Promise((resolve, reject) => {
+          const watcher = chokidar.watch(path.join(app.getPath("documents"), "Slippi/2024-04"), {
+              depth: 0,
+              persistent: true,
+              usePolling: true,
+              ignoreInitial: true,
+          });
+  
+          let game = null;
+          watcher.on("change", (path) => {
+              if (!game) {
+                  game = new SlippiGame(path, { processOnTheFly: true });
+                  console.log("New slp file: ", path);
+              }
+  
+              let gameEnd = game.getGameEnd();
+              if (gameEnd) {
+                  const endTypes = {
+                      1: "TIME!",
+                      2: "GAME!",
+                      7: "No Contest",
+                  };
+                  const endMessage = endTypes[gameEnd.gameEndMethod] || "Unknown";
+                  const lastFrame = game.getLatestFrame();
+                  const winnerData = {};
+
+                  if (gameEnd.gameEndMethod !== 7) {
+                    for(const port of gameEnd.placements){
+                      if (port.position === 0) {
+                        console.log("winner is ", port.position)
+                        winnerData.winner = port.playerIndex;
+                      }
+                    }
+                    winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
+                    winnerData.damage = lastFrame.players[winnerData.winner].post.percent;
+                  } else {
+                    for(const port of gameEnd.placements) {
+                      if(port.position !== gameEnd.lrasInitiatorIndex) {
+                        winnerData.winner = port.playerIndex;
+                      }
+                    }
+                    winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
+                    winnerData.damage = lastFrame.players[winnerData.winner].post.percent;
+                  }
+                  
+                  console.log(gameEnd);
+                  
+                  const lrasText = gameEnd.gameEndMethod === 7 ? ` | Quitter Index: ${gameEnd.lrasInitiatorIndex}` : "";
+                  console.log(`[Game Complete] Type: ${endMessage}${lrasText}`);
+                  game = null;
+                  watcher.close().then(() => resolve(winnerData));
+              }
+          });
+      });
+    }
+  );
   startLocalServer(createWindow);
 
   app.on("activate", function() {
