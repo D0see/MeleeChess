@@ -19,14 +19,10 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
       if (!checkWinner) {
           return
       }
-      let i = checkWinner.i;
-      let j = checkWinner.j;
-      checkWinner.callback.then((res) => {
-          let winner = res;
-
+      const {i, j, callback} = checkWinner;
+      callback.then((winner) => {
           let newPlayground = playground.map((arr, rowIndex) =>
               arr.map((pieceData, columnIndex) => {
-                  //handles when its the starting square
                   if ((rowIndex === i && columnIndex === j) && playground[i][j]) {
                       return winner;
                   }

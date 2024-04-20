@@ -137,7 +137,7 @@ app.whenReady().then(() => {
                   const winnerData = {};
 
                   //Determines winner
-                  // the game ends normally
+                  // if the game ends normally
                   if (gameEnd.gameEndMethod !== 7) {
                     for(const port of gameEnd.placements){
                       port.position === 0 ? winnerData.winner = port.playerIndex: "";
@@ -148,14 +148,8 @@ app.whenReady().then(() => {
                       port.position !== gameEnd.lrasInitiatorIndex ? winnerData.winner = port.playerIndex : "";
                     }
                   }
-                  console.log(lastFrame.players[winnerData.winner].post.percent);
                   winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
                   winnerData.damage = Math.floor(lastFrame.players[winnerData.winner].post.percent);
-
-                  console.log(gameEnd);
-                  
-                  const lrasText = gameEnd.gameEndMethod === 7 ? ` | Quitter Index: ${gameEnd.lrasInitiatorIndex}` : "";
-                  console.log(`[Game Complete] Type: ${endMessage}${lrasText}`);
                   game = null;
                   watcher.close().then(() => resolve(winnerData));
               }
