@@ -134,8 +134,9 @@ app.whenReady().then(() => {
                       port.position !== gameEnd.lrasInitiatorIndex ? winnerData.winner = port.playerIndex : "";
                     }
                   }
+                  console.log(lastFrame.players[winnerData.winner].post.percent);
                   winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
-                  winnerData.damage = lastFrame.players[winnerData.winner].post.percent;
+                  winnerData.damage = Math.floor(lastFrame.players[winnerData.winner].post.percent);
 
                   console.log(gameEnd);
                   
