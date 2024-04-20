@@ -54,6 +54,20 @@ const slippiUserFolder = path.join(app.getPath("userData"), "../Slippi Launcher/
 const destinationFolderPath = path.join(app.getPath("userData"), "netplay");
 copyFolder(slippiUserFolder, destinationFolderPath);
 
+function readSpecificLine(filePath, lineIndex) {
+  const data = fs.readFileSync(filePath, 'utf8');
+  const lines = data.split('\n');
+  if (lineIndex < 0 || lineIndex >= lines.length) {
+      throw new Error('Invalid line index');
+  }
+  return lines[lineIndex];
+}
+
+const filePath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
+const lineIndex = 2; // Index of the line you want to read (0-based)
+const isoPath = readSpecificLine(filePath, lineIndex);
+console.log(isoPath)
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
