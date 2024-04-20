@@ -1,3 +1,6 @@
+- White is Port 1, Black is port 2;
+
+
 ### TODO :
 1. Clean the css (clear the css namespace by adding modules instead of global css files)
 -App.css

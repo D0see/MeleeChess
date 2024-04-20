@@ -122,25 +122,21 @@ app.whenReady().then(() => {
                   const lastFrame = game.getLatestFrame();
                   const winnerData = {};
 
+                  //Determines winner
+                  // the game ends normally
                   if (gameEnd.gameEndMethod !== 7) {
                     for(const port of gameEnd.placements){
-                      if (port.position === 0) {
-                        console.log("winner is ", port.position)
-                        winnerData.winner = port.playerIndex;
-                      }
+                      port.position === 0 ? winnerData.winner = port.playerIndex: "";
                     }
-                    winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
-                    winnerData.damage = lastFrame.players[winnerData.winner].post.percent;
                   } else {
+                  // if Paf LRA-START
                     for(const port of gameEnd.placements) {
-                      if(port.position !== gameEnd.lrasInitiatorIndex) {
-                        winnerData.winner = port.playerIndex;
-                      }
+                      port.position !== gameEnd.lrasInitiatorIndex ? winnerData.winner = port.playerIndex : "";
                     }
-                    winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
-                    winnerData.damage = lastFrame.players[winnerData.winner].post.percent;
                   }
-                  
+                  winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
+                  winnerData.damage = lastFrame.players[winnerData.winner].post.percent;
+
                   console.log(gameEnd);
                   
                   const lrasText = gameEnd.gameEndMethod === 7 ? ` | Quitter Index: ${gameEnd.lrasInitiatorIndex}` : "";

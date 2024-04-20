@@ -5,9 +5,7 @@ export default function DetermineMatchWinner(attackingPiece, defendingPiece, boa
     // const randomNum = Math.floor(Math.random() * 2);
     //const winner = randomNum < 1 ? attackingPiece : defendingPiece;
     const white = attackingPiece.team === "white" ? attackingPiece : defendingPiece;
-    console.log(white.team, "white");
     const black = white.id === attackingPiece.id ?  defendingPiece: attackingPiece; 
-    console.log(black.team, "black");
 
     //Testing the gecko code gen
     const meleeChessConfig = GeckoCodeGenerator(attackingPiece, defendingPiece, board);
