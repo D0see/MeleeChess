@@ -90,14 +90,14 @@ PollingMethod = OnSIRead
 FastDiscSpeed = True
 
 [Gecko_Enabled]
-$Match Setup [?]
+$Match Setup 
 $Required: Slippi Recording
-$Boot To Match [UnclePunch]
-$Skip Memcard Prompt [UnclePunch]
+$Boot To Match 
+$Skip Memcard Prompt 
 $Neutral Spawn
 
 [Gecko]
-$Match Setup [?]
+$Match Setup 
 C21B148C 00000025
 3C608048 60630530
 48000021 7C8802A6
@@ -137,10 +137,10 @@ ${port2DamageHex}0000 00000000
 3F800000 BB610014
 60000000 00000000
 
-$Boot To Match [UnclePunch]
+$Boot To Match 
 041A45A0 3800000E
 
-$Skip Memcard Prompt [UnclePunch]
+$Skip Memcard Prompt 
 C21AF6F4 00000004
 2C1D000F 40820014
 3D80801B 618C01AC

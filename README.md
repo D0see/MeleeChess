@@ -39,7 +39,7 @@
 1. make electron.js launch dolphin with the generated gecko code on capture.
 - for balancing issues i might delete the ability to promote to a queen
 2. ~Pat check~
-
+3. Change default folder for slp writing.
 ### Bugs:
 
 ### ToChange :

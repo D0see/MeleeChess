@@ -47,8 +47,9 @@ async function copyFolder(source, destination) {
     console.error('Error copying folder:', err);
   }
 }
-const slippiUserFolder = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay");
-const destinationFolderPath = path.join("C:/Users/Léo/AppData/Roaming/meleechess/netplay");
+//const slippiUserFolder = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay");
+const slippiUserFolder = path.join(app.getPath("userData"), "../Slippi Launcher/netplay");
+const destinationFolderPath = path.join(app.getPath("userData"), "netplay");
 copyFolder(slippiUserFolder, destinationFolderPath);
 
 // This method will be called when Electron has finished
@@ -59,7 +60,7 @@ app.whenReady().then(() => {
   
   ipcMain.handle('start-dolphin', () => {
       console.log("starting dolphin");
-      const dolphinPath = path.join(app.getPath("userData"), "/netplay/Slippi Dolphin.exe")
+      const dolphinPath = path.join(app.getPath("userData"), "netplay/Slippi Dolphin.exe")
       const userPath = path.join(app.getPath("userData"), "netplay/User/")
       console.log(path.normalize(userPath));
       execFile(dolphinPath, ["--user", "netplay/User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
