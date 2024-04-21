@@ -1,12 +1,11 @@
 - White is Port 1, Black is port 2;
 
-
 ### TODO :
 1. Clean the css (clear the css namespace by adding modules instead of global css files)
 -App.css
 2. learn electron.js
 3. Add costume selection
-4. Parse .slp replays
+4. ~Parse .slp replays~
 
 ## CharacterSelectionApp : 
 
@@ -37,16 +36,19 @@
 3. Change slide animation from % to vh
 
 ## GameApp : 
+-Lose on King capture
 
 ### Features to add :
-1. make electron.js launch dolphin with the generated gecko code on capture.
-- for balancing issues i might delete the ability to promote to a queen
-2. ~Pat check~
-3. Change default folder for slp writing.
+1. ~make electron.js launch dolphin with the generated gecko code on capture.~
+
 ### Bugs:
+~LRA-STARTING makes the next dolphin instance close right after it opens.~
+~Selecting game&watch instead spawns ganondorf~
 
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.
+2. for balancing issues i might delete the ability to promote to a queen
+3. Change default folder for slp writing.
 
 ### Priority
 1. Paye une pinte à Gu
