@@ -125,7 +125,6 @@ app.whenReady().then(() => {
                   game = new SlippiGame(path, { processOnTheFly: true });
                   console.log("New slp file: ", path);
               }
-  
               let gameEnd = game.getGameEnd();
               if (gameEnd) {
                   dolphin.kill();
@@ -145,15 +144,14 @@ app.whenReady().then(() => {
                       port.position === 0 ? winnerData.winner = port.playerIndex: "";
                     }
                   } else {
-                  // if Paf LRA-START
-                    for(const port of gameEnd.placements) {
-                      port.position !== gameEnd.lrasInitiatorIndex ? winnerData.winner = port.playerIndex : "";
-                    }
+                  // if Paf LRA-START 
+                    0 !== gameEnd.lrasInitiatorIndex ? winnerData.winner = 0 : winnerData.winner = 1;
                   }
                   winnerData.stocks = lastFrame.players[winnerData.winner].post.stocksRemaining;
                   winnerData.damage = Math.floor(lastFrame.players[winnerData.winner].post.percent);
                   game = null;
                   watcher.close().then(() => resolve(winnerData));
+                  console.log(winnerData, "this is the winner");
               }
           });
       });
