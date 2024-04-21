@@ -17,7 +17,7 @@ export default function GeckoGenerator (attackingPiece, defendingPiece, board) {
     'Mario': 0x8,
     'Marth': 0x9,
     'Mewtwo': 0xA,
-    'Mr. Game & Watch': 0x19,
+    'Mr. Game & Watch': 0x3,
     'Ness': 0xB,
     'Peach': 0xC,
     'Pichu': 0x18,
