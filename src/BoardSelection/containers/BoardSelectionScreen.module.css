@@ -30,7 +30,7 @@
     border-radius: 10px;
     align-items: center;
     padding: 4px;
-    width: 98%;
+    width: 350px;
     height: 62px;
     box-shadow: 2px 2px 2px 0px var(--deeper-color);
     transition: background-color 0.30s ease;

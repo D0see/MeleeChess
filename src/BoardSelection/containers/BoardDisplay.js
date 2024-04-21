@@ -51,7 +51,7 @@ export default function BoardDisplay({ selectedStage, setSelectedStage }) {
   };
 
   return (
-    <>
+    <div style={{"display": "flex"}}>
       <div className={styles.Grid} onMouseEnter={handleGridMouseEnter} onMouseLeave={handleGridMouseLeave}>
         {selectedStage.layout.map((arr, y) =>
           arr.map((num, x) => (
@@ -67,6 +67,6 @@ export default function BoardDisplay({ selectedStage, setSelectedStage }) {
         )}
       </div>
       <ColorPicker pickedColor={pickedColor} setPickedColor={setPickedColor} />
-    </>
+    </div>
   );
 }
