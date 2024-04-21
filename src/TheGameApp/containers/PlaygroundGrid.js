@@ -30,7 +30,6 @@ export default function PlaygroundGrid({playground, setPlayground, isWhitesTurn,
               }),
           );
           setPlayground(newPlayground);
-
       })
   }, [checkWinner]);  
 

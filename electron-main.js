@@ -39,6 +39,18 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
+// read and return a specific line
+function readSpecificLine(filePath, lineIndex) {
+  const data = fs.readFileSync(filePath, 'utf8');
+  const lines = data.split('\n');
+  if (lineIndex < 0 || lineIndex >= lines.length) {
+      throw new Error('Invalid line index');
+  }
+  return lines[lineIndex];
+}
+const filePath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
+const lineIndex = 2; // Index of the line you want to read (0-based)
+let isoPath;
 
 //Copy a folder to a destination
 async function copyFolder(source, destination) {
@@ -52,26 +64,15 @@ async function copyFolder(source, destination) {
 //const slippiUserFolder = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay");
 const slippiUserFolder = path.join(app.getPath("userData"), "../Slippi Launcher/netplay");
 const destinationFolderPath = path.join(app.getPath("userData"), "netplay");
-copyFolder(slippiUserFolder, destinationFolderPath);
-
-function readSpecificLine(filePath, lineIndex) {
-  const data = fs.readFileSync(filePath, 'utf8');
-  const lines = data.split('\n');
-  if (lineIndex < 0 || lineIndex >= lines.length) {
-      throw new Error('Invalid line index');
-  }
-  return lines[lineIndex];
-}
-
-const filePath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
-const lineIndex = 2; // Index of the line you want to read (0-based)
-const isoPath = readSpecificLine(filePath, lineIndex);
-console.log(isoPath)
+copyFolder(slippiUserFolder, destinationFolderPath).then(() => isoPath = path.join(readSpecificLine(filePath, lineIndex).slice(11), "Super Smash Bros. Melee (USA) (En,Ja) (v1.02).iso"));
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 // arg to pass ["--user", "C:/Users/Léo/AppData/Roaming/meleechess/User"]
+
+//dolphin-child-process
+let dolphin;
 app.whenReady().then(() => {
   
   ipcMain.handle('start-dolphin', () => {
@@ -79,7 +80,7 @@ app.whenReady().then(() => {
       const dolphinPath = path.join(app.getPath("userData"), "netplay/Slippi Dolphin.exe")
       const userPath = path.join(app.getPath("userData"), "netplay/User/")
       console.log(path.normalize(userPath));
-      execFile(dolphinPath, ["--user", "netplay/User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
+      dolphin = execFile(dolphinPath, ["--batch", "--exec", `${isoPath}`, "--user", "netplay/User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
           if (err) {
               console.error(err);
               return;
@@ -127,6 +128,7 @@ app.whenReady().then(() => {
   
               let gameEnd = game.getGameEnd();
               if (gameEnd) {
+                  dolphin.kill();
                   const endTypes = {
                       1: "TIME!",
                       2: "GAME!",
