@@ -36,7 +36,7 @@
 3. Change slide animation from % to vh
 
 ## GameApp : 
--Lose on King capture
+- Lose on King capture
 
 ### Features to add :
 1. ~make electron.js launch dolphin with the generated gecko code on capture.~
@@ -48,7 +48,7 @@
 ### ToChange :
 1. Un-hardcode the css for the playgrounddisplay.
 2. for balancing issues i might delete the ability to promote to a queen
-3. Change default folder for slp writing.
+3. ~Change default folder for slp writing.~
 
 ### Priority
 1. Paye une pinte à Gu
