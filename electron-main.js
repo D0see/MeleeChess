@@ -48,9 +48,10 @@ function readSpecificLine(filePath, lineIndex) {
   }
   return lines[lineIndex];
 }
-const filePath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
-const lineIndex = 2; // Index of the line you want to read (0-based)
+const dolphinIniPath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
+const lineIndexOfIsoPath = 2; // Index of the line you want to read (0-based)
 let isoPath;
+
 
 //Copy a folder to a destination
 async function copyFolder(source, destination) {
@@ -64,7 +65,50 @@ async function copyFolder(source, destination) {
 //const slippiUserFolder = path.join("C:/Users/Léo/AppData/Roaming/Slippi Launcher/netplay");
 const slippiUserFolder = path.join(app.getPath("userData"), "../Slippi Launcher/netplay");
 const destinationFolderPath = path.join(app.getPath("userData"), "netplay");
-copyFolder(slippiUserFolder, destinationFolderPath).then(() => isoPath = path.join(readSpecificLine(filePath, lineIndex).slice(11), "Super Smash Bros. Melee (USA) (En,Ja) (v1.02).iso"));
+
+const customReplayFolderPath = path.join(app.getPath("userData"), "Replays")
+async function writeToSpecificLine(filePath, lineNumber, data) {
+  return new Promise((resolve, reject) => {
+      // Read the contents of the file
+      fs.readFile(filePath, 'utf8', (err, contents) => {
+          if (err) {
+              reject(err);
+              return;
+          }
+
+          // Split the contents by lines
+          const lines = contents.split('\n');
+
+          // Modify the specific line
+          if (lineNumber >= 0 && lineNumber < lines.length) {
+              lines[lineNumber] = data;
+          } else {
+              reject(new Error('Line number out of range'));
+              return;
+          }
+
+          // Join the modified lines back together
+          const modifiedContents = lines.join('\n');
+
+          // Write the modified contents back to the file
+          fs.writeFile(filePath, modifiedContents, 'utf8', (err) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
+              resolve();
+          });
+      });
+  });
+}
+
+//On application start
+copyFolder(slippiUserFolder, destinationFolderPath)
+.then(() => isoPath = path.join(readSpecificLine(dolphinIniPath, lineIndexOfIsoPath).slice(11), "Super Smash Bros. Melee (USA) (En,Ja) (v1.02).iso"))
+.then(() => writeToSpecificLine(dolphinIniPath, 12, `SlippiReplayDir = ${customReplayFolderPath}`))
+.then(() => writeToSpecificLine(dolphinIniPath, 13, `SlippiReplayMonthFolders = False`))
+.then(() => fs.ensureDirSync(customReplayFolderPath));
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -112,7 +156,7 @@ app.whenReady().then(() => {
   ipcMain.handle('watch-game-result', () => {
     let winner;
       return new Promise((resolve, reject) => {
-          const watcher = chokidar.watch(path.join(app.getPath("documents"), "Slippi/2024-04"), {
+          const watcher = chokidar.watch(customReplayFolderPath, {
               depth: 0,
               persistent: true,
               usePolling: true,
