@@ -51,6 +51,7 @@ function readSpecificLine(filePath, lineIndex) {
 const dolphinIniPath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
 const lineIndexOfIsoPath = 2; // Index of the line you want to read (0-based)
 let isoPath;
+let isoPath0;
 
 
 //Copy a folder to a destination
@@ -104,11 +105,12 @@ async function writeToSpecificLine(filePath, lineNumber, data) {
 
 //On application start
 copyFolder(slippiUserFolder, destinationFolderPath)
-.then(() => isoPath = path.join(readSpecificLine(dolphinIniPath, lineIndexOfIsoPath).slice(11), "Super Smash Bros. Melee (USA) (En,Ja) (v1.02).iso"))
+.then(() => isoPath0 = readSpecificLine(dolphinIniPath, lineIndexOfIsoPath).slice(11, 14))
+.then(() => isoPath = isoPath0 + "Super Smash Bros. Melee (USA) (En,Ja) (v1.02).iso")
 .then(() => writeToSpecificLine(dolphinIniPath, 12, `SlippiReplayDir = ${customReplayFolderPath}`))
 .then(() => writeToSpecificLine(dolphinIniPath, 13, `SlippiReplayMonthFolders = False`))
-.then(() => fs.ensureDirSync(customReplayFolderPath));
-
+.then(() => fs.ensureDirSync(customReplayFolderPath))
+.then(() => console.log(isoPath, isoPath0));
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
