@@ -49,7 +49,7 @@ function readSpecificLine(filePath, lineIndex) {
   return lines[lineIndex];
 }
 const dolphinIniPath = path.join(app.getPath("userData"), "netplay/User/Config/Dolphin.ini");
-const lineIndexOfIsoPath = 2; // Index of the line you want to read (0-based)
+const lineIndexOfIsoPath = 3; // Index of the line you want to read (0-based)
 let isoPath;
 let isoPath0;
 
@@ -105,34 +105,23 @@ async function writeToSpecificLine(filePath, lineNumber, data) {
 
 //On application start
 copyFolder(slippiUserFolder, destinationFolderPath)
-.then(() => isoPath0 = readSpecificLine(dolphinIniPath, lineIndexOfIsoPath).slice(11, 14))
-.then(() => isoPath = isoPath0 + "Super Smash Bros. Melee (USA) (En,Ja) (v1.02).iso")
+.then(() => isoPath = readSpecificLine(dolphinIniPath, lineIndexOfIsoPath).slice(15)) // TO TEST ON DIFFERENT SLIPPI SETUP
 .then(() => writeToSpecificLine(dolphinIniPath, 12, `SlippiReplayDir = ${customReplayFolderPath}`))
 .then(() => writeToSpecificLine(dolphinIniPath, 13, `SlippiReplayMonthFolders = False`))
 .then(() => fs.ensureDirSync(customReplayFolderPath))
-.then(() => console.log(isoPath, isoPath0));
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-// arg to pass ["--user", "C:/Users/Léo/AppData/Roaming/meleechess/User"]
 
 //dolphin-child-process
 let dolphin;
 app.whenReady().then(() => {
   
   ipcMain.handle('start-dolphin', () => {
-      console.log("starting dolphin");
       const dolphinPath = path.join(app.getPath("userData"), "netplay/Slippi Dolphin.exe")
       const userPath = path.join(app.getPath("userData"), "netplay/User/")
-      console.log(path.normalize(userPath));
       dolphin = execFile(dolphinPath, ["--batch", "--exec", `${isoPath}`, "--user", "netplay/User/"], {encoding: 'utf8', cwd: app.getPath("userData")}, function(err, stdout) {
           if (err) {
               console.error(err);
               return;
           }
-          console.log(stdout);
-
       });   
   });
   ipcMain.handle('write-gecko', (event, configString) => {
@@ -197,7 +186,6 @@ app.whenReady().then(() => {
                   winnerData.damage = Math.floor(lastFrame.players[winnerData.winner].post.percent);
                   game = null;
                   watcher.close().then(() => resolve(winnerData));
-                  console.log(winnerData, "this is the winner");
               }
           });
       });
