@@ -22,7 +22,6 @@ export default function DetermineMatchWinner(attackingPiece, defendingPiece, boa
             }
             winner.damage = res.damage;
             winner.stocks = res.stocks;
-            console.log(winner);
             return resolve(winner);
         });
     });

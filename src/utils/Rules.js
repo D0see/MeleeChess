@@ -4,6 +4,6 @@ export const numOfStartingStocks = {
     rook: 2,
     knight: 2,
     bishop: 2,
-    queen: 4,
+    queen: 3,
     king: 4
 }
